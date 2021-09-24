@@ -14,7 +14,7 @@ public class EnemyBase : MonoBehaviour {
     
     // Start is called before the first frame update
     void Start() {
-        timeSinceLastShot = 0.0f;
+        timeSinceLastShot = Random.Range(0.0f,fireDelay/2.0f);
         tr = transform;
     }
 

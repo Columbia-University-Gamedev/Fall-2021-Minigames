@@ -37,8 +37,7 @@ public class Bullet : MonoBehaviour {
         else { //enemy bullet, so it should hit players
             if (!other.gameObject.CompareTag("Player")) return;
             
-            PlayerController pc = other.GetComponent<PlayerController>();
-            Debug.Log(damage);
+            PlayerController.Instance.InflictDamage(damage);
             
             Destroy(this.gameObject);
         }

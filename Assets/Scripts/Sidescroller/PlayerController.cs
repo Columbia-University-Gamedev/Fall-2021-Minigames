@@ -5,6 +5,23 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour {
+
+    private static PlayerController _instance;
+
+    public static PlayerController Instance
+    {
+        get
+        {
+            if(_instance == null)
+            {
+                _instance = GameObject.FindObjectOfType<PlayerController>();
+            }
+            return _instance;
+        }
+    }
+    
+    
+    
     [Tooltip("Multiplier on force applied to player")]
     public float moveSpeed;
 
