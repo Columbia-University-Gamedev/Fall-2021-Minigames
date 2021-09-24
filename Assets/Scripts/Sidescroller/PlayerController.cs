@@ -5,19 +5,26 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour {
+    [Tooltip("Multiplier on force applied to player")]
     public float moveSpeed;
 
-    private Vector3 minBounds = new Vector3(0,-5.5f,-10);
+    public int maxHealth;
+    public int health { get; set; }
 
-    private Vector3 maxBounds = new Vector3(0,5.5f, 10);
+    private static readonly Vector3 MINBOUNDS = new Vector3(0,-5.5f,-10);
+    private static readonly Vector3 MAXBOUNDS = new Vector3(0,5.5f, 10);
 
     private Transform tr;
-
     private Rigidbody rb;
+    
     // Start is called before the first frame update
     void Awake() {
         tr = this.GetComponent<Transform>();
         rb = this.GetComponent<Rigidbody>();
+    }
+
+    void Start() {
+        health = maxHealth;
     }
 
     // Update is called once per frame
@@ -29,13 +36,13 @@ public class PlayerController : MonoBehaviour {
         Vector3 curPos = tr.position;
         transform.position = new Vector3(curPos.x,
             Mathf.Clamp(curPos.y,
-            minBounds.y, maxBounds.y),
+            MINBOUNDS.y, MAXBOUNDS.y),
             Mathf.Clamp(curPos.z,
-                minBounds.z, maxBounds.z));
+                MINBOUNDS.z, MAXBOUNDS.z));
 
         Vector3 vel = rb.velocity;
         float x_tilt = vel.z > 0 ? 0 : vel.z * 1.5f;
-        transform.eulerAngles = new Vector3(x_tilt,
+        tr.eulerAngles = new Vector3(x_tilt,
             0, vel.y * -5);
     }
 
@@ -46,5 +53,9 @@ public class PlayerController : MonoBehaviour {
     private Vector2 movement;
     void OnMovement(InputValue res) {
         movement = res.Get<Vector2>();
+    }
+
+    public void InflictDamage(int amount) {
+        health = Mathf.Clamp(health - amount, 0, maxHealth);
     }
 }
