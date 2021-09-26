@@ -13,7 +13,7 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: MissileTexture
-    second: {fileID: 2800000, guid: dd1823e6186d21f45853b913bdbcae25, type: 3}
+    second: {fileID: 2800000, guid: 0f5dd640dd0e91344964e3861feb0ac5, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
