@@ -16,6 +16,13 @@ public class EnemyBase : MonoBehaviour {
     void Start() {
         timeSinceLastShot = Random.Range(0.0f,fireDelay/2.0f);
         tr = transform;
+        
+        Animator anim = GetComponent<Animator>();
+        if (anim != null) {
+            AnimatorStateInfo
+                state = anim.GetCurrentAnimatorStateInfo(0); //could replace 0 by any other animation layer index
+            anim.Play(state.fullPathHash, -1, Random.Range(0f, 1f));
+        }
     }
 
     // Update is called once per frame
