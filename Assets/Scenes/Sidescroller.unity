@@ -465,6 +465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   maxHealth: 100
+  bulletPrefab: {fileID: 8508307012102347907, guid: 3ae8e260d3e415c41b9a592477bb0b49, type: 3}
 --- !u!114 &914657791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -713,10 +714,6 @@ PrefabInstance:
     - target: {fileID: 7465852491494289112, guid: c6b672890b54fa244a1db6b4bb8aab1f, type: 3}
       propertyPath: m_Name
       value: Squid Drone (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7736445944275407721, guid: c6b672890b54fa244a1db6b4bb8aab1f, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7842976856315475042, guid: c6b672890b54fa244a1db6b4bb8aab1f, type: 3}
       propertyPath: m_RootOrder

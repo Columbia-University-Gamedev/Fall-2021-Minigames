@@ -414,6 +414,7 @@ MonoBehaviour:
   fireDelay: 5
   bulletVelocity: 3
   damage: 10
+  animEvent: 1
 --- !u!65 &1920827708
 BoxCollider:
   m_ObjectHideFlags: 0

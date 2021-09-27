@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour {
 
     public int maxHealth;
     public int health { get; set; }
+    public GameObject bulletPrefab;
 
     private static readonly Vector3 MINBOUNDS = new Vector3(0,-5.5f,-10);
     private static readonly Vector3 MAXBOUNDS = new Vector3(0,5.5f, 10);
@@ -70,6 +71,10 @@ public class PlayerController : MonoBehaviour {
     private Vector2 movement;
     void OnMovement(InputValue res) {
         movement = res.Get<Vector2>();
+    }
+
+    void OnFire() {
+        Instantiate(bulletPrefab, tr.position, Quaternion.identity);
     }
 
     public void InflictDamage(int amount) {

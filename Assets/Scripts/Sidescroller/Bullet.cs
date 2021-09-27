@@ -11,6 +11,9 @@ public class Bullet : MonoBehaviour {
 
     [Tooltip("Whether the bullet is launched by the player")] public bool isPlayer;
 
+    [Tooltip("Visual effect to spawn on impact")]
+    public GameObject hitEffect;
+    
     private const float FIELD_WIDTH = 20f; 
     //used for calculating bullet lifetime
     //set to the approximate length of the screen in world units
@@ -32,14 +35,26 @@ public class Bullet : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (isPlayer) { //this is a player bullet, so it should hit enemies
-            return;
+            if (other.gameObject.CompareTag("Player")) return;
+
+            Impact();
         }
         else { //enemy bullet, so it should hit players
             if (!other.gameObject.CompareTag("Player")) return;
             
             PlayerController.Instance.InflictDamage(damage);
-            
-            Destroy(this.gameObject);
+
+            Impact();
         }
+    }
+
+    private void Impact() {
+        if (hitEffect != null) {
+            Transform tr = transform;
+            GameObject eff = Instantiate(hitEffect, tr.position,
+                tr.rotation * Quaternion.Euler(0,180.0f,0));
+            Destroy(eff, 5.0f);
+        }
+        Destroy(this.gameObject);
     }
 }
