@@ -13,10 +13,22 @@ public class PlayerController : MonoBehaviour {
     private Vector3 MINBOUNDS = new Vector3(0,-5.5f, -10);
 
     private Vector3 MAXBOUNDS = new Vector3(0,5.5f, 10);
+
+    public int health;
+
+    public int max_health;
+
+    public GameObject bullet;
+
+    public int bullet_damage;
+
+    public int bullet_speed;
     // Start is called before the first frame update
     void Start() {
         tr = this.transform;
         rb = this.GetComponent<Rigidbody>();
+
+        health = max_health;
     }
 
     // Update is called once per frame
@@ -44,5 +56,18 @@ public class PlayerController : MonoBehaviour {
     private Vector2 movement;
     void OnMovement(InputValue res) {
         movement = res.Get<Vector2>();
+    }
+
+    public void TakeDamage(int damage) {
+        health = Mathf.Clamp(health - damage, 0, max_health);
+    }
+
+    public void OnFire() {
+        GameObject fired_bullet = Instantiate(
+            bullet, tr.position, Quaternion.identity);
+        fired_bullet.GetComponent<BulletScript>().InitBullet(
+            bullet_speed,bullet_damage,true);
+        
+        Destroy(fired_bullet,10f);
     }
 }
