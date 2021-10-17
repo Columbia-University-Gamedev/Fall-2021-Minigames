@@ -15,20 +15,24 @@ public class PlayerController : MonoBehaviour {
     private Vector3 MAXBOUNDS = new Vector3(0,5.5f, 10);
 
     public int health;
-
     public int max_health;
 
     public GameObject bullet;
-
     public int bullet_damage;
-
     public int bullet_speed;
+    public float shotDelay;
+    
+    private AudioSource aS;
+
+    public float timeSinceLastShot { get; private set; }
     // Start is called before the first frame update
     void Start() {
         tr = this.transform;
         rb = this.GetComponent<Rigidbody>();
+        aS = this.GetComponent<AudioSource>();
 
         health = max_health;
+        timeSinceLastShot = shotDelay;
     }
 
     // Update is called once per frame
@@ -47,6 +51,8 @@ public class PlayerController : MonoBehaviour {
         float x_tilt = vel.z > 0 ? 0 : vel.z * 1.5f;
         tr.eulerAngles = new Vector3(x_tilt,
             0, vel.y * -5);
+
+        timeSinceLastShot += Time.deltaTime;
     }
 
     void FixedUpdate() {
@@ -63,11 +69,17 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void OnFire() {
+        if (timeSinceLastShot < shotDelay) 
+            return;
+        
         GameObject fired_bullet = Instantiate(
             bullet, tr.position, Quaternion.identity);
         fired_bullet.GetComponent<BulletScript>().InitBullet(
             bullet_speed,bullet_damage,true);
         
+        aS.Play();
+        
         Destroy(fired_bullet,10f);
+        timeSinceLastShot = 0f;
     }
 }

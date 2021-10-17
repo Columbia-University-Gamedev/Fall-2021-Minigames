@@ -19,14 +19,16 @@ public class BasicEnemy : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        timeSinceLastShot += Time.deltaTime;
-        if (timeSinceLastShot >= shotDelay) {
-            Fire();
-            timeSinceLastShot -= shotDelay;
+        if (shotDelay > 0) {
+            timeSinceLastShot += Time.deltaTime;
+            if (timeSinceLastShot >= shotDelay) {
+                Fire();
+                timeSinceLastShot -= shotDelay;
+            }
         }
     }
 
-    void Fire() {
+    public void Fire() {
         GameObject fired_bullet = Instantiate(
             bullet,transform.position,transform.rotation);
         fired_bullet.GetComponent<BulletScript>().InitBullet(

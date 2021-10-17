@@ -11,6 +11,8 @@ public class BulletScript : MonoBehaviour {
     private int damage;
 
     private bool isPlayerBullet;
+
+    public GameObject impactEffect;
     // Start is called before the first frame update
     void Start() {
     }
@@ -33,6 +35,7 @@ public class BulletScript : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         if (isPlayerBullet) {
             if (other.gameObject.CompareTag("Enemy")) {
+                SpawnFX();
                 Destroy(this.gameObject);
             }
         }
@@ -40,8 +43,14 @@ public class BulletScript : MonoBehaviour {
             if (other.gameObject.CompareTag("Player")) {
                 PlayerController pc = other.GetComponent<PlayerController>();
                 pc.TakeDamage(damage);
+                SpawnFX();
                 Destroy(this.gameObject);
             }
         }
+    }
+
+    private void SpawnFX() {
+        if (impactEffect == null) return;
+        Destroy(Instantiate(impactEffect,tr.position,tr.rotation),5.0f);
     }
 }
