@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class movement : MonoBehaviour
+public class dummy_movement : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        transform.localScale = new Vector3(10f, 10f, 10f);
     }
 
     // Update is called once per frame
