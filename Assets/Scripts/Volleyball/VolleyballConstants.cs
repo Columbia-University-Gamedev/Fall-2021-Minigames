@@ -7,5 +7,7 @@ public static class VolleyballConstants
     public const float playerChargeTime = 2.0f;
     public const float playerChargeSpeedMultiplier = 0.5f;
     public const float playerVelocityMultiplier = 1.0f;
-    
+    public const float playerMaxStoredEnergy = 100.0f;
+    public const float ballBounceMultiplier = 0.5f;
+    public const float ballPlayerVelocityAdditionMultiplier = 0.5f;
 }

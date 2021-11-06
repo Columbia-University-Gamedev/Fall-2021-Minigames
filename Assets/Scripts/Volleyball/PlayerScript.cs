@@ -17,6 +17,10 @@ public class PlayerScript : MonoBehaviour
     private Vector2 movement;
     private Vector2 playerVelocity;
 
+    private bool charging;
+    private float storedForce;
+    public bool canHitBall;
+
     public bool isPlayerOne = true;
     
     void Awake()
@@ -29,6 +33,8 @@ public class PlayerScript : MonoBehaviour
     {
         canJump = false;
         onGround = false;
+        charging = false;
+        canHitBall = false;
 
         rb2d.gravityScale = VolleyballConstants.playerGravityScale;
     }
@@ -39,8 +45,14 @@ public class PlayerScript : MonoBehaviour
 
         movement.x = 0;
 
-        if(isPlayerOne) move(kb.aKey.isPressed, kb.dKey.isPressed, kb.fKey.isPressed, kb.wKey.isPressed, kb.wKey.wasPressedThisFrame, kb.wKey.wasReleasedThisFrame);
-        else move(kb.jKey.isPressed, kb.lKey.isPressed, kb.semicolonKey.isPressed, kb.iKey.isPressed, kb.iKey.wasPressedThisFrame, kb.iKey.wasReleasedThisFrame);
+        if(isPlayerOne){
+            charging = kb.fKey.isPressed;
+            move(kb.aKey.isPressed, kb.dKey.isPressed, kb.wKey.isPressed, kb.wKey.wasPressedThisFrame, kb.wKey.wasReleasedThisFrame);
+        }
+        else{
+            charging = kb.semicolonKey.isPressed;
+            move(kb.jKey.isPressed, kb.lKey.isPressed, kb.iKey.isPressed, kb.iKey.wasPressedThisFrame, kb.iKey.wasReleasedThisFrame);
+        }
         
     }
 
@@ -49,7 +61,8 @@ public class PlayerScript : MonoBehaviour
         rb2d.velocity = playerVelocity;
     }
 
-    void move(bool moveLeft, bool moveRight, bool charging, bool jump, bool jumpStart, bool jumpStop){
+    //Controls for movement and jumping
+    void move(bool moveLeft, bool moveRight, bool jump, bool jumpStart, bool jumpStop){
 
         movement.x = 0;
 
@@ -71,6 +84,11 @@ public class PlayerScript : MonoBehaviour
         playerVelocity.y = rb2d.velocity.y;
 
         //tf.Translate(movement*Time.deltaTime);
+    }
+
+    //Charging up and hitting the ball
+    void chargeUp(){
+
     }
 
     void OnTriggerEnter2D(Collider2D other){
