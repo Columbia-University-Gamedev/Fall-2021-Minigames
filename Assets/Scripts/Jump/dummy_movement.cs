@@ -13,6 +13,6 @@ public class dummy_movement : MonoBehaviour
     void Update()
     {
         float currentPositionY = transform.position.y;
-        transform.position = new Vector3(transform.position.x, currentPositionY+0.5f, transform.position.z);
+        transform.position = new Vector3(transform.position.x, currentPositionY+0.1f, transform.position.z);
     }
 }
