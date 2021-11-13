@@ -17,18 +17,18 @@ public class Theme_Changer : MonoBehaviour
     [SerializeField] private List<Sprite> smallSpaceSprites;
     [SerializeField] private List<Sprite> mediumSpaceSprites;
     [SerializeField] private List<Sprite> largeSpaceSprites;
-    private const static List<List<Sprite>> smallSprites = {smallCloudSprites, smallCakeSprites, smallSpaceSprites};
-    private const static List<List<Sprite>> mediumSprites = {mediumCloudSprites, mediumCakeSprites, mediumSpaceSprites};
-    private const static List<List<Sprite>> largeSprites = {largeCloudSprites, largeCakeSprites, largeSpaceSprites};
+ //   private const static List<List<Sprite>> smallSprites = {smallCloudSprites, smallCakeSprites, smallSpaceSprites};
+ //   private const static List<List<Sprite>> mediumSprites = {mediumCloudSprites, mediumCakeSprites, mediumSpaceSprites};
+ //   private const static List<List<Sprite>> largeSprites = {largeCloudSprites, largeCakeSprites, largeSpaceSprites};
 
-    private const int CLOUD= 0;
-    private const int CAKE = 1;
-    private const int SPACE = 2;
+//    private const int CLOUD= 0;
+//    private const int CAKE = 1;
+ //   private const int SPACE = 2;
 
     private int currentTheme;
     void Start()
-    {
-        smallSubplatform = gameObject.GetComponent<SpriteRenderer>();
+    {}
+   /*     smallSubplatform = gameObject.GetComponent<SpriteRenderer>();
         mediumSubplatform = gameObject.GetComponent<SpriteRenderer>();
         largeSubplatform = gameObject.GetComponent<SpriteRenderer>();
         currentTheme = CLOUD;
@@ -46,10 +46,10 @@ public class Theme_Changer : MonoBehaviour
         currentTheme = themeIdx;
         colorPlatform(currentTheme);
     }
-
+*/
     // Update is called once per frame
     void Update()
     {
-        colorPlatform(currentTheme);
+        //colorPlatform(currentTheme);
     }
 }
