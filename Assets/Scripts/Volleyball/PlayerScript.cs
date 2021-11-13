@@ -9,7 +9,10 @@ public class PlayerScript : MonoBehaviour
 
     private Rigidbody2D rb2d;
     private Transform tf;
+    private SpriteRenderer sr;
     private Keyboard kb;
+    private GameObject[] balls;
+    private Color defaultColor; //I'll probably remove this later once the actual art is set up
 
     private bool canJump;
     private bool onGround;
@@ -18,8 +21,8 @@ public class PlayerScript : MonoBehaviour
     private Vector2 playerVelocity;
 
     private bool charging;
-    private float storedForce;
-    public bool canHitBall;
+    private float chargePercentage;
+    private float chargeStartTime;
 
     public bool isPlayerOne = true;
     
@@ -27,16 +30,12 @@ public class PlayerScript : MonoBehaviour
     {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         tf = gameObject.GetComponent<Transform>();
+        sr = gameObject.GetComponent<SpriteRenderer>();
     }
 
     void Start()
     {
-        canJump = false;
-        onGround = false;
-        charging = false;
-        canHitBall = false;
-
-        rb2d.gravityScale = VolleyballConstants.playerGravityScale;
+        resetPlayer();
     }
 
     void Update()
@@ -46,12 +45,17 @@ public class PlayerScript : MonoBehaviour
         movement.x = 0;
 
         if(isPlayerOne){
-            charging = kb.fKey.isPressed;
             move(kb.aKey.isPressed, kb.dKey.isPressed, kb.wKey.isPressed, kb.wKey.wasPressedThisFrame, kb.wKey.wasReleasedThisFrame);
+            chargeUp(kb.fKey.wasPressedThisFrame,kb.fKey.wasReleasedThisFrame);
         }
         else{
-            charging = kb.semicolonKey.isPressed;
             move(kb.jKey.isPressed, kb.lKey.isPressed, kb.iKey.isPressed, kb.iKey.wasPressedThisFrame, kb.iKey.wasReleasedThisFrame);
+            chargeUp(kb.semicolonKey.wasPressedThisFrame, kb.semicolonKey.wasReleasedThisFrame);
+        }
+
+        if(charging){
+            chargePercentage = Mathf.Clamp((Time.time-chargeStartTime)/VolleyballConstants.playerChargeTime,0,1.0f);
+            sr.color = Color.Lerp(defaultColor,Color.green, chargePercentage);
         }
         
     }
@@ -87,8 +91,44 @@ public class PlayerScript : MonoBehaviour
     }
 
     //Charging up and hitting the ball
-    void chargeUp(){
+    void chargeUp(bool chargeStart, bool chargeRelease){
+        
+        Rigidbody2D ballRB;
+        Transform ballTF;
+        BallScript ballS;
+        Vector2 playerToBallVec;
 
+        if(chargeStart){
+            charging = true;
+            chargeStartTime = Time.time;
+        }
+
+        if(chargeRelease){
+
+            charging = false;
+            sr.color = defaultColor;
+
+            foreach(GameObject ball in balls){
+
+                ballRB = ball.GetComponent<Rigidbody2D>();
+                ballTF = ball.GetComponent<Transform>();
+                ballS = ball.GetComponent<BallScript>();
+
+                playerToBallVec = (Vector2)(ballTF.position-tf.position);
+
+                if(playerToBallVec.magnitude <= VolleyballConstants.ballMaxHitDistance){
+                    ballRB.velocity = playerToBallVec.normalized * VolleyballConstants.playerMaxStoredEnergy * chargePercentage;
+                    ballS.bounces += 1;
+                    if(ballS.lastHitPlayer != isPlayerOne){
+                        ballS.lastHitPlayer = !ballS.lastHitPlayer;
+                        ballS.bounces = 0;
+                    } else {
+                        ballS.bounces += 1;
+                    }
+                    ballS.enableGravity();
+                }
+            }
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other){
@@ -96,6 +136,29 @@ public class PlayerScript : MonoBehaviour
     }
     void OnTriggerExit2D(Collider2D other){
         if(other.gameObject.name == "CanJumpTrigger") onGround = false;
+    }
+
+    void resetPlayer(){
+        canJump = false;
+        onGround = false;
+        charging = false;
+
+        chargeStartTime = 0;
+        chargePercentage = 0;
+
+        rb2d.gravityScale = VolleyballConstants.playerGravityScale;
+
+        if(isPlayerOne){
+            tf.position = new Vector3(-8.0f,-8.0f,0.0f);
+            defaultColor = Color.red;
+        } 
+        else{
+            tf.position = new Vector3(8.0f,-8.0f,0.0f);
+            defaultColor = Color.blue;
+        }
+        sr.color = defaultColor;
+
+        balls = GameObject.FindGameObjectsWithTag("Ball");
     }
 
     // void OnP1Move(InputValue v){
