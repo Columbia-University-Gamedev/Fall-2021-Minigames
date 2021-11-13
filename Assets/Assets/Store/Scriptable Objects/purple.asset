@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e21d934fc3d2ef4c8777acb2018146a, type: 3}
+  m_Name: purple
+  m_EditorClassIdentifier: 
+  prize_name: purple
+  size: 1
+  prize_art: {fileID: 21300000, guid: a753e912388bec94b8034e7585d6a87a, type: 3}
+  price: 200
+  is_bought: 1
