@@ -22,8 +22,11 @@ public class GameManagerScript : MonoBehaviour
 
         playerTwo = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
         playerTwo.GetComponent<PlayerScript>().isPlayerOne = false;
+        playerTwo.AddComponent(typeof(SillyAI));
 
         ball = Instantiate(ballPrefab, Vector3.zero, Quaternion.identity);
+
+        ball.GetComponent<BallScript>().enableGravity();
     }
 
     // Update is called once per frame

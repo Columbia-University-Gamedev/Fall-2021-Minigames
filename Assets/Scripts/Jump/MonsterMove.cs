@@ -5,10 +5,15 @@ public class MonsterMove : MonoBehaviour
 {
     public Vector3 minPos;
     public Vector3 maxPos;
-    private Vector3 moveTowards = minPos;
+    private Vector3 moveTowards;
 
     public bool moveHorizontally;
-    
+
+    private void Start()
+    {
+        moveTowards = minPos; 
+    }
+
     void Update()
     {
        if (moveHorizontally)
