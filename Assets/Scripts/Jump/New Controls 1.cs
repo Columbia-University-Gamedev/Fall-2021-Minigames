@@ -19,53 +19,23 @@ public class @NewControls1 : IInputActionCollection, IDisposable
             ""id"": ""0ab60e1d-f056-424d-a138-07be6e7dd366"",
             ""actions"": [
                 {
-                    ""name"": ""right"",
-                    ""type"": ""Button"",
-                    ""id"": ""7cd1f13e-f76d-4cb4-ad4f-8d08d10d6a67"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""left"",
-                    ""type"": ""Button"",
-                    ""id"": ""e47434a5-2a44-40b4-ad56-113faf334640"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""sheild"",
                     ""type"": ""Button"",
                     ""id"": ""75240a71-2e77-4a26-a1aa-a96af0a076d5"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""128fae5d-79ec-48e3-97d0-baedeb76230e"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""a5d2270c-cc05-4690-a7ad-8672f88e92c8"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""arrow keys and space bar"",
-                    ""action"": ""right"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5f4e2202-35f5-42fa-872b-4e0c9de5b7e7"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""arrow keys and space bar"",
-                    ""action"": ""left"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""a41f4e97-fe29-4538-aeb0-52d55c6dda6b"",
@@ -76,6 +46,61 @@ public class @NewControls1 : IInputActionCollection, IDisposable
                     ""action"": ""sheild"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""b06b8f0c-5983-4a3c-b41b-82254cd51ba8"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""fbc1b371-7d42-4e48-8d61-c9760131b060"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""49a86f9c-31ee-420e-b72d-129d40ca83de"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""ed1a6d5f-f4cb-492e-b237-a6c2835350f4"",
+                    ""path"": ""<Keyboard>/#(a)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""481319f9-a03f-4615-95ed-bd792b2d6a6a"",
+                    ""path"": ""<Keyboard>/#(d)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -96,9 +121,8 @@ public class @NewControls1 : IInputActionCollection, IDisposable
 }");
         // Sheep (player)
         m_Sheepplayer = asset.FindActionMap("Sheep (player)", throwIfNotFound: true);
-        m_Sheepplayer_right = m_Sheepplayer.FindAction("right", throwIfNotFound: true);
-        m_Sheepplayer_left = m_Sheepplayer.FindAction("left", throwIfNotFound: true);
         m_Sheepplayer_sheild = m_Sheepplayer.FindAction("sheild", throwIfNotFound: true);
+        m_Sheepplayer_Move = m_Sheepplayer.FindAction("Move", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -148,16 +172,14 @@ public class @NewControls1 : IInputActionCollection, IDisposable
     // Sheep (player)
     private readonly InputActionMap m_Sheepplayer;
     private ISheepplayerActions m_SheepplayerActionsCallbackInterface;
-    private readonly InputAction m_Sheepplayer_right;
-    private readonly InputAction m_Sheepplayer_left;
     private readonly InputAction m_Sheepplayer_sheild;
+    private readonly InputAction m_Sheepplayer_Move;
     public struct SheepplayerActions
     {
         private @NewControls1 m_Wrapper;
         public SheepplayerActions(@NewControls1 wrapper) { m_Wrapper = wrapper; }
-        public InputAction @right => m_Wrapper.m_Sheepplayer_right;
-        public InputAction @left => m_Wrapper.m_Sheepplayer_left;
         public InputAction @sheild => m_Wrapper.m_Sheepplayer_sheild;
+        public InputAction @Move => m_Wrapper.m_Sheepplayer_Move;
         public InputActionMap Get() { return m_Wrapper.m_Sheepplayer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -167,28 +189,22 @@ public class @NewControls1 : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_SheepplayerActionsCallbackInterface != null)
             {
-                @right.started -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnRight;
-                @right.performed -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnRight;
-                @right.canceled -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnRight;
-                @left.started -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnLeft;
-                @left.performed -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnLeft;
-                @left.canceled -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnLeft;
                 @sheild.started -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnSheild;
                 @sheild.performed -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnSheild;
                 @sheild.canceled -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnSheild;
+                @Move.started -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnMove;
             }
             m_Wrapper.m_SheepplayerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @right.started += instance.OnRight;
-                @right.performed += instance.OnRight;
-                @right.canceled += instance.OnRight;
-                @left.started += instance.OnLeft;
-                @left.performed += instance.OnLeft;
-                @left.canceled += instance.OnLeft;
                 @sheild.started += instance.OnSheild;
                 @sheild.performed += instance.OnSheild;
                 @sheild.canceled += instance.OnSheild;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
             }
         }
     }
@@ -204,8 +220,7 @@ public class @NewControls1 : IInputActionCollection, IDisposable
     }
     public interface ISheepplayerActions
     {
-        void OnRight(InputAction.CallbackContext context);
-        void OnLeft(InputAction.CallbackContext context);
         void OnSheild(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
     }
 }

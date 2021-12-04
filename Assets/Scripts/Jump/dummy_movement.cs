@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using UnityEngine.InputSystem;
 public class dummy_movement : MonoBehaviour
 {
     
@@ -12,6 +12,8 @@ public class dummy_movement : MonoBehaviour
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f; 
     public float jumpForce = 2f;
+
+    Vector3 moveVector;
 
     [SerializeField]
     float _jumpHeight = 5f; // in meters
@@ -35,13 +37,20 @@ public class dummy_movement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        
         if (detectGround()){
             // Jump();
             // BetterJump();
             rb.AddForce(Vector2.up * CalculateJumpForce());
         }
+
+        //Vector2 moveRaw = res.Get<Vector2>();
+        //Vector2 LateralMove = new Vector2(moveRaw.x, 0);
+        
         //float currentPositionY = transform.position.y;
-        //transform.position = new Vector3(transform.position.x, currentPositionY+0.1f, transform.position.z);
+        transform.position = new Vector3(transform.position.x,transform.position.y , transform.position.z) + moveVector*0.2f;
+      //  Physics2D.IgnoreLayerCollision(0,3, (rb.velocity.y>0.0f));
+       // Debug.Log(rb.velocity.y);
     }
 
     float CalculateJumpForce()
@@ -109,5 +118,12 @@ public class dummy_movement : MonoBehaviour
 		    rb.velocity += Vector2.up * Physics2D.gravity * (lowJumpMultiplier - 1) * Time.deltaTime;
 		}
     }
+
+
+    public void OnMovementChange(InputAction.CallbackContext context){
+        Vector2 direction = context.ReadValue<Vector2>();
+        moveVector = new Vector3(direction.x, 0, direction.y);
+    }
+    
 
 }
