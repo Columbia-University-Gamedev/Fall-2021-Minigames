@@ -30,6 +30,8 @@ public class dummy_movement : MonoBehaviour
         playerCollider = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
 
+        rb.freezeRotation = true; 
+
     }
 
     // Update is called once per frame
