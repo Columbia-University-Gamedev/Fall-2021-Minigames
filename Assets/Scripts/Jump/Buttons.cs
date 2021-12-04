@@ -5,22 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
-    public OnStart()
+    public void OnStart()
     {
         SceneManager.LoadScene("GameScene");
     }
 
-    public OnPause()
+    public void OnPause()
     {
         Time.timeScale = 0f;
     }
 
-    public OnUnpause()
+    public void OnUnpause()
     {
         Time.timeScale = 1f;
     }
 
-    public OnQuit()
+    public void OnQuit()
     {
         #if (UNITY_EDITOR)
             UnityEditor.EditorApplication.isPlaying = false;            
