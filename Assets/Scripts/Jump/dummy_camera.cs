@@ -3,13 +3,17 @@ using System.Collections;
 public class dummy_camera: MonoBehaviour
 {
     public GameObject player;
-    private Vector3 offset;
+    private float offsetX;
+    private float offsetY;
+    public float camaraSpeed;
     void Start ()
     {
-        offset = transform.position - player.transform.position;
+        offsetX = transform.position.x - player.transform.position.x;
+        offsetY = camaraSpeed;
     }
     void LateUpdate ()
     {
-        transform.position = player.transform.position + offset;
+        transform.position = new Vector3(player.transform.position.x + offsetX, transform.position.y+offsetY, transform.position.z);
+
     }
 }

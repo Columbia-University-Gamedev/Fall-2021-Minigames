@@ -6,53 +6,23 @@
             "id": "0ab60e1d-f056-424d-a138-07be6e7dd366",
             "actions": [
                 {
-                    "name": "right",
-                    "type": "Button",
-                    "id": "7cd1f13e-f76d-4cb4-ad4f-8d08d10d6a67",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "left",
-                    "type": "Button",
-                    "id": "e47434a5-2a44-40b4-ad56-113faf334640",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "sheild",
                     "type": "Button",
                     "id": "75240a71-2e77-4a26-a1aa-a96af0a076d5",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "128fae5d-79ec-48e3-97d0-baedeb76230e",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "a5d2270c-cc05-4690-a7ad-8672f88e92c8",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "arrow keys and space bar",
-                    "action": "right",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5f4e2202-35f5-42fa-872b-4e0c9de5b7e7",
-                    "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "arrow keys and space bar",
-                    "action": "left",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "a41f4e97-fe29-4538-aeb0-52d55c6dda6b",
@@ -63,6 +33,61 @@
                     "action": "sheild",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "b06b8f0c-5983-4a3c-b41b-82254cd51ba8",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "fbc1b371-7d42-4e48-8d61-c9760131b060",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "49a86f9c-31ee-420e-b72d-129d40ca83de",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "ed1a6d5f-f4cb-492e-b237-a6c2835350f4",
+                    "path": "<Keyboard>/#(a)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "481319f9-a03f-4615-95ed-bd792b2d6a6a",
+                    "path": "<Keyboard>/#(d)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
