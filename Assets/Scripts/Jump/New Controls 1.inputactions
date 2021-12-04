@@ -1,0 +1,83 @@
+{
+    "name": "New Controls 1",
+    "maps": [
+        {
+            "name": "Sheep (player)",
+            "id": "0ab60e1d-f056-424d-a138-07be6e7dd366",
+            "actions": [
+                {
+                    "name": "right",
+                    "type": "Button",
+                    "id": "7cd1f13e-f76d-4cb4-ad4f-8d08d10d6a67",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "left",
+                    "type": "Button",
+                    "id": "e47434a5-2a44-40b4-ad56-113faf334640",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "sheild",
+                    "type": "Button",
+                    "id": "75240a71-2e77-4a26-a1aa-a96af0a076d5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a5d2270c-cc05-4690-a7ad-8672f88e92c8",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "arrow keys and space bar",
+                    "action": "right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5f4e2202-35f5-42fa-872b-4e0c9de5b7e7",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "arrow keys and space bar",
+                    "action": "left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a41f4e97-fe29-4538-aeb0-52d55c6dda6b",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "arrow keys and space bar",
+                    "action": "sheild",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "arrow keys and space bar",
+            "bindingGroup": "arrow keys and space bar",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

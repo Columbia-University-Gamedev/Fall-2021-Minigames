@@ -15,13 +15,35 @@ public class PlayerScript : MonoBehaviour
     private Color defaultColor; //I'll probably remove this later once the actual art is set up
 
     private bool canJump;
-    private bool onGround;
+    public bool CanJump
+    {
+        get { return canJump; }
+    }
+
+    private bool onGround;    
+    public bool OnGround
+    {
+        get { return onGround; }
+    }
+    
     private float jumpStartTime;
+    
+
     private Vector2 movement;
     private Vector2 playerVelocity;
 
     private bool charging;
+    public bool Charging
+    {
+        get { return charging; }
+    }
+
     private float chargePercentage;
+    public float ChargePercentage
+    {
+        get { return chargePercentage; }
+    }
+
     private float chargeStartTime;
 
     public bool isPlayerOne = true;
@@ -66,7 +88,7 @@ public class PlayerScript : MonoBehaviour
     }
 
     //Controls for movement and jumping
-    void move(bool moveLeft, bool moveRight, bool jump, bool jumpStart, bool jumpStop){
+    public void move(bool moveLeft, bool moveRight, bool jump, bool jumpStart, bool jumpStop){
 
         movement.x = 0;
 
@@ -91,7 +113,7 @@ public class PlayerScript : MonoBehaviour
     }
 
     //Charging up and hitting the ball
-    void chargeUp(bool chargeStart, bool chargeRelease){
+    public void chargeUp(bool chargeStart, bool chargeRelease){
         
         Rigidbody2D ballRB;
         Transform ballTF;
