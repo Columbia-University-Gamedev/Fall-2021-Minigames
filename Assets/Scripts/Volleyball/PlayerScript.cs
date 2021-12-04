@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     private Rigidbody2D rb2d;
     private Transform tf;
     private SpriteRenderer sr;
     private Keyboard kb;
     private GameObject[] balls;
     private Color defaultColor; //I'll probably remove this later once the actual art is set up
+    private UnityAction resetListener;
 
     private bool canJump;
     public bool CanJump
@@ -47,12 +47,21 @@ public class PlayerScript : MonoBehaviour
     private float chargeStartTime;
 
     public bool isPlayerOne = true;
+
+    void OnEnable(){
+        EventManager.StartListening("reset",resetListener);
+    }
+    void OnDisable(){
+        EventManager.StopListening("reset",resetListener);
+    }
     
     void Awake()
     {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         tf = gameObject.GetComponent<Transform>();
         sr = gameObject.GetComponent<SpriteRenderer>();
+
+        resetListener = new UnityAction(resetPlayer);
     }
 
     void Start()
@@ -155,6 +164,7 @@ public class PlayerScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.name == "CanJumpTrigger") onGround = true;
+        else if(other.gameObject.name == "OutOfBoundsTrigger") EventManager.TriggerEvent("reset");
     }
     void OnTriggerExit2D(Collider2D other){
         if(other.gameObject.name == "CanJumpTrigger") onGround = false;

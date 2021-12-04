@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManagerScript : MonoBehaviour
 {
@@ -13,8 +14,21 @@ public class GameManagerScript : MonoBehaviour
 
     public GameObject playerPrefab;
     public GameObject ballPrefab;
-    public int score;
+    public int playerOneScore;
+    public int playerTwoScore;
 
+    private UnityAction resetListener;
+
+    void OnEnable(){
+        EventManager.StartListening("reset",resetListener);
+    }
+    void OnDisable(){
+        EventManager.StopListening("reset",resetListener);
+    }
+
+    void Awake(){
+        resetListener = new UnityAction(updateScore);
+    }
     void Start()
     {
         playerOne = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
@@ -27,11 +41,19 @@ public class GameManagerScript : MonoBehaviour
         ball = Instantiate(ballPrefab, Vector3.zero, Quaternion.identity);
 
         ball.GetComponent<BallScript>().enableGravity();
+
+        playerOneScore = 0;
+        playerTwoScore = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    void updateScore() //Where the actual score updating happens
+    {
+        if(ball.GetComponent<BallScript>().lastHitPlayer) playerOneScore+=1;
+        else playerTwoScore += 1;
     }
 }

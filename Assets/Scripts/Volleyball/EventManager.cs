@@ -23,7 +23,8 @@ public class EventManager : MonoBehaviour {
                 }
                 else
                 {
-                    eventManager.Init (); 
+                    eventManager.Init(); 
+                    DontDestroyOnLoad(eventManager);
                 }
             }
 
@@ -44,6 +45,7 @@ public class EventManager : MonoBehaviour {
         UnityEvent thisEvent = null;
         if (instance.eventDictionary.TryGetValue (eventName, out thisEvent))
         {
+            instance.eventDictionary[eventName] = thisEvent;
             thisEvent.AddListener (listener);
         } 
         else
@@ -60,6 +62,7 @@ public class EventManager : MonoBehaviour {
         UnityEvent thisEvent = null;
         if (instance.eventDictionary.TryGetValue (eventName, out thisEvent))
         {
+            instance.eventDictionary[eventName] = thisEvent;
             thisEvent.RemoveListener (listener);
         }
     }
@@ -69,7 +72,7 @@ public class EventManager : MonoBehaviour {
         UnityEvent thisEvent = null;
         if (instance.eventDictionary.TryGetValue (eventName, out thisEvent))
         {
-            thisEvent.Invoke ();
+            thisEvent.Invoke();
         }
     }
 }

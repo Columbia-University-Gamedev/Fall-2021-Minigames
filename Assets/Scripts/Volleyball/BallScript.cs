@@ -48,19 +48,23 @@ public class BallScript : MonoBehaviour
     {
         if(bounces > VolleyballConstants.maxBounces){
             //TODO: Add code here keeping track of score
-            resetBall();
+            //resetBall();
+            EventManager.TriggerEvent("reset");
         }
     }
 
-    void OnColliderEnter2D(Collision2D other){
+    void OnCollisionEnter2D(Collision2D other){
         if(other.gameObject.tag == "Player") Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(),GetComponent<Collider2D>());
+        else{
+            Debug.Log("Touched something");
+            EventManager.TriggerEvent("reset");
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other){
 
         if(other.gameObject.name == "BallBounceTrigger"){
             //Bounce off of the player
-            Debug.Log("Bounced off player");
             enableGravity();
             rb2d.velocity = (Vector2)(rb2d.velocity.magnitude * (transform.position - other.gameObject.GetComponent<Transform>().position).normalized * VolleyballConstants.ballBounceMultiplier) + other.gameObject.GetComponentInParent<Rigidbody2D>().velocity * VolleyballConstants.ballPlayerVelocityAdditionMultiplier;
             if(lastHitPlayer != other.gameObject.GetComponentInParent<PlayerScript>().isPlayerOne){
@@ -70,6 +74,7 @@ public class BallScript : MonoBehaviour
                 bounces += 1;
             }
         }
+        else if(other.gameObject.name == "OutOfBoundsTrigger") EventManager.TriggerEvent("reset"); //Ball went out of bounds
     }
 
     void resetBall(){
