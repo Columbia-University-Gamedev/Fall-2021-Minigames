@@ -53,6 +53,13 @@ public class FollowCamera : MonoBehaviour
             {
                 _velocity = Vector3.zero;
             }
+
+            //Vector3 targetPos = _target.position;
+            //targetPos.z = transform.position.z;
+
+            //var direction = (targetPos - transform.position).normalized;
+            //_velocity = direction * _maxSpeed; 
+
         } else if (_moving && innerBounds.Contains(_target.transform.position))
         {
             _moving = false;
