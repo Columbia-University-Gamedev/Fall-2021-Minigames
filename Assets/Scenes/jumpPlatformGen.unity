@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -209,7 +209,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -262,6 +262,7 @@ MonoBehaviour:
   _jumpHeight: 3
   _jumpTime: 1.85
   _floorcastFudgeFactor: 0.23
+  _gravityScaleInfluence: 0.75
 --- !u!212 &161062903
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -494,6 +495,11 @@ MonoBehaviour:
   - {fileID: 3939692897935133477, guid: 0226975a7ae9940bc91e2b2e1f1a5356, type: 3}
   - {fileID: 4562893029777720816, guid: c8dd1be9565cc401b8e6cb95772f3f01, type: 3}
   player: {fileID: 161062904}
+  _monsterList:
+  - {fileID: 1065945608218121438, guid: 0e2726a2a0edf4a4a90352c0e1ea57f3, type: 3}
+  _shouldSpawnMonsters: 1
+  _monsterProbability: 2
+  _camera: {fileID: 1734920490}
 --- !u!4 &689016231
 Transform:
   m_ObjectHideFlags: 0
@@ -675,6 +681,7 @@ MonoBehaviour:
   _jumpHeight: 5
   _jumpTime: 1
   _floorcastFudgeFactor: 0.23
+  _gravityScaleInfluence: 0.75
 --- !u!50 &1416177112
 Rigidbody2D:
   serializedVersion: 4
@@ -767,6 +774,7 @@ GameObject:
   - component: {fileID: 1734920490}
   - component: {fileID: 1734920489}
   - component: {fileID: 1734920492}
+  - component: {fileID: 1734920493}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -833,7 +841,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734920488}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 1, z: -6.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -846,13 +854,32 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734920488}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 847513cc8e46447cdbade91b44554f1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 161062898}
   camaraSpeed: 0.01
+--- !u!114 &1734920493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734920488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4fc3036ecd774800aca40e1070fb592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 161062904}
+  _safeZoneExtent: {x: 13.4, y: 7.59}
+  _outerZoneExtent: {x: 7.12, y: 5.41}
+  _friction: 0.05
+  _acceleration: 60
+  _maxSpeed: 24.88
+  _killAcceleration: 0
 --- !u!1 &2048882746
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,7 +924,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: -0.01177597, y: 0.89626634}
   m_SpriteTilingProperty:
