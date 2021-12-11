@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
-    [SerializeField] private Image pausePanel;
-    private float pausePanelOpacity;
-
-    [SerializeField] private GameObject UnpauseButton;
+    [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject pauseButton;
+    [SerializeField] private float pauseOpacity = .9f;
+    private float timeScale = 1;
     void Start()
     {
-        pausePanelOpacity = pausePanel.color.a;
+        pausePanel.SetActive(false);
     }
 
     public static void OnStart()
@@ -19,25 +19,40 @@ public class Buttons : MonoBehaviour
         SceneManager.LoadScene("GameScene");
     }
 
+    //debug
+    private void Update()
+    {
+        timeScale = Time.timeScale;
+    }
+
     public void OnPause()
     {
+        Debug.Log("pausing game");
+        //enable and fade in the pause panel, disable the pause button, and pause
         Time.timeScale = 0f;
-        StartCoroutine(ImageFade.FadeImage(false, 0.5f, pausePanelOpacity, pausePanel));
-        StartCoroutine(ImageFade.FadeImage(false, 0.5f, 1f, UnpauseButton.GetComponent<Image>()));
-        UnUnpauseButton.GetComponent<Button>().enabled = true;
+        pausePanel.SetActive(true);
+        StartCoroutine(ImageFade.FadeImage(false, 0.4f, pauseOpacity, pausePanel.GetComponent<CanvasGroup>()));
+        pauseButton.SetActive(false);
+        
+        Debug.Log("game paused");
     }
 
     public void OnUnpause()
     {
         StartCoroutine(Unpause());
+        StartCoroutine(ImageFade.FadeImage(true, 0.4f, pauseOpacity, pausePanel.GetComponent<CanvasGroup>()));
     }
 
     public IEnumerator Unpause()
     {
-        StartCoroutine(ImageFade.FadeImage(true, 0.5f, 1f, UnpauseButton.GetComponent<Image>()));
-        yield return StartCoroutine(ImageFade.FadeImage(true, 0.5f, pausePanelOpacity, pausePanel));
-        UnpauseButton.GetComponent<Button>().enabled = true;
+        Debug.Log("unpausing game");
+        //fade the pause panel out, re-enable pause button and resume
+        StartCoroutine(ImageFade.FadeImage(false, 0.4f, 1f, pauseButton.GetComponent<CanvasGroup>()));
+        pauseButton.SetActive(true);
+        pausePanel.SetActive(false);
         Time.timeScale = 1f;
+        Debug.Log("game unpaused");
+        yield return null;
     }
 
     public void OnQuit()
