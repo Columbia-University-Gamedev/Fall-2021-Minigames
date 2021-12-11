@@ -16,7 +16,8 @@ public class dummy_movement : MonoBehaviour
     private Animator anim;
     public bool grounded;
     private bool facingLeft = false;
-    float cameraBottomBounds;
+
+    [SerializeField] private Transform bottomBounds;
 
 
     Vector3 moveVector;
@@ -39,7 +40,6 @@ public class dummy_movement : MonoBehaviour
         rb.freezeRotation = true; 
         anim = GetComponent<Animator>();
 
-        cameraBottomBounds = Camera.main.ViewportToWorldPoint(new Vector3 (1f, 1f, 0f)).y;
     }
     void Update(){
         anim.SetBool("grounded", grounded);
@@ -68,8 +68,10 @@ public class dummy_movement : MonoBehaviour
             flip();
         }
 
-        if (transform.position.y > cameraBottomBounds)
+
+        if (transform.position.y < bottomBounds.position.y)
         {
+            Debug.Log("Dead because you fell");
             SceneManager.LoadScene("GameOver");
         }
         
@@ -150,9 +152,10 @@ public class dummy_movement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+
         if (other.gameObject.CompareTag("Monster"))
         {
-            Debug.Log("dead");
+            Debug.Log("dead because of monster");
             SceneManager.LoadScene("GameOver");
         }
     }
