@@ -35,7 +35,7 @@ public class Buttons : MonoBehaviour
     public IEnumerator Unpause()
     {
         StartCoroutine(ImageFade.FadeImage(true, 0.5f, 1f, UnpauseButton.GetComponent<Image>()));
-        yield return new StartCoroutine(ImageFade.FadeImage(true, 0.5f, pausePanelOpacity, pausePanel));
+        yield return StartCoroutine(ImageFade.FadeImage(true, 0.5f, pausePanelOpacity, pausePanel));
         UnpauseButton.GetComponent<Button>().enabled = true;
         Time.timeScale = 1f;
     }
