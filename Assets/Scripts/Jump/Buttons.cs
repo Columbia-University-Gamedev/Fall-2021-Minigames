@@ -23,8 +23,8 @@ public class Buttons : MonoBehaviour
     {
         Time.timeScale = 0f;
         StartCoroutine(ImageFade.FadeImage(false, 0.5f, pausePanelOpacity, pausePanel));
-        StartCoroutine(ImageFade.FadeImage(false, 0.5f, 1f, pauseButton.GetComponent<Image>()));
-        pauseButton.GetComponent<Button>().enabled = true;
+        StartCoroutine(ImageFade.FadeImage(false, 0.5f, 1f, UnpauseButton.GetComponent<Image>()));
+        UnUnpauseButton.GetComponent<Button>().enabled = true;
     }
 
     public void OnUnpause()
@@ -34,9 +34,9 @@ public class Buttons : MonoBehaviour
 
     public IEnumerator Unpause()
     {
-        StartCoroutine(ImageFade.FadeImage(true, 0.5f, 1f, pauseButton.GetComponent<Image>()));
+        StartCoroutine(ImageFade.FadeImage(true, 0.5f, 1f, UnpauseButton.GetComponent<Image>()));
         yield return new StartCoroutine(ImageFade.FadeImage(true, 0.5f, pausePanelOpacity, pausePanel));
-        pauseButton.GetComponent<Button>().enabled = true;
+        UnpauseButton.GetComponent<Button>().enabled = true;
         Time.timeScale = 1f;
     }
 
