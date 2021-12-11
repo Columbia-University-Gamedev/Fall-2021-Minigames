@@ -16,6 +16,7 @@ public class dummy_movement : MonoBehaviour
     private Animator anim;
     public bool grounded;
     private bool facingLeft = false;
+    float cameraBottomBounds;
 
 
     Vector3 moveVector;
@@ -37,6 +38,8 @@ public class dummy_movement : MonoBehaviour
 
         rb.freezeRotation = true; 
         anim = GetComponent<Animator>();
+
+        cameraBottomBounds = Camera.main.ViewportToWorldPoint(new Vector3 (1f, 1f, 0f)).y;
     }
     void Update(){
         anim.SetBool("grounded", grounded);
@@ -63,6 +66,11 @@ public class dummy_movement : MonoBehaviour
         if (moveVector.x < 0 && facingLeft || moveVector.x  > 0 && !facingLeft)
         {
             flip();
+        }
+
+        if (transform.position.y > cameraBottomBounds)
+        {
+            SceneManager.LoadScene("GameOver");
         }
         
     }
@@ -140,11 +148,11 @@ public class dummy_movement : MonoBehaviour
 		}
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.compareTag("Monster"))
+        if (other.gameObject.CompareTag("Monster"))
         {
-            //dead
+            Debug.Log("dead");
             SceneManager.LoadScene("GameOver");
         }
     }
@@ -156,7 +164,7 @@ public class dummy_movement : MonoBehaviour
     
     public void OnStartGame(InputAction.CallbackContext context)
     {
-        if (SceneManager.getActiveScene.name == "HomeScreen")
+        if (SceneManager.GetActiveScene().name == "HomeScreen")
         {
             Buttons.OnStart();
         }
