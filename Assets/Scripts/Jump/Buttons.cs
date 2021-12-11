@@ -14,7 +14,7 @@ public class Buttons : MonoBehaviour
         pausePanelOpacity = pausePanel.color.a;
     }
     
-    public void OnStart()
+    public static void OnStart()
     {
         SceneManager.LoadScene("GameScene");
     }
@@ -22,7 +22,7 @@ public class Buttons : MonoBehaviour
     public void OnPause()
     {
         Time.timeScale = 0f;
-        StartCoroutine(ImageFade.FadeImage(true, 0.5f, pausePanelOpacity, pausePanel));
+        StartCoroutine(ImageFade.FadeImage(false, 0.5f, pausePanelOpacity, pausePanel));
         StartCoroutine(ImageFade.FadeImage(false, 0.5f, 1f, pauseButton.GetComponent<Image>()));
         pauseButton.GetComponent<Button>().enabled = true;
     }
@@ -34,7 +34,9 @@ public class Buttons : MonoBehaviour
 
     public IEnumerator Unpause()
     {
+        StartCoroutine(ImageFade.FadeImage(true, 0.5f, 1f, pauseButton.GetComponent<Image>()));
         yield return new StartCoroutine(ImageFade.FadeImage(true, 0.5f, pausePanelOpacity, pausePanel));
+        pauseButton.GetComponent<Button>().enabled = true;
         Time.timeScale = 1f;
     }
 
