@@ -24,7 +24,7 @@ public class Buttons : MonoBehaviour
         Time.timeScale = 0f;
         StartCoroutine(ImageFade.FadeImage(false, 0.5f, pausePanelOpacity, pausePanel));
         StartCoroutine(ImageFade.FadeImage(false, 0.5f, 1f, UnpauseButton.GetComponent<Image>()));
-        UnUnpauseButton.GetComponent<Button>().enabled = true;
+        UnpauseButton.GetComponent<Button>().enabled = true;
     }
 
     public void OnUnpause()
