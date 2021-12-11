@@ -174,6 +174,10 @@ public class dummy_movement : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("collision");
+<<<<<<< HEAD
+
+=======
+>>>>>>> 94becf89178327e96a3bb36897a591765f4e22e4
         if (other.gameObject.CompareTag("Monster"))
         {
             Debug.Log("dead because of monster");
