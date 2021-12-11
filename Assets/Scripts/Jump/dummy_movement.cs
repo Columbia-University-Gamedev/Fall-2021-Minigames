@@ -22,6 +22,8 @@ public class dummy_movement : MonoBehaviour
     float cameraBottomBounds;
     public TextMeshProUGUI ScoreText;
 
+    [SerializeField] private Transform bottomBounds;
+
 
     Vector3 moveVector;
 
@@ -32,7 +34,10 @@ public class dummy_movement : MonoBehaviour
     float _jumpTime = 1f; // in seconds
 
     [SerializeField]
-    float _floorcastFudgeFactor = 0.23f; // magic number found through playtesting 
+    float _floorcastFudgeFactor = 0.23f; // magic number found through playtesting
+
+    [SerializeField]
+    float _gravityScaleInfluence = 0.75f; // how much of rigid body's gravity scale to take into account
 
     // Start is called before the first frame update
     void Start()
@@ -84,8 +89,10 @@ public class dummy_movement : MonoBehaviour
             flip();
         }
 
-        if (transform.position.y > cameraBottomBounds)
+
+        if (transform.position.y < bottomBounds.position.y)
         {
+            Debug.Log("Dead because you fell");
             SceneManager.LoadScene("GameOver");
         }
         
@@ -111,7 +118,7 @@ public class dummy_movement : MonoBehaviour
         float h = _jumpHeight;
         float t_flight = _jumpTime;
 
-        float vf = h / t_flight + 0.5f * Physics.gravity.magnitude * t_flight;
+        float vf = h / t_flight + 0.5f * Physics.gravity.magnitude * rb.gravityScale * _gravityScaleInfluence * t_flight;
 
         float m = rb.mass;
         float v0 = rb.velocity.y;
@@ -166,9 +173,10 @@ public class dummy_movement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+
         if (other.gameObject.CompareTag("Monster"))
         {
-            Debug.Log("dead");
+            Debug.Log("dead because of monster");
             SceneManager.LoadScene("GameOver");
         }
     }
