@@ -13,6 +13,12 @@ public class dummy_movement : MonoBehaviour
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f; 
     public float jumpForce = 2f;
+    private Animator anim;
+    public bool grounded;
+    private bool facingLeft = false;
+
+    [SerializeField] private Transform bottomBounds;
+
 
     Vector3 moveVector;
 
@@ -23,7 +29,10 @@ public class dummy_movement : MonoBehaviour
     float _jumpTime = 1f; // in seconds
 
     [SerializeField]
-    float _floorcastFudgeFactor = 0.23f; // magic number found through playtesting 
+    float _floorcastFudgeFactor = 0.23f; // magic number found through playtesting
+
+    [SerializeField]
+    float _gravityScaleInfluence = 0.75f; // how much of rigid body's gravity scale to take into account
 
     // Start is called before the first frame update
     void Start()
@@ -32,14 +41,18 @@ public class dummy_movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         rb.freezeRotation = true; 
+        anim = GetComponent<Animator>();
 
     }
+    void Update(){
+        anim.SetBool("grounded", grounded);
 
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
-        
-        if (detectGround()){
+        grounded = detectGround();
+        if (grounded){
             // Jump();
             // BetterJump();
             rb.AddForce(Vector2.up * CalculateJumpForce());
@@ -50,8 +63,28 @@ public class dummy_movement : MonoBehaviour
         
         //float currentPositionY = transform.position.y;
         transform.position = new Vector3(transform.position.x,transform.position.y , transform.position.z) + moveVector*0.2f;
-      //  Physics2D.IgnoreLayerCollision(0,3, (rb.velocity.y>0.0f));
-       // Debug.Log(rb.velocity.y);
+        //  Physics2D.IgnoreLayerCollision(0,3, (rb.velocity.y>0.0f));
+        // Debug.Log(rb.velocity.y);
+        anim.SetFloat("y_velocity", rb.velocity.y);
+        if (moveVector.x < 0 && facingLeft || moveVector.x  > 0 && !facingLeft)
+        {
+            flip();
+        }
+
+
+        if (transform.position.y < bottomBounds.position.y)
+        {
+            Debug.Log("Dead because you fell");
+            SceneManager.LoadScene("GameOver");
+        }
+        
+    }
+    void flip()
+    {
+        facingLeft = !facingLeft;
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
     }
 
     float CalculateJumpForce()
@@ -67,7 +100,7 @@ public class dummy_movement : MonoBehaviour
         float h = _jumpHeight;
         float t_flight = _jumpTime;
 
-        float vf = h / t_flight + 0.5f * Physics.gravity.magnitude * t_flight;
+        float vf = h / t_flight + 0.5f * Physics.gravity.magnitude * rb.gravityScale * _gravityScaleInfluence * t_flight;
 
         float m = rb.mass;
         float v0 = rb.velocity.y;
@@ -120,11 +153,12 @@ public class dummy_movement : MonoBehaviour
 		}
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.compareTag("Monster"))
+
+        if (other.gameObject.CompareTag("Monster"))
         {
-            //dead
+            Debug.Log("dead because of monster");
             SceneManager.LoadScene("GameOver");
         }
     }
@@ -136,7 +170,7 @@ public class dummy_movement : MonoBehaviour
     
     public void OnStartGame(InputAction.CallbackContext context)
     {
-        if (SceneManager.getActiveScene.name == "HomeScreen")
+        if (SceneManager.GetActiveScene().name == "HomeScreen")
         {
             Buttons.OnStart();
         }

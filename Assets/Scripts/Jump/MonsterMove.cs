@@ -17,12 +17,34 @@ public class MonsterMove : MonoBehaviour
     // (helpful for visualizing transforms)
 
     [SerializeField]
-    [Tooltip("How many seconds does it take to traverse the path one-way?")]
+    [Tooltip("How fast should the monster move?")]
+    float _averageMoveSpeed = 2f; // measured in meters per seconds
+
+    public float AverageMoveSpeed
+    {
+        get { return _averageMoveSpeed; }
+        set {
+            _averageMoveSpeed = value;
+
+            float dist = (_minPos - _maxPos).magnitude;
+            _movePeriod = dist / value;
+        }
+    }
+
+    [SerializeField]
+    [HideInInspector]
     float _movePeriod = 4f; // measured in seconds
 
     public float MovePeriod
     {
         get { return _movePeriod; }
+        set
+        {
+            _movePeriod = value;
+
+            float dist = (_minPos - _maxPos).magnitude;
+            _averageMoveSpeed = dist / value;
+        }
     }
 
     [SerializeField]
@@ -40,17 +62,19 @@ public class MonsterMove : MonoBehaviour
     public Vector3 MinPos
     {
         get { return _minPos; }
+        set { _minPos = value; }
     }
 
     [SerializeField]
     Vector3 _maxPos;
 
-    float _fudgeFactor = 0.03f;
-
     public Vector3 MaxPos
     {
         get { return _maxPos; }
+        set { _maxPos = value; }
     }
+
+    float _fudgeFactor = 0.03f;
 
     Vector3 _targetPos;
     // float _startTime;
@@ -62,6 +86,8 @@ public class MonsterMove : MonoBehaviour
         _targetPos = _minPos;
         // _startTime = Time.time;
         _timeCount = 0f;
+
+        _origin = transform.position;
     }
 
     void Update()
@@ -90,9 +116,7 @@ public class MonsterMove : MonoBehaviour
             {
                 // Debug.Log($"Flipped after t= {t} / 2Pi, %= {percent} / 1");
 
-                _targetPos = InvertTargetPosition();
-                // _startTime = Time.time;
-                _timeCount = 0f;
+                FlipDirection();
             }
             else
             {
@@ -113,6 +137,18 @@ public class MonsterMove : MonoBehaviour
     Vector3 InvertTargetPosition()
     {
         return (_targetPos - _minPos).magnitude <= _fudgeFactor ? _maxPos : _minPos;
+    }
+
+    public void FlipDirection()
+    {
+        _targetPos = InvertTargetPosition();
+        _timeCount = 0;
+    }
+
+    public void SetRandomDirection()
+    {
+        _targetPos = Random.Range(0, 2) == 1 ? _minPos : _maxPos;
+        _timeCount = 0; 
     }
 
     // visualize the monster's path in editor (optional)
