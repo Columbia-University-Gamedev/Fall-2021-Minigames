@@ -155,6 +155,7 @@ public class dummy_movement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("collision");
 
         if (other.gameObject.CompareTag("Monster"))
         {
