@@ -12,6 +12,10 @@ public class dummy_movement : MonoBehaviour
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f; 
     public float jumpForce = 2f;
+    private Animator anim;
+    public bool grounded;
+    private bool facingLeft = false;
+
 
     Vector3 moveVector;
 
@@ -31,14 +35,17 @@ public class dummy_movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         rb.freezeRotation = true; 
+        anim = GetComponent<Animator>();
+    }
+    void Update(){
+        anim.SetBool("grounded", grounded);
 
     }
-
     // Update is called once per frame
     void FixedUpdate()
     {
-        
-        if (detectGround()){
+        grounded = detectGround();
+        if (grounded){
             // Jump();
             // BetterJump();
             rb.AddForce(Vector2.up * CalculateJumpForce());
@@ -49,8 +56,21 @@ public class dummy_movement : MonoBehaviour
         
         //float currentPositionY = transform.position.y;
         transform.position = new Vector3(transform.position.x,transform.position.y , transform.position.z) + moveVector*0.2f;
-      //  Physics2D.IgnoreLayerCollision(0,3, (rb.velocity.y>0.0f));
-       // Debug.Log(rb.velocity.y);
+        //  Physics2D.IgnoreLayerCollision(0,3, (rb.velocity.y>0.0f));
+        // Debug.Log(rb.velocity.y);
+        anim.SetFloat("y_velocity", rb.velocity.y);
+        if (moveVector.x < 0 && facingLeft || moveVector.x  > 0 && !facingLeft)
+        {
+            flip();
+        }
+        
+    }
+    void flip()
+    {
+        facingLeft = !facingLeft;
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
     }
 
     float CalculateJumpForce()
