@@ -5,15 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
-    [SerializeField] private Image pausePanel;
-    private float pausePanelOpacity;
-
-    [SerializeField] private GameObject UnpauseButton;
-    void Start()
-    {
-        pausePanelOpacity = pausePanel.color.a;
-    }
-    
     public static void OnStart()
     {
         SceneManager.LoadScene("GameScene");
