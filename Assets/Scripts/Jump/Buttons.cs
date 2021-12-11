@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
-    public void OnStart()
+    public static void OnStart()
     {
         SceneManager.LoadScene("GameScene");
     }
@@ -13,10 +13,21 @@ public class Buttons : MonoBehaviour
     public void OnPause()
     {
         Time.timeScale = 0f;
+        StartCoroutine(ImageFade.FadeImage(false, 0.5f, pausePanelOpacity, pausePanel));
+        StartCoroutine(ImageFade.FadeImage(false, 0.5f, 1f, UnpauseButton.GetComponent<Image>()));
+        UnpauseButton.GetComponent<Button>().enabled = true;
     }
 
     public void OnUnpause()
     {
+        StartCoroutine(Unpause());
+    }
+
+    public IEnumerator Unpause()
+    {
+        StartCoroutine(ImageFade.FadeImage(true, 0.5f, 1f, UnpauseButton.GetComponent<Image>()));
+        yield return StartCoroutine(ImageFade.FadeImage(true, 0.5f, pausePanelOpacity, pausePanel));
+        UnpauseButton.GetComponent<Button>().enabled = true;
         Time.timeScale = 1f;
     }
 
@@ -27,5 +38,10 @@ public class Buttons : MonoBehaviour
         #else
             Application.Quit(0);
         #endif
+    }
+
+    public void OnHome()
+    {
+        SceneManager.LoadScene("HomeScreen");
     }
 }
