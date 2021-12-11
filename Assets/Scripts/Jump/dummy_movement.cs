@@ -4,11 +4,14 @@ using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 public class dummy_movement : MonoBehaviour
 {
     
     Collider2D playerCollider;
     private Rigidbody2D rb;
+    private int count;
     public LayerMask ground;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f; 
@@ -16,6 +19,8 @@ public class dummy_movement : MonoBehaviour
     private Animator anim;
     public bool grounded;
     private bool facingLeft = false;
+    float cameraBottomBounds;
+    public TextMeshProUGUI ScoreText;
 
     [SerializeField] private Transform bottomBounds;
 
@@ -40,14 +45,27 @@ public class dummy_movement : MonoBehaviour
         playerCollider = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
 
+        count = 0;
+        SetCountText();
+
         rb.freezeRotation = true; 
         anim = GetComponent<Animator>();
 
-    }
-    void Update(){
-        anim.SetBool("grounded", grounded);
+        cameraBottomBounds = Camera.main.ViewportToWorldPoint(new Vector3 (1f, 1f, 0f)).y;
 
     }
+
+
+    void Update(){
+        anim.SetBool("grounded", grounded);
+        Debug.Log("Player Position: X = " + transform.position.x + " --- Y = " + transform.position.y);
+        if (transform.position.y > count)
+        {
+            count = (int) Mathf.Floor(transform.position.y);
+            SetCountText();
+        }        
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -156,7 +174,10 @@ public class dummy_movement : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("collision");
+<<<<<<< HEAD
 
+=======
+>>>>>>> 94becf89178327e96a3bb36897a591765f4e22e4
         if (other.gameObject.CompareTag("Monster"))
         {
             Debug.Log("dead because of monster");
@@ -176,5 +197,10 @@ public class dummy_movement : MonoBehaviour
             Buttons.OnStart();
         }
     }
+
+    void SetCountText()
+	{
+		ScoreText.text = "Score: " + (count*10).ToString();
+	}
 
 }
