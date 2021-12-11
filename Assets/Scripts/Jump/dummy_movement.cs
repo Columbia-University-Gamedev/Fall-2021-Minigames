@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 public class dummy_movement : MonoBehaviour
 {
     
@@ -119,11 +120,26 @@ public class dummy_movement : MonoBehaviour
 		}
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.compareTag("Monster"))
+        {
+            //dead
+            SceneManager.LoadScene("GameOver");
+        }
+    }
 
     public void OnMovementChange(InputAction.CallbackContext context){
         Vector2 direction = context.ReadValue<Vector2>();
         moveVector = new Vector3(direction.x, 0, direction.y);
     }
     
+    public void OnStartGame(InputAction.CallbackContext context)
+    {
+        if (SceneManager.getActiveScene.name == "HomeScreen")
+        {
+            Buttons.OnStart();
+        }
+    }
 
 }
