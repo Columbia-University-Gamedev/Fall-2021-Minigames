@@ -21,6 +21,7 @@ public class dummy_movement : MonoBehaviour
     private bool facingLeft = false;
     float cameraBottomBounds;
     public TextMeshProUGUI ScoreText;
+    public GameObject coinCollected;
 
     [SerializeField] private Transform bottomBounds;
 
@@ -201,6 +202,22 @@ public class dummy_movement : MonoBehaviour
     //        SceneManager.LoadScene("GameOver");
     //    }
     //}
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            int currentCoins = PlayerPrefs.GetInt("coins");
+            PlayerPrefs.SetInt("coins", currentCoins++);
+
+            count += 10f;
+            SetCountText();
+            
+            Vector3 spawnCoinCollectedLoc = transform.position + new Vector3(0f, 5f, 0f);
+            Instantiate(coinCollected, spawnCoinCollectedLoc, Quaternion.identity);
+        }
+
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
