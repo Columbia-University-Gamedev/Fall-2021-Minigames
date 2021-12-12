@@ -11,7 +11,7 @@ public class dummy_movement : MonoBehaviour
     
     Collider2D playerCollider;
     private Rigidbody2D rb;
-    private int count;
+    private float count;
     public LayerMask ground;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f; 
@@ -55,7 +55,7 @@ public class dummy_movement : MonoBehaviour
         playerCollider = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
 
-        count = 0;
+        count = 0f;
         SetCountText();
 
         rb.freezeRotation = true; 
@@ -71,7 +71,7 @@ public class dummy_movement : MonoBehaviour
         //Debug.Log("Player Position: X = " + transform.position.x + " --- Y = " + transform.position.y);
         if (transform.position.y > count)
         {
-            count = (int) Mathf.Floor(transform.position.y);
+            count = transform.position.y;
             SetCountText();
         }        
     }
@@ -80,7 +80,7 @@ public class dummy_movement : MonoBehaviour
     void FixedUpdate()
     {
         grounded = detectGround();
-        if (grounded){
+        if (grounded && rb.velocity.y <= 0){
             // Jump();
             // BetterJump();
             rb.AddForce(Vector2.up * CalculateJumpForce());
@@ -115,7 +115,7 @@ public class dummy_movement : MonoBehaviour
         if (transform.position.y < bottomBounds.position.y)
         {
             Debug.Log("Dead because you fell");
-            PlayerPrefs.SetInt("SheepScore", count);
+            PlayerPrefs.SetFloat("SheepScore", count);
             SceneManager.LoadScene("GameOver");
         }
         
@@ -240,7 +240,7 @@ public class dummy_movement : MonoBehaviour
             } else
             {
                 Debug.Log("Below");
-                PlayerPrefs.SetInt("SheepScore", count);
+                PlayerPrefs.SetFloat("SheepScore", count);
                 SceneManager.LoadScene("GameOver");
                 //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
@@ -262,7 +262,7 @@ public class dummy_movement : MonoBehaviour
 
     void SetCountText()
 	{
-		ScoreText.text = "Score: " + (count*10).ToString();
+		ScoreText.text = "Score: " + ((int) Mathf.Floor(count*100)).ToString();
 	}
 
 }

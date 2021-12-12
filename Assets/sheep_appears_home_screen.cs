@@ -14,8 +14,7 @@ public class sheep_appears_home_screen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime > 1){  //If normalizedTime is 0 to 1 means animation is playing, if greater than 1 means finished
-            Debug.Log("not playing"); 
+        if(this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime > 1){  
             sheep.SetActive(true);
         }
     }
