@@ -11,7 +11,7 @@ public class platform_generator : MonoBehaviour
     [SerializeField] List<GameObject> _monsterList;
     [SerializeField] bool _shouldSpawnMonsters = true;
 
-    [SerializeField] int _monsterProbability = 7; // higher => lower e.g. 7 => 1 in 7
+    [SerializeField] int _monsterProbability = 200213; // higher => lower e.g. 7 => 1 in 7
 
     [SerializeField] Camera _camera; 
 

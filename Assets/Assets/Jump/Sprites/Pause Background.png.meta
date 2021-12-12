@@ -1,25 +1,12 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: abf3f8844666643448465bc13d6ec383
+guid: f70be28a2abd8481b883d4e5d5526b63
 TextureImporter:
   internalIDToNameTable: []
-=======
-guid: 3ad2db781c9354d129034f945297c0d2
-TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 5380344007879401679
-    second: SheepCoin_0
->>>>>>> 21d653511290925534ed6df6a10e07fa4cc7f9b6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
     mipMapMode: 0
-<<<<<<< HEAD
-    enableMipMap: 1
-=======
     enableMipMap: 0
->>>>>>> 21d653511290925534ed6df6a10e07fa4cc7f9b6
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -48,43 +35,24 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-<<<<<<< HEAD
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
-  nPOTScale: 1
-  lightmap: 0
-  compressionQuality: 50
-  spriteMode: 0
-=======
     wrapU: 1
     wrapV: 1
     wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
->>>>>>> 21d653511290925534ed6df6a10e07fa4cc7f9b6
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-<<<<<<< HEAD
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
-  alphaUsage: 1
-  alphaIsTransparency: 0
-  spriteTessellationDetail: -1
-  textureType: 0
-=======
-  spriteBorder: {x: 1315, y: 76, z: 1848, w: 2256}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
->>>>>>> 21d653511290925534ed6df6a10e07fa4cc7f9b6
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -107,15 +75,6 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-<<<<<<< HEAD
-  spriteSheet:
-    serializedVersion: 2
-    sprites: []
-    outline: []
-    physicsShape: []
-    bones: []
-    spriteID: 
-=======
   - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
@@ -130,33 +89,11 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: SheepCoin_0
-      rect:
-        serializedVersion: 2
-        x: 1347
-        y: 81
-        width: 391
-        height: 296
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fc0ad0f6e52daaa40800000000000000
-      internalID: 5380344007879401679
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
->>>>>>> 21d653511290925534ed6df6a10e07fa4cc7f9b6
     internalID: 0
     vertices: []
     indices: 
