@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class dummy_movement : MonoBehaviour
+public class player_at_homescreen : MonoBehaviour
 {
     
     Collider2D playerCollider;
@@ -229,7 +229,7 @@ public class dummy_movement : MonoBehaviour
             var normal = collision.GetContact(0).normal;
             float dot = Vector2.Dot(collision.gameObject.transform.up, normal);
 
-            rb.AddForce(normal.normalized * 1.2f * CalculateJumpForce());
+            rb.AddForce(normal.normalized * 1.5f * CalculateJumpForce());
 
             // did we jump on the monster?
             if (1f - dot <= 0.5f)
