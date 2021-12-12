@@ -64,9 +64,13 @@ public class MonsterMove : MonoBehaviour
         get { return _minPos; }
         set { _minPos = value; }
     }
+    public Transform startPlatform;
+    public Transform endPlatform;
 
     [SerializeField]
     Vector3 _maxPos;
+
+
 
     public Vector3 MaxPos
     {
@@ -80,9 +84,13 @@ public class MonsterMove : MonoBehaviour
     // float _startTime;
 
     float _timeCount; 
+    //Vector3 _maxPos;
+    //Vector3 _minPos;
 
     void Start()
     {
+        //_maxPos = endPlatform.position;
+        //_minPos = startPlatform.position;
         _targetPos = _minPos;
         // _startTime = Time.time;
         _timeCount = 0f;
@@ -112,7 +120,7 @@ public class MonsterMove : MonoBehaviour
 
 
             // do we need to switch the target?
-            if ((_targetPos + _origin - transform.position).magnitude <= _fudgeFactor && _timeCount >= _movePeriod)
+            if ((_targetPos - transform.position).magnitude <= _fudgeFactor && _timeCount >= _movePeriod)
             {
                 // Debug.Log($"Flipped after t= {t} / 2Pi, %= {percent} / 1");
 

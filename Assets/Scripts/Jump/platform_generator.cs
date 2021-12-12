@@ -43,7 +43,7 @@ public class platform_generator : MonoBehaviour
             var d = r.gameObject.AddComponent<DestroyOnInvisible>();
             d.Camera = _camera;
         }
-        
+
 
         // spawn in monsters once in a while
         if (_shouldSpawnMonsters && _monsterList.Count > 0 &&
@@ -57,22 +57,33 @@ public class platform_generator : MonoBehaviour
 
             var colliders = levelPartTransform.GetComponentsInChildren<Collider2D>();
 
-            var platform = colliders[Random.Range(0, colliders.Length)];
+            var platform1 = colliders[Random.Range(0, colliders.Length)];
+            var platform2 = colliders[Random.Range(0, colliders.Length)];
+
+            if (colliders.Length > 1) { 
+                while (platform1 == platform2)
+                {
+                    platform2 = colliders[Random.Range(0, colliders.Length)];
+                }
+            }
 
             Vector3 monsterLower =  Vector3.up * monsterBounds.extents.y;
-            Vector3 platformUpper = Vector3.up * platform.bounds.extents.y;
+            Vector3 platform1Upper = Vector3.up * platform1.bounds.extents.y;
+            Vector3 platform2Upper = Vector3.up * platform2.bounds.extents.y;
 
-            Vector3 pos = platform.gameObject.transform.position + platformUpper + monsterLower;
+            Vector3 pos1 = platform1.gameObject.transform.position + platform1Upper + monsterLower;
+            Vector3 pos2 = platform2.gameObject.transform.position + platform2Upper + monsterLower;
 
-            monster.transform.position = pos;
+            monster.transform.position = pos1;
 
             var movement = monster.GetComponent<MonsterMove>();
 
-            Vector3 offset = Vector3.right * (platform.bounds.extents.x * 0.9f - monsterBounds.extents.x);
+            Vector3 offset1 = Vector3.right * (platform1.bounds.extents.x * 0.9f * Random.value - monsterBounds.extents.x);
+            Vector3 offset2 = Vector3.right * (platform2.bounds.extents.x * 0.9f * Random.value - monsterBounds.extents.x);
 
-            movement.MinPos = -1 * offset;
-            movement.MaxPos = offset;
-            movement.AverageMoveSpeed = 2f;
+            movement.MinPos = offset1;
+            movement.MaxPos = offset2 + pos2 - pos1;
+            movement.AverageMoveSpeed = 3.5f;
 
             movement.SetRandomDirection();
 

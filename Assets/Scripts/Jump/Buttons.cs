@@ -27,14 +27,15 @@ public class Buttons : MonoBehaviour
 
     public void OnPause()
     {
+
         Debug.Log("pausing game");
         //enable and fade in the pause panel, disable the pause button, and pause
         Time.timeScale = 0f;
         pausePanel.SetActive(true);
         StartCoroutine(ImageFade.FadeImage(false, 0.4f, pauseOpacity, pausePanel.GetComponent<CanvasGroup>()));
         pauseButton.SetActive(false);
-        
         Debug.Log("game paused");
+
     }
 
     public void OnUnpause()
