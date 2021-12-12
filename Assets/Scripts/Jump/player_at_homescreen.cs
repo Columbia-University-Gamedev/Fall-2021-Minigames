@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class dummy_movement : MonoBehaviour
+public class player_at_homescreen : MonoBehaviour
 {
     
     Collider2D playerCollider;
