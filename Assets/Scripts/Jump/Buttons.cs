@@ -9,7 +9,8 @@ public class Buttons : MonoBehaviour
     [SerializeField] private GameObject pauseButton;
     [SerializeField] private float pauseOpacity = .9f;
     private float timeScale = 1;
-    void Start()
+   
+   void Start()
     {
         pausePanel.SetActive(false);
     }

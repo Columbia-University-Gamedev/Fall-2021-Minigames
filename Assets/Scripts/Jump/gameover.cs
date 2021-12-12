@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 
 public class gameover : MonoBehaviour
 {
@@ -19,5 +21,15 @@ public class gameover : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public static void OnStart()
+    {
+        SceneManager.LoadScene("jumpPlatformGen");
+    }
+
+    public void OnHome()
+    {
+        SceneManager.LoadScene("HomeScreen");
     }
 }

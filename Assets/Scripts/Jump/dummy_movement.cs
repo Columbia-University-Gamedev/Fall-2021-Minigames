@@ -80,7 +80,7 @@ public class dummy_movement : MonoBehaviour
     void FixedUpdate()
     {
         grounded = detectGround();
-        if (grounded){
+        if (grounded && rb.velocity.y <= 0){
             // Jump();
             // BetterJump();
             rb.AddForce(Vector2.up * CalculateJumpForce());
@@ -229,7 +229,7 @@ public class dummy_movement : MonoBehaviour
             var normal = collision.GetContact(0).normal;
             float dot = Vector2.Dot(collision.gameObject.transform.up, normal);
 
-            rb.AddForce(normal.normalized * 1.5f * CalculateJumpForce());
+            rb.AddForce(normal.normalized * 1.2f * CalculateJumpForce());
 
             // did we jump on the monster?
             if (1f - dot <= 0.5f)
