@@ -80,7 +80,7 @@ public class dummy_movement : MonoBehaviour
     void FixedUpdate()
     {
         grounded = detectGround();
-        if (grounded){
+        if (grounded && rb.velocity.y <= 0){
             // Jump();
             // BetterJump();
             rb.AddForce(Vector2.up * CalculateJumpForce());
