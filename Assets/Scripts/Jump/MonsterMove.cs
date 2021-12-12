@@ -56,8 +56,8 @@ public class MonsterMove : MonoBehaviour
         get { return _origin; }
     }
 
-   // [SerializeField]
-   // Vector3 _minPos;
+    [SerializeField]
+    Vector3 _minPos;
 
     public Vector3 MinPos
     {
@@ -67,10 +67,10 @@ public class MonsterMove : MonoBehaviour
     public Transform startPlatform;
     public Transform endPlatform;
 
-    //[SerializeField]
-    //Vector3 _maxPos;
+    [SerializeField]
+    Vector3 _maxPos;
 
-    
+
 
     public Vector3 MaxPos
     {
@@ -84,13 +84,13 @@ public class MonsterMove : MonoBehaviour
     // float _startTime;
 
     float _timeCount; 
-    Vector3 _maxPos;
-    Vector3 _minPos;
+    //Vector3 _maxPos;
+    //Vector3 _minPos;
 
     void Start()
     {
-        _maxPos = endPlatform.position;
-        _minPos = startPlatform.position;
+        //_maxPos = endPlatform.position;
+        //_minPos = startPlatform.position;
         _targetPos = _minPos;
         // _startTime = Time.time;
         _timeCount = 0f;

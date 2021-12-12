@@ -25,7 +25,16 @@ public class dummy_movement : MonoBehaviour
     [SerializeField] private Transform bottomBounds;
 
 
-    Vector3 moveVector;
+    Vector2 moveVector;
+
+    [SerializeField]
+    float _horizontalAcceleration = 20f; // meters per second per second
+
+    [SerializeField]
+    float _maxHorizontalSpeed = 10f;
+
+    [SerializeField]
+    float _horizontalDrag = 0.2f; 
 
     [SerializeField]
     float _jumpHeight = 5f; // in meters
@@ -58,7 +67,7 @@ public class dummy_movement : MonoBehaviour
 
     void Update(){
         anim.SetBool("grounded", grounded);
-        Debug.Log("Player Position: X = " + transform.position.x + " --- Y = " + transform.position.y);
+        //Debug.Log("Player Position: X = " + transform.position.x + " --- Y = " + transform.position.y);
         if (transform.position.y > count)
         {
             count = (int) Mathf.Floor(transform.position.y);
@@ -78,11 +87,23 @@ public class dummy_movement : MonoBehaviour
 
         //Vector2 moveRaw = res.Get<Vector2>();
         //Vector2 LateralMove = new Vector2(moveRaw.x, 0);
-        
+
         //float currentPositionY = transform.position.y;
-        transform.position = new Vector3(transform.position.x,transform.position.y , transform.position.z) + moveVector*0.2f;
+        // transform.position = new Vector3(transform.position.x,transform.position.y , transform.position.z) + moveVector*0.2f;
         //  Physics2D.IgnoreLayerCollision(0,3, (rb.velocity.y>0.0f));
         // Debug.Log(rb.velocity.y);
+
+        if (Mathf.Sign(rb.velocity.x) != Mathf.Sign(moveVector.x) ||
+            Mathf.Abs(rb.velocity.x) < _maxHorizontalSpeed)
+        {
+            rb.velocity += moveVector * _horizontalAcceleration * Time.deltaTime;
+        }
+
+        if (moveVector.x == 0f)
+        {
+            rb.velocity -= rb.velocity.x * _horizontalDrag * Vector2.right;
+        }
+
         anim.SetFloat("y_velocity", rb.velocity.y);
         if (moveVector.x < 0 && facingLeft || moveVector.x  > 0 && !facingLeft)
         {
@@ -171,13 +192,38 @@ public class dummy_movement : MonoBehaviour
 		}
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    //void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    Debug.Log("collision");
+    //    if (other.gameObject.CompareTag("Monster"))
+    //    {
+    //        Debug.Log("dead because of monster");
+    //        SceneManager.LoadScene("GameOver");
+    //    }
+    //}
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("collision");
-        if (other.gameObject.CompareTag("Monster"))
+        if (collision.gameObject.CompareTag("Monster"))
         {
-            Debug.Log("dead because of monster");
-            SceneManager.LoadScene("GameOver");
+            Debug.Log("monster");
+
+            var normal = collision.GetContact(0).normal;
+            float dot = Vector2.Dot(collision.gameObject.transform.up, normal);
+
+            rb.AddForce(normal.normalized * 1.5f * CalculateJumpForce());
+
+            // did we jump on the monster?
+            if (1f - dot <= 0.5f)
+            {
+                Destroy(collision.gameObject);
+                Debug.Log("Above");
+            } else
+            {
+                Debug.Log("Below");
+                // SceneManager.LoadScene("GameOver");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
     }
 
