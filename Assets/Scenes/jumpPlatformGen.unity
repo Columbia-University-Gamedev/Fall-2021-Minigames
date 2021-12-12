@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -263,6 +263,9 @@ MonoBehaviour:
   grounded: 0
   ScoreText: {fileID: 715598730}
   bottomBounds: {fileID: 1691204518}
+  _horizontalAcceleration: 100
+  _maxHorizontalSpeed: 10
+  _horizontalDrag: 0.2
   _jumpHeight: 3
   _jumpTime: 1.85
   _floorcastFudgeFactor: 0.23
@@ -453,6 +456,51 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &413681679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 413681681}
+  - component: {fileID: 413681680}
+  m_Layer: 0
+  m_Name: playerTracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &413681680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413681679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be7025617d1d7489f813933b76c53634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 161062898}
+  _verticalSpeed: 3
+--- !u!4 &413681681
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413681679}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &444828325
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,9 +867,10 @@ MonoBehaviour:
   - {fileID: 3939692897935133477, guid: 0226975a7ae9940bc91e2b2e1f1a5356, type: 3}
   - {fileID: 4562893029777720816, guid: c8dd1be9565cc401b8e6cb95772f3f01, type: 3}
   player: {fileID: 161062904}
-  _monsterList: []
+  _monsterList:
+  - {fileID: 2988778933895379307, guid: 0e2726a2a0edf4a4a90352c0e1ea57f3, type: 3}
   _shouldSpawnMonsters: 1
-  _monsterProbability: 7
+  _monsterProbability: 1
   _camera: {fileID: 1734920490}
 --- !u!4 &689016231
 Transform:
@@ -1031,27 +1080,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &1416177112
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1987794407}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!1 &1515506867
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,6 +1208,7 @@ GameObject:
   - component: {fileID: 1734920490}
   - component: {fileID: 1734920489}
   - component: {fileID: 1734920492}
+  - component: {fileID: 1734920493}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1260,44 +1289,32 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734920488}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 847513cc8e46447cdbade91b44554f1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 161062898}
   camaraSpeed: 0.03
---- !u!1 &1987794407
-GameObject:
+--- !u!114 &1734920493
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1987794408}
-  - component: {fileID: 1416177112}
-  m_Layer: 0
-  m_Name: Recovery GameObject (1416177112)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1987794408
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1987794407}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 1734920488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4fc3036ecd774800aca40e1070fb592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 413681681}
+  _safeZoneExtent: {x: 15.43, y: 8.99}
+  _outerZoneExtent: {x: 8.16, y: 4.86}
+  _friction: 0.05
+  _acceleration: 40
+  _maxSpeed: 70
+  _killAcceleration: 0
 --- !u!1 &2048882746
 GameObject:
   m_ObjectHideFlags: 0
