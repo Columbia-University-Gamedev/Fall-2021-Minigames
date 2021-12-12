@@ -193,6 +193,7 @@ public class player_at_homescreen : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "HomeScreen")
         {
             Buttons.OnStart();
+            SceneManager.LoadScene("jumpPlatformGen");
         }
     }
 
