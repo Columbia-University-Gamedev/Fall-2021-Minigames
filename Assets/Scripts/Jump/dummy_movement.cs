@@ -115,6 +115,7 @@ public class dummy_movement : MonoBehaviour
         if (transform.position.y < bottomBounds.position.y)
         {
             Debug.Log("Dead because you fell");
+            PlayerPrefs.SetInt("SheepScore", count);
             SceneManager.LoadScene("GameOver");
         }
         
@@ -238,8 +239,9 @@ public class dummy_movement : MonoBehaviour
             } else
             {
                 Debug.Log("Below");
-                // SceneManager.LoadScene("GameOver");
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                PlayerPrefs.SetInt("SheepScore", count);
+                SceneManager.LoadScene("GameOver");
+                //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
     }
