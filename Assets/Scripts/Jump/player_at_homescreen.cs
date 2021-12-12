@@ -20,8 +20,10 @@ public class player_at_homescreen : MonoBehaviour
     public bool grounded;
     private bool facingLeft = false;
     float cameraBottomBounds;
-    public TextMeshProUGUI ScoreText;
-    public GameObject coinCollected;
+    float cameraLeftBounds;
+    float cameraRightBounds;
+
+    
 
     [SerializeField] private Transform bottomBounds;
 
@@ -49,31 +51,27 @@ public class player_at_homescreen : MonoBehaviour
     [SerializeField]
     float _gravityScaleInfluence = 0.75f; // how much of rigid body's gravity scale to take into account
 
+    [SerializeField] Transform leftBounds;
+    [SerializeField] Transform rightBounds;
     // Start is called before the first frame update
     void Start()
     {
         playerCollider = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
 
-        count = 0;
-        SetCountText();
-
         rb.freezeRotation = true; 
         anim = GetComponent<Animator>();
 
         cameraBottomBounds = Camera.main.ViewportToWorldPoint(new Vector3 (1f, 1f, 0f)).y;
-
+        
+        Debug.Log(cameraLeftBounds);
     }
 
 
     void Update(){
         anim.SetBool("grounded", grounded);
         //Debug.Log("Player Position: X = " + transform.position.x + " --- Y = " + transform.position.y);
-        if (transform.position.y > count)
-        {
-            count = (int) Mathf.Floor(transform.position.y);
-            SetCountText();
-        }        
+                
     }
 
     // Update is called once per frame
@@ -81,18 +79,10 @@ public class player_at_homescreen : MonoBehaviour
     {
         grounded = detectGround();
         if (grounded){
-            // Jump();
-            // BetterJump();
             rb.AddForce(Vector2.up * CalculateJumpForce());
         }
 
-        //Vector2 moveRaw = res.Get<Vector2>();
-        //Vector2 LateralMove = new Vector2(moveRaw.x, 0);
-
-        //float currentPositionY = transform.position.y;
-        // transform.position = new Vector3(transform.position.x,transform.position.y , transform.position.z) + moveVector*0.2f;
-        //  Physics2D.IgnoreLayerCollision(0,3, (rb.velocity.y>0.0f));
-        // Debug.Log(rb.velocity.y);
+       
 
         if (Mathf.Sign(rb.velocity.x) != Mathf.Sign(moveVector.x) ||
             Mathf.Abs(rb.velocity.x) < _maxHorizontalSpeed)
@@ -111,13 +101,17 @@ public class player_at_homescreen : MonoBehaviour
             flip();
         }
 
-
-        if (transform.position.y < bottomBounds.position.y)
+        if (transform.position.x > rightBounds.position.x)
         {
-            Debug.Log("Dead because you fell");
-            PlayerPrefs.SetInt("SheepScore", count);
-            SceneManager.LoadScene("GameOver");
+            Debug.Log("it is past right bound");
+            rb.position = new Vector3(leftBounds.position.x, transform.position.y, transform.position.z);
         }
+        else if (transform.position.x < leftBounds.position.x)
+        {
+            Debug.Log("it is past left bound");
+            rb.position = new Vector3(rightBounds.position.x, transform.position.y, transform.position.z);
+        }
+        
         
     }
     void flip()
@@ -130,14 +124,6 @@ public class player_at_homescreen : MonoBehaviour
 
     float CalculateJumpForce()
     {
-        /*
-            F = (mass (targetVelocity - current_velocity)) / Time.deltaTime
-
-         */
-
-        // doesnt' work perfectly but if you play with the jump inputs 
-        // you can get good results
-
         float h = _jumpHeight;
         float t_flight = _jumpTime;
 
@@ -181,7 +167,9 @@ public class player_at_homescreen : MonoBehaviour
     { 
         rb.velocity = new Vector2(rb.velocity.x, jumpForce); 
     } 
-
+    void OnTriggerEnter2D(Collider2D other)
+    {
+    }
     void BetterJump()
     {
 		if (rb.velocity.y < 0)
@@ -193,60 +181,9 @@ public class player_at_homescreen : MonoBehaviour
 		    rb.velocity += Vector2.up * Physics2D.gravity * (lowJumpMultiplier - 1) * Time.deltaTime;
 		}
     }
-
-    //void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    Debug.Log("collision");
-    //    if (other.gameObject.CompareTag("Monster"))
-    //    {
-    //        Debug.Log("dead because of monster");
-    //        SceneManager.LoadScene("GameOver");
-    //    }
-    //}
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Coin"))
-        {
-            int currentCoins = PlayerPrefs.GetInt("coins");
-            PlayerPrefs.SetInt("coins", currentCoins++);
-
-            count += 10;
-            SetCountText();
-            
-            Vector3 spawnCoinCollectedLoc = transform.position + new Vector3(0f, 5f, 0f);
-            Instantiate(coinCollected, spawnCoinCollectedLoc, Quaternion.identity);
-        }
-
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Monster"))
-        {
-            Debug.Log("monster");
-
-            var normal = collision.GetContact(0).normal;
-            float dot = Vector2.Dot(collision.gameObject.transform.up, normal);
-
-            rb.AddForce(normal.normalized * 1.5f * CalculateJumpForce());
-
-            // did we jump on the monster?
-            if (1f - dot <= 0.5f)
-            {
-                Destroy(collision.gameObject);
-                Debug.Log("Above");
-            } else
-            {
-                Debug.Log("Below");
-                PlayerPrefs.SetInt("SheepScore", count);
-                SceneManager.LoadScene("GameOver");
-                //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
-        }
-    }
-
+    
     public void OnMovementChange(InputAction.CallbackContext context){
+        Debug.Log("on move");
         Vector2 direction = context.ReadValue<Vector2>();
         moveVector = new Vector3(direction.x, 0, direction.y);
     }
@@ -258,10 +195,5 @@ public class player_at_homescreen : MonoBehaviour
             Buttons.OnStart();
         }
     }
-
-    void SetCountText()
-	{
-		ScoreText.text = "Score: " + (count*10).ToString();
-	}
 
 }
