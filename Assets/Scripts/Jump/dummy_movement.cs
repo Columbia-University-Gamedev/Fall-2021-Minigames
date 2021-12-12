@@ -215,6 +215,7 @@ public class dummy_movement : MonoBehaviour
             SetCountText();
             
             Vector3 spawnCoinCollectedLoc = transform.position + new Vector3(0f, 5f, 0f);
+            Destroy(other.gameObject);
             Instantiate(coinCollected, spawnCoinCollectedLoc, Quaternion.identity);
         }
 
