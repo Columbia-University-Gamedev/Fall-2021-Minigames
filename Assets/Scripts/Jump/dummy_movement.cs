@@ -49,9 +49,73 @@ public class dummy_movement : MonoBehaviour
     [SerializeField]
     float _gravityScaleInfluence = 0.75f; // how much of rigid body's gravity scale to take into account
 
+
+    bool _areControlsEnabled = true;
+
+    bool _areCollisionsEnabled = true;
+    bool AreCollisionsEnabled
+    {
+        get { return _areCollisionsEnabled; }
+
+        set
+        {
+            _areCollisionsEnabled = value;
+
+            Collider2D[] colliders = new Collider2D[rb.attachedColliderCount];
+            rb.GetAttachedColliders(colliders);
+
+            foreach (var col in colliders)
+            {
+                col.enabled = value; 
+            }
+        }
+    }
+
+    bool _isDead = false;
+    public bool IsDead
+    {
+        get { return _isDead; }
+    }
+
+    float _timeOfDeath;
+
+    [SerializeField]
+    float _gameOverTimeout = 1.5f; // what's the delay before the gameover screen transition?
+
+
+    [SerializeField]
+    int _maxHealth = 3;
+
+    int _health;
+    public int Health
+    {
+        get { return _health; }
+    }
+
+
+    // event delegates
+
+    public enum DeathType
+    {
+        Fell,
+        Killed
+    }
+
+    public delegate void PlayerDied(DeathType type);
+    public PlayerDied OnPlayerDied;
+
+    public delegate void DeathAnimationEnded();
+    public DeathAnimationEnded OnDeathAnimationEnded;
+
+    public delegate void PlayerHurt(GameObject attacker);
+    public PlayerHurt OnPlayerHurt;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        _health = _maxHealth; 
+
         playerCollider = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -63,6 +127,19 @@ public class dummy_movement : MonoBehaviour
 
         cameraBottomBounds = Camera.main.ViewportToWorldPoint(new Vector3 (1f, 1f, 0f)).y;
 
+        OnPlayerDied += HandlePlayerDied;
+        OnDeathAnimationEnded += HandleDeathAnimationEnded; 
+    }
+
+    private void OnDisable()
+    {
+        OnPlayerDied -= HandlePlayerDied;
+        OnDeathAnimationEnded -= HandleDeathAnimationEnded;
+    }
+
+    void HandleDeathAnimationEnded()
+    {
+        SceneManager.LoadScene("GameOver");
     }
 
 
@@ -79,47 +156,87 @@ public class dummy_movement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        grounded = detectGround();
-        if (grounded && rb.velocity.y <= 0){
-            // Jump();
-            // BetterJump();
-            rb.AddForce(Vector2.up * CalculateJumpForce());
+        if (AreCollisionsEnabled)
+        {
+            grounded = detectGround();
+            if (grounded && rb.velocity.y <= 0)
+            {
+                rb.AddForce(Vector2.up * CalculateJumpForce());
+            }
         }
 
-        //Vector2 moveRaw = res.Get<Vector2>();
-        //Vector2 LateralMove = new Vector2(moveRaw.x, 0);
 
-        //float currentPositionY = transform.position.y;
-        // transform.position = new Vector3(transform.position.x,transform.position.y , transform.position.z) + moveVector*0.2f;
-        //  Physics2D.IgnoreLayerCollision(0,3, (rb.velocity.y>0.0f));
-        // Debug.Log(rb.velocity.y);
-
-        if (Mathf.Sign(rb.velocity.x) != Mathf.Sign(moveVector.x) ||
+        if (_areControlsEnabled)
+        {
+            if (Mathf.Sign(rb.velocity.x) != Mathf.Sign(moveVector.x) ||
             Mathf.Abs(rb.velocity.x) < _maxHorizontalSpeed)
-        {
-            rb.velocity += moveVector * _horizontalAcceleration * Time.deltaTime;
-        }
+            {
+                rb.velocity += moveVector * _horizontalAcceleration * Time.deltaTime;
+            }
 
-        if (moveVector.x == 0f)
-        {
-            rb.velocity -= rb.velocity.x * _horizontalDrag * Vector2.right;
+            if (moveVector.x == 0f)
+            {
+                rb.velocity -= rb.velocity.x * _horizontalDrag * Vector2.right;
+            }
         }
 
         anim.SetFloat("y_velocity", rb.velocity.y);
-        if (moveVector.x < 0 && facingLeft || moveVector.x  > 0 && !facingLeft)
+        if (moveVector.x < 0 && facingLeft || moveVector.x > 0 && !facingLeft)
         {
             flip();
         }
 
 
-        if (transform.position.y < bottomBounds.position.y)
+        if (!_isDead && transform.position.y < bottomBounds.position.y)
         {
             Debug.Log("Dead because you fell");
             PlayerPrefs.SetFloat("SheepScore", count);
-            SceneManager.LoadScene("GameOver");
+
+            OnPlayerDied?.Invoke(DeathType.Fell);
+        }
+
+        if (_isDead)
+        {
+            if (Time.time - _timeOfDeath > _gameOverTimeout)
+            {
+
+                if (transform.position.y < bottomBounds.position.y)
+                {
+                    // is player offscreen and has timeout elapsed? 
+                    OnDeathAnimationEnded?.Invoke();
+                }
+            }
         }
         
     }
+
+
+    void HandlePlayerDied(DeathType type)
+    {
+        _isDead = true;
+        _timeOfDeath = Time.time; 
+
+        if (type == DeathType.Killed)
+        {
+            StartKilledAnimation();
+        } else if (type == DeathType.Fell)
+        {
+            StartFellAnimation();
+        }
+    }
+
+    void StartFellAnimation()
+    {
+        // TODO
+    }
+
+    void StartKilledAnimation()
+    {
+        _areControlsEnabled = false;
+        AreCollisionsEnabled = false;
+    }
+
+
     void flip()
     {
         facingLeft = !facingLeft;
@@ -132,7 +249,6 @@ public class dummy_movement : MonoBehaviour
     {
         /*
             F = (mass (targetVelocity - current_velocity)) / Time.deltaTime
-
          */
 
         // doesnt' work perfectly but if you play with the jump inputs 
@@ -194,16 +310,6 @@ public class dummy_movement : MonoBehaviour
 		}
     }
 
-    //void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    Debug.Log("collision");
-    //    if (other.gameObject.CompareTag("Monster"))
-    //    {
-    //        Debug.Log("dead because of monster");
-    //        SceneManager.LoadScene("GameOver");
-    //    }
-    //}
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Coin"))
@@ -230,20 +336,36 @@ public class dummy_movement : MonoBehaviour
             var normal = collision.GetContact(0).normal;
             float dot = Vector2.Dot(collision.gameObject.transform.up, normal);
 
-            rb.AddForce(normal.normalized * 1.2f * CalculateJumpForce());
 
             // did we jump on the monster?
-            if (1f - dot <= 0.5f)
+            if (dot > 0.16f)
             {
+                rb.AddForce(Vector2.up * 1.2f * CalculateJumpForce());
                 Destroy(collision.gameObject);
                 Debug.Log("Above");
             } else
             {
                 Debug.Log("Below");
                 PlayerPrefs.SetFloat("SheepScore", count);
-                SceneManager.LoadScene("GameOver");
-                //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+                rb.AddForce(normal.normalized * 1.7f * CalculateJumpForce());
+
+                DoDamage(1, collision.gameObject); 
             }
+        }
+    }
+
+    public void DoDamage(int amount, GameObject attacker)
+    {
+        _health -= amount;
+
+        _health = Mathf.Max(0, _health);
+
+        OnPlayerHurt?.Invoke(attacker);
+
+        if (_health < 1)
+        {
+            OnPlayerDied?.Invoke(DeathType.Killed);
         }
     }
 
