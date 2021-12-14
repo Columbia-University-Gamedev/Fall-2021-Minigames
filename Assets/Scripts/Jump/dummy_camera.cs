@@ -13,7 +13,7 @@ public class dummy_camera: MonoBehaviour
     }
     void LateUpdate ()
     {
-        transform.position = new Vector3(player.transform.position.x + offsetX, transform.position.y+offsetY, transform.position.z);
-
+        Vector3 pos = new Vector3(player.transform.position.x + offsetX, transform.position.y+offsetY, transform.position.z);
+        transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime);
     }
 }
