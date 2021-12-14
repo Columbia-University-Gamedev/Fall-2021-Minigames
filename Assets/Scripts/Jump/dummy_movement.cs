@@ -116,6 +116,9 @@ public class dummy_movement : MonoBehaviour
         {
             Debug.Log("Dead because you fell");
             PlayerPrefs.SetFloat("SheepScore", count);
+            float highScore = PlayerPrefs.GetFloat("SheepHighScore");
+            highScore = (count > highScore) ? count : highScore;
+            PlayerPrefs.SetFloat("SheepHighScore", highScore);
             SceneManager.LoadScene("GameOver");
         }
         
@@ -241,6 +244,9 @@ public class dummy_movement : MonoBehaviour
             {
                 Debug.Log("Below");
                 PlayerPrefs.SetFloat("SheepScore", count);
+                float highScore = PlayerPrefs.GetFloat("SheepHighScore");
+                highScore = (count > highScore) ? count : highScore;
+                PlayerPrefs.SetFloat("SheepHighScore", highScore);
                 SceneManager.LoadScene("GameOver");
                 //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
