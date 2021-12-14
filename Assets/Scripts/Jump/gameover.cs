@@ -13,8 +13,8 @@ public class gameover : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int count = PlayerPrefs.GetInt("SheepScore");
-        ScoreText.text = "Score: " + (count*10).ToString();
+        float count = PlayerPrefs.GetFloat("SheepScore");
+        ScoreText.text = ((int) Mathf.Floor(count*100)).ToString();
     }
 
     // Update is called once per frame
