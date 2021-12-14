@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerTracker : MonoBehaviour
+public class BGTracker : MonoBehaviour
 {
     private MeshRenderer mr;
 
