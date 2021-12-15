@@ -425,6 +425,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _averageMoveSpeed: 2
+  _deathSquashRelativeScale: {x: 1.7, y: 0.3}
+  _deathScalingLerpFactor: 0.2
+  _deathHoldDuration: 0.35
   _movePeriod: 4
   _origin: {x: 0, y: 0, z: 0}
   _minPos: {x: 0, y: 0, z: 0}
@@ -443,3 +446,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9d89c3d7f40c4944a6f40618919864f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shouldChooseRandomMonsterOnAwake: 1
+  _monsterIndex: 0

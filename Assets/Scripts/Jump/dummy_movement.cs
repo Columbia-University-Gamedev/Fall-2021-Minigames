@@ -413,16 +413,19 @@ public class dummy_movement : MonoBehaviour
             var normal = collision.GetContact(0).normal;
             float dot = Vector2.Dot(collision.gameObject.transform.up, normal);
 
+            var monster = collision.gameObject.GetComponent<MonsterMove>();
 
             // did we jump on the monster?
             if (dot > 0.16f)
             {
                 rb.AddForce(Vector2.up * 1.2f * CalculateJumpForce());
-                Destroy(collision.gameObject);
+
+                monster.TriggerKill();
+
                 Debug.Log("Above");
 
                 _bounceSquish.TriggerSquish(1f);
-            } else
+            } else if (!monster.IsDead)
             {
                 Debug.Log("Below");
                 PlayerPrefs.SetFloat("SheepScore", count);
