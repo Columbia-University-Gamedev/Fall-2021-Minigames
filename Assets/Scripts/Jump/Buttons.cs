@@ -68,6 +68,7 @@ public class Buttons : MonoBehaviour
 
     public void OnHome()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("HomeScreen");
     }
 }

@@ -289,6 +289,10 @@ public class dummy_movement : MonoBehaviour
                     OnDeathAnimationEnded?.Invoke();
                 }
             }
+            float highScore = PlayerPrefs.GetFloat("SheepHighScore");
+            highScore = (count > highScore) ? count : highScore;
+            PlayerPrefs.SetFloat("SheepHighScore", highScore);
+            SceneManager.LoadScene("GameOver");
         }
         
     }

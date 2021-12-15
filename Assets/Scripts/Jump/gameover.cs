@@ -9,12 +9,15 @@ using UnityEngine.SceneManagement;
 public class gameover : MonoBehaviour
 {
     public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI HighScoreText;
     
     // Start is called before the first frame update
     void Start()
     {
-        int count = PlayerPrefs.GetInt("SheepScore");
-        ScoreText.text = "Score: " + (count*10).ToString();
+        float count = PlayerPrefs.GetFloat("SheepScore");
+        float highScore = PlayerPrefs.GetFloat("SheepHighScore");
+        ScoreText.text = ((int) Mathf.Floor(count*100)).ToString();
+        HighScoreText.text = ((int) Mathf.Floor(highScore*100)).ToString();
     }
 
     // Update is called once per frame
