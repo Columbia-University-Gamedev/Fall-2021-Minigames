@@ -275,8 +275,11 @@ MonoBehaviour:
   _jumpTime: 1.85
   _floorcastFudgeFactor: 0.23
   _gravityScaleInfluence: 0.75
+  _startingDirectionIsLeft: 1
   _gameOverTimeout: 1.5
   _maxHealth: 3
+  _squishSpeed: 20
+  _squishHurtTime: 2
 --- !u!212 &161062903
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1508,10 +1511,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 1431868252}
-  _safeZoneExtent: {x: 15.43, y: 8.99}
-  _safezoneOffset: {x: 0, y: -1.26}
-  _outerZoneExtent: {x: 8.16, y: 4.86}
-  _outerZoneOffset: {x: 0, y: -0.97}
+  _safeZoneExtent: {x: 9.2, y: 12.46}
+  _safezoneOffset: {x: 0, y: -0.31}
+  _outerZoneExtent: {x: 18.07, y: 6.03}
+  _outerZoneOffset: {x: 0, y: -1.54}
   _friction: 0.05
   _acceleration: 20
   _maxSpeed: 20
