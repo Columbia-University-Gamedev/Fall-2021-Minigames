@@ -137,20 +137,6 @@ public class dummy_movement : MonoBehaviour
     }
 
 
-    //void DoSquish()
-    //{
-    //    float minSquish, maxSquish;
-    //    minSquish = 0.6f;
-    //    maxSquish = 0.75f; // + minSquish implicitly
-
-    //    var y = _originalScale.y * (maxSquish * 0.5f * (Mathf.Cos(_squishSpeed * Time.time) + 1f) + minSquish);
-
-    //    int flip = facingLeft ? -1 : 1; 
-
-    //    transform.localScale = new Vector3(flip * _originalScale.x, y, _originalScale.z);
-    //}
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -204,6 +190,9 @@ public class dummy_movement : MonoBehaviour
 
     void HandleDeathAnimationEnded()
     {
+        float highScore = PlayerPrefs.GetFloat("SheepHighScore");
+        highScore = (count > highScore) ? count : highScore;
+        PlayerPrefs.SetFloat("SheepHighScore", highScore);
         SceneManager.LoadScene("GameOver");
     }
 
@@ -235,7 +224,7 @@ public class dummy_movement : MonoBehaviour
         if (_areControlsEnabled)
         {
             if (Mathf.Sign(rb.velocity.x) != Mathf.Sign(moveVector.x) ||
-            Mathf.Abs(rb.velocity.x) < _maxHorizontalSpeed)
+                Mathf.Abs(rb.velocity.x) < _maxHorizontalSpeed)
             {
                 rb.velocity += moveVector * _horizontalAcceleration * Time.deltaTime;
             }
@@ -247,11 +236,6 @@ public class dummy_movement : MonoBehaviour
         }
 
         anim.SetFloat("y_velocity", rb.velocity.y);
-
-        //if (moveVector.x < 0 && facingLeft || moveVector.x > 0 && !facingLeft)
-        //{
-        //    flip();
-        //}
 
 
         // deterministic flipping
@@ -289,10 +273,6 @@ public class dummy_movement : MonoBehaviour
                     OnDeathAnimationEnded?.Invoke();
                 }
             }
-            float highScore = PlayerPrefs.GetFloat("SheepHighScore");
-            highScore = (count > highScore) ? count : highScore;
-            PlayerPrefs.SetFloat("SheepHighScore", highScore);
-            SceneManager.LoadScene("GameOver");
         }
         
     }
@@ -406,22 +386,6 @@ public class dummy_movement : MonoBehaviour
 		return (left.collider != null || right.collider != null);
     }
 
-  //  void Jump() 
-  //  { 
-  //      rb.velocity = new Vector2(rb.velocity.x, jumpForce); 
-  //  } 
-
-  //  void BetterJump()
-  //  {
-		//if (rb.velocity.y < 0)
-		//{
-		//    rb.velocity += Vector2.up * Physics2D.gravity * (fallMultiplier - 1) * Time.deltaTime;
-		//}
-		//else if (rb.velocity.y > 0)
-		//{
-		//    rb.velocity += Vector2.up * Physics2D.gravity * (lowJumpMultiplier - 1) * Time.deltaTime;
-		//}
-  //  }
 
     void OnTriggerEnter2D(Collider2D other)
     {

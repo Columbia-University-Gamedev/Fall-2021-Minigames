@@ -161,9 +161,11 @@ public class TimedSquishing : MonoBehaviour
         // just extend the current squish if one is already running
         if (_isSquishing)
         {
-            _duration += duration; 
+            _squishStartTime = Time.time;
+            _duration = duration; 
+        } else
+        {
+            _squish = StartCoroutine(DoSquish(duration));
         }
-
-        _squish = StartCoroutine(DoSquish(duration));
     }
 }
