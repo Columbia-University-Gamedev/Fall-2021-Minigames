@@ -4,6 +4,28 @@ using UnityEngine;
 
 public class TimedSquishing : MonoBehaviour
 {
+    [System.Serializable]
+    public struct SquishParams
+    {
+        [SerializeField]
+        public float speed, min, max, duration; 
+
+        public SquishParams(float speed, float min, float max, float duration)
+        {
+            this.speed = speed; 
+            this.min = min;
+            this.max = max;
+            this.duration = duration;
+        }
+    }
+
+    public void ApplyParams(SquishParams attrs)
+    {
+        _squishSpeed = attrs.speed;
+        _minSquish = attrs.min;
+        _maxSquish = attrs.max;
+        _duration = attrs.duration; 
+    } 
 
     public bool IsSquishing
     {
@@ -156,7 +178,12 @@ public class TimedSquishing : MonoBehaviour
         Debug.Log($"{gameObject.name} ended squish after {Time.time - _squishStartTime} seconds");
     }
 
-    public void TriggerSquish(float duration = 0.8f)
+    public void TriggerSquish()
+    {
+        TriggerSquish(_duration);
+    }
+
+    public void TriggerSquish(float duration)
     {
         // just extend the current squish if one is already running
         if (_isSquishing)

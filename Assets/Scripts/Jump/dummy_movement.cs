@@ -98,16 +98,15 @@ public class dummy_movement : MonoBehaviour
     }
 
     [SerializeField]
-    float _squishSpeed = 20f; // frequency multiplier
+    TimedSquishing.SquishParams _bounceSquishParams;
 
     [SerializeField]
-    float _squishHurtTime = 2f; // seconds
+    TimedSquishing.SquishParams _hurtSquishParams;
 
     //bool _isSquishing = false;
     Vector3 _originalScale;
 
-    TimedSquishing _hurtSquish;
-    TimedSquishing _bounceSquish; 
+    TimedSquishing _squish; 
 
     // event delegates
 
@@ -140,16 +139,17 @@ public class dummy_movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _hurtSquish = gameObject.AddComponent<TimedSquishing>();
-        _hurtSquish.SquishSpeed = _squishSpeed;
-        _hurtSquish.MinSquish = 0.8f;
-        _hurtSquish.MaxSquish = 2.4f;
+        _squish = gameObject.AddComponent<TimedSquishing>();
 
-        _bounceSquish = gameObject.AddComponent<TimedSquishing>();
-        _bounceSquish.SquishSpeed = _squishSpeed;
-        _bounceSquish.MinSquish = 0.7f;
-        _bounceSquish.MaxSquish = 1.3f;
+        /*
+        _squish.SquishSpeed = _squishSpeed;
+        _squish.MinSquish = 0.8f;
+        _squish.MaxSquish = 2.4f;
 
+        _squish.SquishSpeed = _squishSpeed;
+        _squish.MinSquish = 0.7f;
+        _squish.MaxSquish = 1.3f;
+        */
 
 
         _leftScaleSign = _startingDirectionIsLeft ?
@@ -185,7 +185,8 @@ public class dummy_movement : MonoBehaviour
 
     void HandlePlayerHurt(GameObject attacker)
     {
-        _hurtSquish.TriggerSquish(_squishHurtTime);
+        _squish.ApplyParams(_hurtSquishParams);
+        _squish.TriggerSquish();
     }
 
     void HandleDeathAnimationEnded()
@@ -215,8 +216,14 @@ public class dummy_movement : MonoBehaviour
             grounded = detectGround();
             if (grounded && rb.velocity.y <= 0)
             {
+                // do player jump
                 rb.AddForce(Vector2.up * CalculateJumpForce());
-                _bounceSquish.TriggerSquish(1f);
+                    
+                if (!_squish.IsSquishing)
+                {
+                    _squish.ApplyParams(_bounceSquishParams);
+                    _squish.TriggerSquish();
+                }
             }
         }
 
@@ -424,7 +431,8 @@ public class dummy_movement : MonoBehaviour
 
                 Debug.Log("Above");
 
-                _bounceSquish.TriggerSquish(1f);
+                _squish.ApplyParams(_bounceSquishParams);
+                _squish.TriggerSquish();
             } else if (!monster.IsDead)
             {
                 Debug.Log("Below");

@@ -369,7 +369,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 15.2, y: 12.88}
+    oldSize: {x: 15.2, y: 12.884375}
     newSize: {x: 15.2, y: 12.88}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -410,8 +410,16 @@ MonoBehaviour:
   _startingDirectionIsLeft: 1
   _gameOverTimeout: 1.5
   _maxHealth: 3
-  _squishSpeed: 20
-  _squishHurtTime: 2
+  _bounceSquishParams:
+    speed: 10.65
+    min: 0.35
+    max: 2.12
+    duration: 1
+  _hurtSquishParams:
+    speed: 20
+    min: 0.8
+    max: 2.4
+    duration: 2
 --- !u!212 &161062903
 SpriteRenderer:
   m_ObjectHideFlags: 0
