@@ -38,12 +38,45 @@ public class FollowCamera : MonoBehaviour
     float _maxSpeed = 20f;
 
     [SerializeField]
-    bool _killAcceleration = true; 
+    bool _killAcceleration = true;
+
+    [SerializeField]
+    bool _scaleBoundsWithAspect = true;
+
+    float _aspectScaling = 1f;
+
+    float _baseAspectScaling = 1f; 
+
+    [SerializeField]
+    AdaptiveAspectRatio _aspectTracker;
+
+
+    private void HandleAspectUpdate(float ratio)
+    {
+        _aspectScaling = _baseAspectScaling * ratio; 
+    }
+
+    private void OnEnable()
+    {
+        if (_aspectTracker)
+        {
+            _aspectTracker.OnAspectUpdated += HandleAspectUpdate;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (_aspectTracker)
+        {
+            _aspectTracker.OnAspectUpdated -= HandleAspectUpdate;
+        }
+    }
 
     private void Start()
     {
         _velocity = Vector3.zero; 
     }
+
 
     // Update is called once per frame
     void Update()
@@ -51,8 +84,16 @@ public class FollowCamera : MonoBehaviour
         var flattenedPosition = transform.position;
         flattenedPosition.z = _target.transform.position.z;
 
-        var outerBounds = new Bounds(flattenedPosition + (Vector3)_outerZoneOffset, _outerZoneExtent);
-        var innerBounds = new Bounds(flattenedPosition + (Vector3)_safezoneOffset, _safeZoneExtent);
+        float scaleFactor = 1f;
+
+        // scaling based on aspect ratio
+        if (_scaleBoundsWithAspect && _aspectTracker)
+        {
+            scaleFactor = _aspectScaling; 
+        }
+
+        var outerBounds = new Bounds(flattenedPosition + scaleFactor * (Vector3)_outerZoneOffset, scaleFactor * _outerZoneExtent);
+        var innerBounds = new Bounds(flattenedPosition + scaleFactor * (Vector3)_safezoneOffset, scaleFactor * _safeZoneExtent);
 
         if (!_moving && !outerBounds.Contains(_target.transform.position))
         {
@@ -77,7 +118,7 @@ public class FollowCamera : MonoBehaviour
 
         if (_moving)
         {
-            Vector3 targetPos = _target.position;
+            Vector3 targetPos = _target.transform.position;
             targetPos.z = transform.position.z;
 
             var direction = (targetPos - transform.position).normalized;

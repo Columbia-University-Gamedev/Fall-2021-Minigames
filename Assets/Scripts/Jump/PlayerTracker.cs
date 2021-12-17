@@ -31,19 +31,21 @@ public class PlayerTracker : MonoBehaviour
     float _freezeOnHurtTimeout = 0.35f;
 
     float _freezeStartTime;
-    bool _isFrozen = false; 
+    bool _isFrozen = false;
 
-    
 
     // Start is called before the first frame update
     void Start()
     {
         transform.position = _target.transform.position;
 
-        _playerController = _target.GetComponent<dummy_movement>();
+        _playerController = _target.GetComponent<dummy_movement>(); 
+    }
 
+    private void OnEnable()
+    {
         _playerController.OnPlayerDied += HandlePlayerDied;
-        _playerController.OnPlayerHurt += HandlePlayerHurt; 
+        _playerController.OnPlayerHurt += HandlePlayerHurt;
     }
 
     private void OnDisable()

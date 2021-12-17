@@ -12,9 +12,11 @@ public class AdaptiveAspectRatio : MonoBehaviour
 
     AspectRatioFitter _fitter;
 
+    public delegate void AspectUpdated(float ratio);
+    public AspectUpdated OnAspectUpdated; 
 
     [SerializeField]
-    Camera _camera; 
+    Camera _camera;
 
     private void Awake()
     {
@@ -36,7 +38,9 @@ public class AdaptiveAspectRatio : MonoBehaviour
         _width = _camera.scaledPixelWidth;
         _height = _camera.scaledPixelHeight;
 
-        _fitter.aspectRatio = _width / _height; 
+        _fitter.aspectRatio = _width / _height;
+
+        OnAspectUpdated?.Invoke(_fitter.aspectRatio);
     }
 
     bool DidDimensionsChange()
