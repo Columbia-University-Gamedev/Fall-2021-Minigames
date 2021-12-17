@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.29692617, g: 0.34058, b: 0.3819578, a: 1}
+  m_IndirectSpecularColor: {r: 0.29715988, g: 0.34011164, b: 0.3820892, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -411,15 +411,15 @@ MonoBehaviour:
   _gameOverTimeout: 1.5
   _maxHealth: 3
   _bounceSquishParams:
-    speed: 10.65
-    min: 0.35
-    max: 2.12
+    speed: 10
+    min: 0.4
+    max: 1.7
     duration: 1
   _hurtSquishParams:
     speed: 20
     min: 0.8
-    max: 2.4
-    duration: 2
+    max: 2.6
+    duration: 2.3
 --- !u!212 &161062903
 SpriteRenderer:
   m_ObjectHideFlags: 0
