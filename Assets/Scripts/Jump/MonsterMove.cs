@@ -20,6 +20,28 @@ public class MonsterMove : MonoBehaviour
     [Tooltip("How fast should the monster move?")]
     float _averageMoveSpeed = 2f; // measured in meters per seconds
 
+    bool _isDead = false;
+    Vector3 _originalScale; 
+
+    [SerializeField]
+    Vector2 _deathSquashRelativeScale;
+
+    [SerializeField]
+    float _deathScalingLerpFactor = 0.12f;
+
+    [SerializeField]
+    float _deathHoldDuration = 0.5f;
+
+    float _deathHoldStartTime;
+    bool _isDeathHolding = false; 
+
+
+    public bool IsDead
+    {
+        get { return _isDead; }
+        set { _isDead = value; }
+    }
+
     public float AverageMoveSpeed
     {
         get { return _averageMoveSpeed; }
@@ -83,9 +105,57 @@ public class MonsterMove : MonoBehaviour
     Vector3 _targetPos;
     // float _startTime;
 
-    float _timeCount; 
-    //Vector3 _maxPos;
-    //Vector3 _minPos;
+    float _timeCount;
+
+
+    public delegate void MonsterKilled();
+    public delegate void MonsterDeathAnimationStarted();
+    public delegate void MonsterDeathAnimationEnded();
+
+    public MonsterKilled OnMonsterKilled; 
+    public MonsterDeathAnimationStarted OnMonsterDeathAnimationStarted;
+    public MonsterDeathAnimationEnded OnMonsterDeathAnimationEnded;
+
+    void SetColliderActive(bool isActive)
+    {
+        // var rb = GetComponent<Rigidbody2D>();
+
+        // Collider2D[] colliders = new Collider2D[rb.attachedColliderCount];
+        // rb.GetAttachedColliders(colliders);
+
+        var colliders = GetComponents<Collider2D>(); 
+
+        foreach (var col in colliders)
+        {
+            col.enabled = isActive;
+        }
+    }
+
+    public void TriggerKill()
+    {
+        _isDead = true;
+        _originalScale = transform.localScale;
+
+        SetColliderActive(false); 
+
+        OnMonsterKilled?.Invoke();
+        OnMonsterDeathAnimationStarted?.Invoke();
+    }
+
+    void HandleDeathAnimationEnded()
+    {
+        Destroy(this.gameObject); 
+    }
+
+    private void OnEnable()
+    {
+        OnMonsterDeathAnimationEnded += HandleDeathAnimationEnded;
+    }
+
+    private void OnDisable()
+    {
+        OnMonsterDeathAnimationEnded -= HandleDeathAnimationEnded;
+    }
 
     void Start()
     {
@@ -107,7 +177,7 @@ public class MonsterMove : MonoBehaviour
                 _origin = transform.position;
             }
         }
-        else
+        else if (!_isDead)
         {
 
             _timeCount += Time.deltaTime;
@@ -138,6 +208,24 @@ public class MonsterMove : MonoBehaviour
 
                 transform.position = (_targetPos - last) * percent + last + _origin;
             }
+        } else
+        {
+            // monster is dead; animating death
+
+            Vector3 targetScale = _deathSquashRelativeScale * _originalScale;
+
+            if (!_isDeathHolding && Mathf.Abs(1f - transform.localScale.magnitude / targetScale.magnitude) > 0.06f)
+            {
+                transform.localScale = Vector3.Lerp(transform.localScale, targetScale, _deathScalingLerpFactor);
+            } else if (!_isDeathHolding)
+            {
+                _isDeathHolding = true; 
+                _deathHoldStartTime = Time.time; 
+            } else if (Time.time - _deathHoldStartTime > _deathHoldDuration)
+            {
+                OnMonsterDeathAnimationEnded?.Invoke(); 
+            }
+
         }
 
     }

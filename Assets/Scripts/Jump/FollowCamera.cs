@@ -8,11 +8,21 @@ public class FollowCamera : MonoBehaviour
     [SerializeField]
     Transform _target;
 
+    
+
     [SerializeField]
     Vector2 _safeZoneExtent;
 
     [SerializeField]
-    Vector2 _outerZoneExtent; 
+    Vector2 _safezoneOffset;
+
+
+    [SerializeField]
+    Vector2 _outerZoneExtent;
+
+    [SerializeField]
+    Vector2 _outerZoneOffset;
+
 
     bool _moving = false;
 
@@ -41,8 +51,8 @@ public class FollowCamera : MonoBehaviour
         var flattenedPosition = transform.position;
         flattenedPosition.z = _target.transform.position.z;
 
-        var outerBounds = new Bounds(flattenedPosition, _outerZoneExtent);
-        var innerBounds = new Bounds(flattenedPosition, _safeZoneExtent);
+        var outerBounds = new Bounds(flattenedPosition + (Vector3)_outerZoneOffset, _outerZoneExtent);
+        var innerBounds = new Bounds(flattenedPosition + (Vector3)_safezoneOffset, _safeZoneExtent);
 
         if (!_moving && !outerBounds.Contains(_target.transform.position))
         {
@@ -92,10 +102,10 @@ public class FollowCamera : MonoBehaviour
         Color lineColor = Color.yellow;
 
         Gizmos.color = lineColor;
-        Gizmos.DrawWireCube(transform.position, _safeZoneExtent);
+        Gizmos.DrawWireCube(transform.position + (Vector3)_safezoneOffset, _safeZoneExtent);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, _outerZoneExtent);
+        Gizmos.DrawWireCube(transform.position + (Vector3)_outerZoneOffset, _outerZoneExtent);
 
     }
 }

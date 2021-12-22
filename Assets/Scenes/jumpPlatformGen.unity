@@ -23,10 +23,10 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 1.32
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: e85fd37e4eeb24a6eae7ca01acf489eb, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.3587269, a: 1}
+  m_IndirectSpecularColor: {r: 0.29692617, g: 0.34058, b: 0.3819578, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -322,8 +322,12 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 128fae5d-79ec-48e3-97d0-baedeb76230e
     m_ActionName: Sheep (player)/Move[/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c99d72f7-4f47-41e4-8371-acff2de4c0d5
+    m_ActionName: Sheep (player)/EnterGame[/Keyboard/space,/Keyboard/enter]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: arrow keys and space bar
   m_DefaultActionMap: Sheep (player)
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -361,18 +365,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.21335745, y: -0.27852964}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 15.2, y: 12.88}
+    oldSize: {x: 15.2, y: 12.884375}
     newSize: {x: 15.2, y: 12.88}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.28, y: 1.28}
+  m_Size: {x: 10.575313, y: 10.374352}
   m_EdgeRadius: 0
 --- !u!114 &161062902
 MonoBehaviour:
@@ -398,11 +402,24 @@ MonoBehaviour:
   bottomBounds: {fileID: 1691204518}
   _horizontalAcceleration: 100
   _maxHorizontalSpeed: 10
-  _horizontalDrag: 0.2
+  _horizontalDrag: 0.5
   _jumpHeight: 3
   _jumpTime: 1.85
   _floorcastFudgeFactor: 0.23
   _gravityScaleInfluence: 0.75
+  _startingDirectionIsLeft: 1
+  _gameOverTimeout: 1.5
+  _maxHealth: 3
+  _bounceSquishParams:
+    speed: 10.65
+    min: 0.35
+    max: 2.12
+    duration: 1
+  _hurtSquishParams:
+    speed: 20
+    min: 0.8
+    max: 2.4
+    duration: 2
 --- !u!212 &161062903
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -414,6 +431,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -794,6 +812,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -908,7 +927,7 @@ Transform:
   m_GameObject: {fileID: 578526037}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.2566, y: -6.6438, z: 12.6}
-  m_LocalScale: {x: 38.438904, y: 38.438904, z: 38.438904}
+  m_LocalScale: {x: 82.91656, y: 82.91656, z: 82.91656}
   m_Children: []
   m_Father: {fileID: 1734920491}
   m_RootOrder: 1
@@ -938,6 +957,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1459,6 +1479,57 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1431868250
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1431868252}
+  - component: {fileID: 1431868251}
+  m_Layer: 0
+  m_Name: cameraScroller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1431868251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431868250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be7025617d1d7489f813933b76c53634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 161062898}
+  _verticalSpeed: 0.2
+  _shouldAccelerate: 1
+  _accleration: 0.04
+  _shouldClampSpeed: 0
+  _maxSpeed: 20
+  _isMovementEnabled: 1
+  _freezeOnHurtTimeout: 0.35
+--- !u!4 &1431868252
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431868250}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1515506867
 GameObject:
   m_ObjectHideFlags: 0
@@ -1534,6 +1605,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1588,6 +1660,8 @@ GameObject:
   - component: {fileID: 1734920492}
   - component: {fileID: 1734920493}
   - component: {fileID: 1734920494}
+  - component: {fileID: 1734920496}
+  - component: {fileID: 1734920495}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1669,7 +1743,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734920488}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 847513cc8e46447cdbade91b44554f1f, type: 3}
   m_Name: 
@@ -1683,16 +1757,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734920488}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4fc3036ecd774800aca40e1070fb592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 161062904}
-  _safeZoneExtent: {x: 15.43, y: 8.99}
-  _outerZoneExtent: {x: 8.16, y: 4.86}
+  _target: {fileID: 1431868252}
+  _safeZoneExtent: {x: 9.2, y: 12.46}
+  _safezoneOffset: {x: 0, y: -0.31}
+  _outerZoneExtent: {x: 18.07, y: 6.03}
+  _outerZoneOffset: {x: 0, y: -1.54}
   _friction: 0.05
-  _acceleration: 2
+  _acceleration: 20
   _maxSpeed: 20
   _killAcceleration: 0
 --- !u!114 &1734920494
@@ -1702,12 +1778,40 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734920488}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f77b7d0612d5c44628e8da6694c4a276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   starPrefab: {fileID: 339904688996327787, guid: f34a50ac47f39470b8a09e8745d17926, type: 3}
+--- !u!114 &1734920495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734920488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02ec28f7e0b334f4f8f2b56cfc872b27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 161062902}
+--- !u!114 &1734920496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734920488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 475ff3cdacf8747689a6a63a1b56b93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraShakeDuration: 0.45
+  _timeScale: 9.5
+  _shakeSeverity: 0.35
 --- !u!1 &2048882746
 GameObject:
   m_ObjectHideFlags: 0
@@ -1778,6 +1882,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

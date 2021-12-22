@@ -10,24 +10,92 @@ public class PlayerTracker : MonoBehaviour
     [SerializeField]
     float _verticalSpeed = 2f; // meters per second
 
+    [SerializeField]
+    bool _shouldAccelerate = true;
+
+    [SerializeField]
+    float _accleration = 0.1f;
+
+    [SerializeField]
+    bool _shouldClampSpeed = false;
+
+    [SerializeField]
+    float _maxSpeed = 20f;
+
+    [SerializeField]
+    bool _isMovementEnabled = true; 
+
+    dummy_movement _playerController;
+
+    [SerializeField]
+    float _freezeOnHurtTimeout = 0.35f;
+
+    float _freezeStartTime;
+    bool _isFrozen = false; 
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
         transform.position = _target.transform.position;
+
+        _playerController = _target.GetComponent<dummy_movement>();
+
+        _playerController.OnPlayerDied += HandlePlayerDied;
+        _playerController.OnPlayerHurt += HandlePlayerHurt; 
+    }
+
+    private void OnDisable()
+    {
+        _playerController.OnPlayerDied -= HandlePlayerDied;
+        _playerController.OnPlayerHurt -= HandlePlayerHurt;
+    }
+
+    void HandlePlayerHurt(GameObject attacker)
+    {
+        _isFrozen = true; 
+        _freezeStartTime = Time.time;
+        _isMovementEnabled = false;
+    }
+
+    void HandlePlayerDied(dummy_movement.DeathType type)
+    {
+        _isMovementEnabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // track character horizontally, but scroll upwards
-        var x = _target.transform.position.x;
+        if (_isMovementEnabled)
+        {
+            if (_shouldAccelerate)
+            {
+                _verticalSpeed += _accleration * Time.deltaTime;
+            }
 
-        var y = Mathf.Max(transform.position.y + Time.deltaTime * _verticalSpeed,
-                          _target.transform.position.y);
+            if (_shouldClampSpeed)
+            {
+                _verticalSpeed = Mathf.Min(_verticalSpeed, _maxSpeed);
+            }
 
-        var z = transform.position.z;
+            // track character horizontally, but scroll upwards
+            var x = _target.transform.position.x;
 
-        transform.position = new Vector3(x, y, z);
+            var y = Mathf.Max(transform.position.y + Time.deltaTime * _verticalSpeed,
+                              _target.transform.position.y);
+
+            var z = transform.position.z;
+
+            transform.position = new Vector3(x, y, z);
+        } else if (_isFrozen)
+        {
+            if (Time.time - _freezeStartTime > _freezeOnHurtTimeout && !_playerController.IsDead)
+            {
+                _isFrozen = false;
+                _isMovementEnabled = true; 
+            }
+        }
 
 
     }

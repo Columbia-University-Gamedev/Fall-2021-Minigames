@@ -1,8 +1,14 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Animations/Blue Monster 1.controller.meta
+guid: 32a02da4e98b7904c938464ccdc4a50e
+NativeFormatImporter:
+========
 guid: a6ac7df28231149e99633001e333193d
 folderAsset: yes
 DefaultImporter:
+>>>>>>>> eba1bc51b442bb341c3b164d338d1bd5053cdb66:Assets/Assets/Jump/Materials.meta
   externalObjects: {}
+  mainObjectFileID: 9100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -49,9 +49,117 @@ public class dummy_movement : MonoBehaviour
     [SerializeField]
     float _gravityScaleInfluence = 0.75f; // how much of rigid body's gravity scale to take into account
 
+
+    [SerializeField]
+    bool _startingDirectionIsLeft = true;
+
+    float _leftScaleSign = -1f; 
+
+    bool _areControlsEnabled = true;
+
+    bool _areCollisionsEnabled = true;
+    bool AreCollisionsEnabled
+    {
+        get { return _areCollisionsEnabled; }
+
+        set
+        {
+            _areCollisionsEnabled = value;
+
+            Collider2D[] colliders = new Collider2D[rb.attachedColliderCount];
+            rb.GetAttachedColliders(colliders);
+
+            foreach (var col in colliders)
+            {
+                col.enabled = value; 
+            }
+        }
+    }
+
+    bool _isDead = false;
+    public bool IsDead
+    {
+        get { return _isDead; }
+    }
+
+    float _timeOfDeath;
+
+    [SerializeField]
+    float _gameOverTimeout = 1.5f; // what's the delay before the gameover screen transition?
+
+
+    [SerializeField]
+    int _maxHealth = 3;
+
+    int _health;
+    public int Health
+    {
+        get { return _health; }
+    }
+
+    [SerializeField]
+    TimedSquishing.SquishParams _bounceSquishParams;
+
+    [SerializeField]
+    TimedSquishing.SquishParams _hurtSquishParams;
+
+    //bool _isSquishing = false;
+    Vector3 _originalScale;
+
+    TimedSquishing _squish; 
+
+    // event delegates
+
+    public enum DeathType
+    {
+        Fell,
+        Killed
+    }
+
+    public delegate void PlayerDied(DeathType type);
+    public PlayerDied OnPlayerDied;
+
+    public delegate void DeathAnimationEnded();
+    public DeathAnimationEnded OnDeathAnimationEnded;
+
+    public delegate void PlayerHurt(GameObject attacker);
+    public PlayerHurt OnPlayerHurt;
+
+
+    IEnumerator SetTimeout(Action callback, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        callback();
+
+        yield break;
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
+        _squish = gameObject.AddComponent<TimedSquishing>();
+
+        /*
+        _squish.SquishSpeed = _squishSpeed;
+        _squish.MinSquish = 0.8f;
+        _squish.MaxSquish = 2.4f;
+
+        _squish.SquishSpeed = _squishSpeed;
+        _squish.MinSquish = 0.7f;
+        _squish.MaxSquish = 1.3f;
+        */
+
+
+        _leftScaleSign = _startingDirectionIsLeft ?
+            Mathf.Sign(transform.localScale.x) :
+            -1f * Mathf.Sign(transform.localScale.x);
+
+        _health = _maxHealth;
+
+        _originalScale = transform.localScale;
+
         playerCollider = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -63,6 +171,30 @@ public class dummy_movement : MonoBehaviour
 
         cameraBottomBounds = Camera.main.ViewportToWorldPoint(new Vector3 (1f, 1f, 0f)).y;
 
+        OnPlayerDied += HandlePlayerDied;
+        OnDeathAnimationEnded += HandleDeathAnimationEnded;
+        OnPlayerHurt += HandlePlayerHurt; 
+    }
+
+    private void OnDisable()
+    {
+        OnPlayerDied -= HandlePlayerDied;
+        OnDeathAnimationEnded -= HandleDeathAnimationEnded;
+        OnPlayerHurt -= HandlePlayerHurt; 
+    }
+
+    void HandlePlayerHurt(GameObject attacker)
+    {
+        _squish.ApplyParams(_hurtSquishParams);
+        _squish.TriggerSquish();
+    }
+
+    void HandleDeathAnimationEnded()
+    {
+        float highScore = PlayerPrefs.GetFloat("SheepHighScore");
+        highScore = (count > highScore) ? count : highScore;
+        PlayerPrefs.SetFloat("SheepHighScore", highScore);
+        SceneManager.LoadScene("GameOver");
     }
 
 
@@ -73,56 +205,117 @@ public class dummy_movement : MonoBehaviour
         {
             count = transform.position.y;
             SetCountText();
-        }        
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        grounded = detectGround();
-        if (grounded && rb.velocity.y <= 0){
-            // Jump();
-            // BetterJump();
-            rb.AddForce(Vector2.up * CalculateJumpForce());
+        if (AreCollisionsEnabled)
+        {
+            grounded = detectGround();
+            if (grounded && rb.velocity.y <= 0)
+            {
+                // do player jump
+                rb.AddForce(Vector2.up * CalculateJumpForce());
+                    
+                if (!_squish.IsSquishing)
+                {
+                    _squish.ApplyParams(_bounceSquishParams);
+                    _squish.TriggerSquish();
+                }
+            }
         }
 
-        //Vector2 moveRaw = res.Get<Vector2>();
-        //Vector2 LateralMove = new Vector2(moveRaw.x, 0);
 
-        //float currentPositionY = transform.position.y;
-        // transform.position = new Vector3(transform.position.x,transform.position.y , transform.position.z) + moveVector*0.2f;
-        //  Physics2D.IgnoreLayerCollision(0,3, (rb.velocity.y>0.0f));
-        // Debug.Log(rb.velocity.y);
-
-        if (Mathf.Sign(rb.velocity.x) != Mathf.Sign(moveVector.x) ||
-            Mathf.Abs(rb.velocity.x) < _maxHorizontalSpeed)
+        if (_areControlsEnabled)
         {
-            rb.velocity += moveVector * _horizontalAcceleration * Time.deltaTime;
-        }
+            if (Mathf.Sign(rb.velocity.x) != Mathf.Sign(moveVector.x) ||
+                Mathf.Abs(rb.velocity.x) < _maxHorizontalSpeed)
+            {
+                rb.velocity += moveVector * _horizontalAcceleration * Time.deltaTime;
+            }
 
-        if (moveVector.x == 0f)
-        {
-            rb.velocity -= rb.velocity.x * _horizontalDrag * Vector2.right;
+            if (moveVector.x == 0f)
+            {
+                rb.velocity -= rb.velocity.x * _horizontalDrag * Vector2.right;
+            }
         }
 
         anim.SetFloat("y_velocity", rb.velocity.y);
-        if (moveVector.x < 0 && facingLeft || moveVector.x  > 0 && !facingLeft)
+
+
+        // deterministic flipping
+        if (rb.velocity.x != 0f)
         {
-            flip();
+            float flag1 = rb.velocity.x < 0 ? 1f : -1f;
+            float flag2 = _startingDirectionIsLeft ? 1f : -1f;
+
+            float signX = _leftScaleSign * flag1 * flag2;
+
+            Vector3 scale = transform.localScale;
+
+            scale.x = Mathf.Abs(scale.x) * signX;
+
+            transform.localScale = scale;
         }
-
-
-        if (transform.position.y < bottomBounds.position.y)
+            
+        
+        if (!_isDead && transform.position.y < bottomBounds.position.y)
         {
             Debug.Log("Dead because you fell");
             PlayerPrefs.SetFloat("SheepScore", count);
-            float highScore = PlayerPrefs.GetFloat("SheepHighScore");
-            highScore = (count > highScore) ? count : highScore;
-            PlayerPrefs.SetFloat("SheepHighScore", highScore);
-            SceneManager.LoadScene("GameOver");
+
+            OnPlayerDied?.Invoke(DeathType.Fell);
+        }
+
+        if (_isDead)
+        {
+            if (Time.time - _timeOfDeath > _gameOverTimeout)
+            {
+
+                if (transform.position.y < bottomBounds.position.y)
+                {
+                    // is player offscreen and has timeout elapsed? 
+                    OnDeathAnimationEnded?.Invoke();
+                }
+            }
         }
         
     }
+
+
+    void HandlePlayerDied(DeathType type)
+    {
+        _isDead = true;
+        _timeOfDeath = Time.time; 
+
+        if (type == DeathType.Killed)
+        {
+            StartKilledAnimation();
+        } else if (type == DeathType.Fell)
+        {
+            StartFellAnimation();
+        }
+    }
+
+    void StartFellAnimation()
+    {
+        // TODO
+    }
+
+    void StartKilledAnimation()
+    {
+        _areControlsEnabled = false;
+        AreCollisionsEnabled = false;
+
+        // torque the character in direction of velocity
+        rb.constraints = RigidbodyConstraints2D.None;
+        rb.AddTorque(0.6f * CalculateJumpForce() * -1f * Mathf.Sign(Vector2.Dot(Vector2.right, rb.velocity)));
+
+    }
+
+
     void flip()
     {
         facingLeft = !facingLeft;
@@ -135,7 +328,6 @@ public class dummy_movement : MonoBehaviour
     {
         /*
             F = (mass (targetVelocity - current_velocity)) / Time.deltaTime
-
          */
 
         // doesnt' work perfectly but if you play with the jump inputs 
@@ -176,36 +368,31 @@ public class dummy_movement : MonoBehaviour
 
 		Debug.DrawRay(playerPosLeft, Vector2.down * _floorcastFudgeFactor * size, rayColor);
 		Debug.DrawRay(playerPosRight, Vector2.down * _floorcastFudgeFactor * size, rayColor);
-		
+
+        // make clouds bounce
+        foreach (var c in new Collider2D[] { left.collider, right.collider })
+        {
+            if (c != null)
+            {
+                if (!c.GetComponent<TimedSquishing>())
+                {
+                    c.gameObject.AddComponent<TimedSquishing>();
+                }
+
+                var s = c.GetComponent<TimedSquishing>();
+                s.MaxSquish = 1.5f;
+                s.MinSquish = 0.8f; 
+
+                //if (!s.IsSquishing)
+                //{
+                    s.TriggerSquish(1.6f);
+                //}
+            }
+        }
+
 		return (left.collider != null || right.collider != null);
     }
 
-    void Jump() 
-    { 
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce); 
-    } 
-
-    void BetterJump()
-    {
-		if (rb.velocity.y < 0)
-		{
-		    rb.velocity += Vector2.up * Physics2D.gravity * (fallMultiplier - 1) * Time.deltaTime;
-		}
-		else if (rb.velocity.y > 0)
-		{
-		    rb.velocity += Vector2.up * Physics2D.gravity * (lowJumpMultiplier - 1) * Time.deltaTime;
-		}
-    }
-
-    //void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    Debug.Log("collision");
-    //    if (other.gameObject.CompareTag("Monster"))
-    //    {
-    //        Debug.Log("dead because of monster");
-    //        SceneManager.LoadScene("GameOver");
-    //    }
-    //}
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -233,23 +420,42 @@ public class dummy_movement : MonoBehaviour
             var normal = collision.GetContact(0).normal;
             float dot = Vector2.Dot(collision.gameObject.transform.up, normal);
 
-            rb.AddForce(normal.normalized * 1.2f * CalculateJumpForce());
+            var monster = collision.gameObject.GetComponent<MonsterMove>();
 
             // did we jump on the monster?
-            if (1f - dot <= 0.5f)
+            if (dot > 0.16f)
             {
-                Destroy(collision.gameObject);
+                rb.AddForce(Vector2.up * 1.2f * CalculateJumpForce());
+
+                monster.TriggerKill();
+
                 Debug.Log("Above");
-            } else
+
+                _squish.ApplyParams(_bounceSquishParams);
+                _squish.TriggerSquish();
+            } else if (!monster.IsDead)
             {
                 Debug.Log("Below");
                 PlayerPrefs.SetFloat("SheepScore", count);
-                float highScore = PlayerPrefs.GetFloat("SheepHighScore");
-                highScore = (count > highScore) ? count : highScore;
-                PlayerPrefs.SetFloat("SheepHighScore", highScore);
-                SceneManager.LoadScene("GameOver");
-                //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+                rb.AddForce(normal.normalized * 1.7f * CalculateJumpForce());
+
+                DoDamage(1, collision.gameObject); 
             }
+        }
+    }
+
+    public void DoDamage(int amount, GameObject attacker)
+    {
+        _health -= amount;
+
+        _health = Mathf.Max(0, _health);
+
+        OnPlayerHurt?.Invoke(attacker);
+
+        if (_health < 1)
+        {
+            OnPlayerDied?.Invoke(DeathType.Killed);
         }
     }
 

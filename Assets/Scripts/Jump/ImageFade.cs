@@ -7,16 +7,24 @@ public class ImageFade : MonoBehaviour
 {
     public static IEnumerator FadeSprite(bool fadeAway, float time, float alpha, SpriteRenderer sprite)
     {
+        var tmp = sprite.color;
+
         if (fadeAway)
         {
             // loop over time second backwards
             for (float i = time; i >= 0; i -= Time.unscaledDeltaTime)
             {
                 //alpha can be manipulated directly
-                sprite.alpha = alpha * i / time;
+                tmp = sprite.color;
+                tmp.a = alpha * i / time;
+                sprite.color = tmp; 
+
                 yield return null;
             }
-            sprite.alpha = 0;
+
+            
+            tmp.a = 0;
+            sprite.color = tmp;
         }
 
         // fade from transparent to opaque
@@ -24,10 +32,16 @@ public class ImageFade : MonoBehaviour
         {
             for (float i = 0; i <= time; i += Time.unscaledDeltaTime)
             {
-                sprite.alpha = alpha * i/time;
+                tmp = sprite.color;
+                tmp.a = alpha * i / time;
+                sprite.color = tmp;
+
                 yield return null;
             }
-            sprite.alpha = 1;
+
+            tmp = sprite.color;
+            tmp.a = 1;
+            sprite.color = tmp;
         }
     }
     

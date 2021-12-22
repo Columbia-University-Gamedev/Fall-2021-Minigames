@@ -103,10 +103,10 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""left"",
                     ""id"": ""ed1a6d5f-f4cb-492e-b237-a6c2835350f4"",
-                    ""path"": ""<Keyboard>/#(a)"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""arrow keys and space bar"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -114,10 +114,10 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""right"",
                     ""id"": ""481319f9-a03f-4615-95ed-bd792b2d6a6a"",
-                    ""path"": ""<Keyboard>/#(d)"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""arrow keys and space bar"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -128,7 +128,7 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""arrow keys and space bar"",
                     ""action"": ""EnterGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -139,7 +139,7 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""arrow keys and space bar"",
                     ""action"": ""EnterGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
