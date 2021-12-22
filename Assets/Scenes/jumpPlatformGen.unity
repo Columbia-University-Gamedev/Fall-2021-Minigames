@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.29692617, g: 0.34058, b: 0.3819578, a: 1}
+  m_IndirectSpecularColor: {r: 0.29698998, g: 0.33998322, b: 0.38195074, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -398,7 +398,7 @@ MonoBehaviour:
   jumpForce: 90
   grounded: 0
   ScoreText: {fileID: 715598730}
-  coinCollected: {fileID: 4943701756520629578, guid: 8b8400f4641504d9d89ba4b982f5a5b7, type: 3}
+  coinCollected: {fileID: 8304254362184821436, guid: e00da9cd0f52f43c7aaf1d21b3241f5e, type: 3}
   bottomBounds: {fileID: 1691204518}
   _horizontalAcceleration: 100
   _maxHorizontalSpeed: 10
@@ -1659,7 +1659,6 @@ GameObject:
   - component: {fileID: 1734920489}
   - component: {fileID: 1734920492}
   - component: {fileID: 1734920493}
-  - component: {fileID: 1734920494}
   - component: {fileID: 1734920496}
   - component: {fileID: 1734920495}
   m_Layer: 0
@@ -1771,19 +1770,6 @@ MonoBehaviour:
   _acceleration: 20
   _maxSpeed: 20
   _killAcceleration: 0
---- !u!114 &1734920494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1734920488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f77b7d0612d5c44628e8da6694c4a276, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  starPrefab: {fileID: 339904688996327787, guid: f34a50ac47f39470b8a09e8745d17926, type: 3}
 --- !u!114 &1734920495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2146,6 +2132,22 @@ PrefabInstance:
     - target: {fileID: 298853260825261537, guid: 8b8400f4641504d9d89ba4b982f5a5b7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 829760739581524880, guid: 8b8400f4641504d9d89ba4b982f5a5b7, type: 3}
+      propertyPath: m_Size.x
+      value: 3.9899998
+      objectReference: {fileID: 0}
+    - target: {fileID: 829760739581524880, guid: 8b8400f4641504d9d89ba4b982f5a5b7, type: 3}
+      propertyPath: m_Size.y
+      value: 3.1101975
+      objectReference: {fileID: 0}
+    - target: {fileID: 829760739581524880, guid: 8b8400f4641504d9d89ba4b982f5a5b7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 5380344007879401679, guid: abf3f8844666643448465bc13d6ec383, type: 3}
+    - target: {fileID: 829760739581524880, guid: 8b8400f4641504d9d89ba4b982f5a5b7, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4943701756520629578, guid: 8b8400f4641504d9d89ba4b982f5a5b7, type: 3}
       propertyPath: m_Name

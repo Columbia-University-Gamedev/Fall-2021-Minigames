@@ -101,6 +101,61 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "2D Vector",
+                    "id": "85fbc057-1fa5-4169-8149-7901cfa545dc",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "1e45bf58-ee80-4c57-a7d4-7860f4f1ce8c",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "49e8b8f7-a1ca-4deb-b214-b0db0f1c968d",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "7f406f29-d7d9-4852-b072-596d679ef960",
+                    "path": "<Keyboard>/leftarrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "arrow keys and space bar",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "fc812be3-cb7a-4caa-beaa-37d3e9fe940a",
+                    "path": "<Keyboard>/rightarrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "arrow keys and space bar",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "880d3407-04e6-494f-ba65-552bf351d705",
                     "path": "<Keyboard>/space",
