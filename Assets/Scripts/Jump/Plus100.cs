@@ -23,11 +23,9 @@ public class Plus100 : MonoBehaviour
         float currentTime = 0f;
         for (float i = 0; i <= timer; i += Time.unscaledDeltaTime)
         {
-            Debug.Log(i);
             transform.position = Vector3.Lerp(transform.position, finalPos, Time.deltaTime * 1.5f);
             yield return null;
         }
         Destroy(this.gameObject);
-        Debug.Log("destroyed");
     }
 }

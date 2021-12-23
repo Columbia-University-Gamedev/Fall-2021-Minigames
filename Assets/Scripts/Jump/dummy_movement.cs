@@ -5,13 +5,14 @@ using System;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class dummy_movement : MonoBehaviour
 {
     
     Collider2D playerCollider;
     private Rigidbody2D rb;
-    private float count;
+    public static float count;
     public LayerMask ground;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f; 
@@ -24,6 +25,8 @@ public class dummy_movement : MonoBehaviour
     public GameObject coinCollected;
 
     [SerializeField] private Transform bottomBounds;
+
+    [SerializeField] private Image[] healthbar;
 
 
     Vector2 moveVector;
@@ -401,14 +404,12 @@ public class dummy_movement : MonoBehaviour
             int currentCoins = PlayerPrefs.GetInt("coins");
             PlayerPrefs.SetInt("coins", currentCoins++);
 
-            count += 10;
+            count += 1;
             SetCountText();
             
-            Vector3 spawnCoinCollectedLoc = transform.position + new Vector3(0f, 1f, 0f);
+            Vector3 spawnCoinCollectedLoc = transform.position + Vector3.up;
             Destroy(other.gameObject);
-            GameObject instantiated = (GameObject) Instantiate(coinCollected, spawnCoinCollectedLoc, Quaternion.identity);
-            Debug.Log(instantiated);
-
+            Instantiate(coinCollected, spawnCoinCollectedLoc, Quaternion.identity);
         }
 
     }
@@ -431,6 +432,10 @@ public class dummy_movement : MonoBehaviour
 
                 monster.TriggerKill();
 
+                count += 1;
+                Vector3 monsterPos = collision.transform.position + Vector3.up;
+                Instantiate(coinCollected, monsterPos, Quaternion.identity);
+
                 Debug.Log("Above");
 
                 _squish.ApplyParams(_bounceSquishParams);
@@ -450,6 +455,9 @@ public class dummy_movement : MonoBehaviour
     public void DoDamage(int amount, GameObject attacker)
     {
         _health -= amount;
+        Color newColor = healthbar[_health].color;
+        newColor.a = 0.5f;
+        healthbar[_health].color = newColor;
 
         _health = Mathf.Max(0, _health);
 

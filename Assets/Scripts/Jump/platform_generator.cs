@@ -11,13 +11,13 @@ public class platform_generator : MonoBehaviour
     [SerializeField] List<GameObject> _monsterList;
     [SerializeField] bool _shouldSpawnMonsters = true;
 
-    [SerializeField] int _monsterProbability = 200213; // higher => lower e.g. 7 => 1 in 7
+    [SerializeField] int _monsterProbability; // higher => lower e.g. 7 => 1 in 7
 
     [SerializeField] Camera _camera; 
 
     private Vector3 lastEndPosition;
     private const float gapY = 1f;
-    private const float PLAYER_DISTANCE_SPAWN_LEVEL_PART = 200f;
+    private const float PLAYER_DISTANCE_SPAWN_LEVEL_PART = 150f;
     // Start is called before the first frame update
     void Start()
     {
@@ -91,6 +91,7 @@ public class platform_generator : MonoBehaviour
             var d = monster.AddComponent<DestroyOnInvisible>();
             d.Camera = _camera; 
 
+            
         }
 
         return levelPartTransform;
@@ -102,6 +103,12 @@ public class platform_generator : MonoBehaviour
         if (Vector3.Distance(player.position, lastEndPosition) < PLAYER_DISTANCE_SPAWN_LEVEL_PART)
         {
             SpawnLevelPart();
+        }
+
+        if (((int) Mathf.Floor(dummy_movement.count)) % 100 == 0)
+        {
+            _monsterProbability = Mathf.Max(1, _monsterProbability - 1);
+            Debug.Log("more monster");
         }
         
     }

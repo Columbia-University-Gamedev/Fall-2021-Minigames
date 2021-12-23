@@ -129,7 +129,6 @@ public class TimedSquishing : MonoBehaviour
 
         OnSquishStarted?.Invoke();
 
-        Debug.Log($"{gameObject.name} started squish");
 
         while (Time.time - _squishStartTime < _duration)
         {
@@ -175,7 +174,6 @@ public class TimedSquishing : MonoBehaviour
 
         OnSquishEnded?.Invoke();
 
-        Debug.Log($"{gameObject.name} ended squish after {Time.time - _squishStartTime} seconds");
     }
 
     public void TriggerSquish()
