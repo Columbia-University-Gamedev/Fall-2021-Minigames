@@ -28,7 +28,7 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
             ""id"": ""0ab60e1d-f056-424d-a138-07be6e7dd366"",
             ""actions"": [
                 {
-                    ""name"": ""sheild"",
+                    ""name"": ""Shield"",
                     ""type"": ""Button"",
                     ""id"": ""75240a71-2e77-4a26-a1aa-a96af0a076d5"",
                     ""expectedControlType"": ""Button"",
@@ -63,7 +63,7 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""arrow keys and space bar"",
-                    ""action"": ""sheild"",
+                    ""action"": ""Shield"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -179,17 +179,6 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""880d3407-04e6-494f-ba65-552bf351d705"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""arrow keys and space bar"",
-                    ""action"": ""EnterGame"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""8c7799fe-791e-44ad-b42f-a29fb85865d9"",
                     ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
@@ -218,7 +207,7 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
 }");
         // Sheep (player)
         m_Sheepplayer = asset.FindActionMap("Sheep (player)", throwIfNotFound: true);
-        m_Sheepplayer_sheild = m_Sheepplayer.FindAction("sheild", throwIfNotFound: true);
+        m_Sheepplayer_Shield = m_Sheepplayer.FindAction("Shield", throwIfNotFound: true);
         m_Sheepplayer_Move = m_Sheepplayer.FindAction("Move", throwIfNotFound: true);
         m_Sheepplayer_EnterGame = m_Sheepplayer.FindAction("EnterGame", throwIfNotFound: true);
     }
@@ -280,14 +269,14 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
     // Sheep (player)
     private readonly InputActionMap m_Sheepplayer;
     private ISheepplayerActions m_SheepplayerActionsCallbackInterface;
-    private readonly InputAction m_Sheepplayer_sheild;
+    private readonly InputAction m_Sheepplayer_Shield;
     private readonly InputAction m_Sheepplayer_Move;
     private readonly InputAction m_Sheepplayer_EnterGame;
     public struct SheepplayerActions
     {
         private @NewControls1 m_Wrapper;
         public SheepplayerActions(@NewControls1 wrapper) { m_Wrapper = wrapper; }
-        public InputAction @sheild => m_Wrapper.m_Sheepplayer_sheild;
+        public InputAction @Shield => m_Wrapper.m_Sheepplayer_Shield;
         public InputAction @Move => m_Wrapper.m_Sheepplayer_Move;
         public InputAction @EnterGame => m_Wrapper.m_Sheepplayer_EnterGame;
         public InputActionMap Get() { return m_Wrapper.m_Sheepplayer; }
@@ -299,9 +288,9 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_SheepplayerActionsCallbackInterface != null)
             {
-                @sheild.started -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnSheild;
-                @sheild.performed -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnSheild;
-                @sheild.canceled -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnSheild;
+                @Shield.started -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnShield;
+                @Shield.performed -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnShield;
+                @Shield.canceled -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnShield;
                 @Move.started -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnMove;
@@ -312,9 +301,9 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
             m_Wrapper.m_SheepplayerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @sheild.started += instance.OnSheild;
-                @sheild.performed += instance.OnSheild;
-                @sheild.canceled += instance.OnSheild;
+                @Shield.started += instance.OnShield;
+                @Shield.performed += instance.OnShield;
+                @Shield.canceled += instance.OnShield;
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
@@ -336,7 +325,7 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
     }
     public interface ISheepplayerActions
     {
-        void OnSheild(InputAction.CallbackContext context);
+        void OnShield(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnEnterGame(InputAction.CallbackContext context);
     }

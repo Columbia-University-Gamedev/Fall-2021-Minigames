@@ -6,7 +6,7 @@
             "id": "0ab60e1d-f056-424d-a138-07be6e7dd366",
             "actions": [
                 {
-                    "name": "sheild",
+                    "name": "Shield",
                     "type": "Button",
                     "id": "75240a71-2e77-4a26-a1aa-a96af0a076d5",
                     "expectedControlType": "Button",
@@ -41,7 +41,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "arrow keys and space bar",
-                    "action": "sheild",
+                    "action": "Shield",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -154,17 +154,6 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "880d3407-04e6-494f-ba65-552bf351d705",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "arrow keys and space bar",
-                    "action": "EnterGame",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 },
                 {
                     "name": "",

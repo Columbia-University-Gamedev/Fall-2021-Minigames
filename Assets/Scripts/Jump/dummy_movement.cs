@@ -27,6 +27,7 @@ public class dummy_movement : MonoBehaviour
     [SerializeField] private Transform bottomBounds;
 
     [SerializeField] private Image[] healthbar;
+    [SerializeField] private GameObject shield;
 
 
     Vector2 moveVector;
@@ -480,6 +481,11 @@ public class dummy_movement : MonoBehaviour
         {
             Buttons.OnStart();
         }
+    }
+
+    public void OnShield(InputAction.CallbackContext context)
+    {
+        StartCoroutine(shield.GetComponent<Shielding>().Shield());
     }
 
     void SetCountText()
