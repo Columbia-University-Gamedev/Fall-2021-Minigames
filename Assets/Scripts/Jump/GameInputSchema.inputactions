@@ -6,15 +6,6 @@
             "id": "0ab60e1d-f056-424d-a138-07be6e7dd366",
             "actions": [
                 {
-                    "name": "sheild",
-                    "type": "Button",
-                    "id": "75240a71-2e77-4a26-a1aa-a96af0a076d5",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Move",
                     "type": "Value",
                     "id": "128fae5d-79ec-48e3-97d0-baedeb76230e",
@@ -25,9 +16,9 @@
                 },
                 {
                     "name": "EnterGame",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "c99d72f7-4f47-41e4-8371-acff2de4c0d5",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -36,21 +27,32 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "a41f4e97-fe29-4538-aeb0-52d55c6dda6b",
-                    "path": "<Keyboard>/space",
+                    "id": "8edeb39b-2c8e-4909-adc3-1b423efb2ff9",
+                    "path": "<Joystick>/stick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "arrow keys and space bar",
-                    "action": "sheild",
+                    "groups": "joystick",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e95a7267-9437-431f-b413-0968d0b9f582",
+                    "path": "<HID::SNES PC Game Pad    SNES PC Game Pad   >/stick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "joystick",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "2D Vector",
-                    "id": "b06b8f0c-5983-4a3c-b41b-82254cd51ba8",
+                    "id": "128c1d46-a7dd-472c-92cc-3ddbaf40dfef",
                     "path": "2DVector",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "NormalizeVector2",
                     "groups": "",
                     "action": "Move",
                     "isComposite": true,
@@ -58,29 +60,29 @@
                 },
                 {
                     "name": "up",
-                    "id": "fbc1b371-7d42-4e48-8d61-c9760131b060",
-                    "path": "",
+                    "id": "e3ba7128-2acc-476a-bbac-600e84a92c7e",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "arrow keys and space bar",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "49a86f9c-31ee-420e-b72d-129d40ca83de",
-                    "path": "",
+                    "id": "d900b637-12db-4c53-9d45-03785885b44b",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "arrow keys and space bar",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "ed1a6d5f-f4cb-492e-b237-a6c2835350f4",
+                    "id": "63eb0664-3ca9-44ef-891a-decf02e6d19e",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -91,7 +93,7 @@
                 },
                 {
                     "name": "right",
-                    "id": "481319f9-a03f-4615-95ed-bd792b2d6a6a",
+                    "id": "2ccf85f5-8caa-41d0-80db-08dfc52f3544",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
@@ -121,17 +123,39 @@
                     "action": "EnterGame",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5aa854f5-7de2-4ff9-9b18-0702bb5b7313",
+                    "path": "<HID::SNES PC Game Pad    SNES PC Game Pad   >/button8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "joystick",
+                    "action": "EnterGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b181d8fd-5a3a-40d9-9e27-c3dd43084eca",
+                    "path": "<Joystick>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "joystick",
+                    "action": "EnterGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
         {
             "name": "UI",
-            "id": "8ba1af91-68d3-4074-82c9-98ab74202708",
+            "id": "ce2394bf-d334-48df-ac9e-d2b0ea40a5a9",
             "actions": [
                 {
                     "name": "Point",
                     "type": "PassThrough",
-                    "id": "341e1187-9676-4ec8-85aa-d956eecac84d",
+                    "id": "9caccc71-6768-4580-b50a-800cf1cb23da",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -139,77 +163,33 @@
                 },
                 {
                     "name": "Click",
-                    "type": "Button",
-                    "id": "ea330b98-8ab1-4baa-b564-fa945d658fe9",
+                    "type": "PassThrough",
+                    "id": "04abb382-51e0-4a8d-b170-5b43cafc503f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "43ee51b9-9dc3-41e8-89d4-b3cde6e28d46",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "arrow keys and space bar",
-                    "action": "Point",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e7af60fe-e6a0-42bf-b363-df62dee9120f",
-                    "path": "<Touchscreen>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "arrow keys and space bar",
-                    "action": "Point",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f5ddcbad-e716-4001-b08b-eeb6e5cd3f14",
+                    "id": "4d6ecacd-2715-4939-b92d-f5e03ec53d31",
                     "path": "<Pointer>/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "arrow keys and space bar",
+                    "groups": "arrow keys and space bar;joystick",
                     "action": "Point",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "63020d83-9384-4f20-9541-546789d50bb6",
-                    "path": "<Mouse>/press",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "arrow keys and space bar",
-                    "action": "Click",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0e1b8a51-c405-477f-bb84-1bd3487f3c82",
+                    "id": "c0926117-872e-489b-b43a-3214cbf61da5",
                     "path": "<Pointer>/press",
                     "interactions": "",
                     "processors": "",
-                    "groups": "arrow keys and space bar",
-                    "action": "Click",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "261743cc-90ea-404e-91ed-ef975002607b",
-                    "path": "<Touchscreen>/Press",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "arrow keys and space bar",
+                    "groups": "arrow keys and space bar;joystick",
                     "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -224,6 +204,17 @@
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "joystick",
+            "bindingGroup": "joystick",
+            "devices": [
+                {
+                    "devicePath": "<Joystick>",
                     "isOptional": false,
                     "isOR": false
                 }
