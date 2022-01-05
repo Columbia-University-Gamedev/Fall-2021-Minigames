@@ -20,6 +20,13 @@ public class MonsterMove : MonoBehaviour
     [Tooltip("How fast should the monster move?")]
     float _averageMoveSpeed = 2f; // measured in meters per seconds
 
+    [SerializeField]
+    float _timeOffset = 0f;
+
+    [SerializeField]
+    bool _shouldRandomizeTimeOffset = true;
+
+ 
     bool _isDead = false;
     Vector3 _originalScale; 
 
@@ -166,6 +173,11 @@ public class MonsterMove : MonoBehaviour
         _timeCount = 0f;
 
         _origin = transform.position;
+
+        if (_shouldRandomizeTimeOffset)
+        {
+            _timeOffset = Random.Range(0f, _movePeriod); 
+        }
     }
 
     void Update()
@@ -183,7 +195,7 @@ public class MonsterMove : MonoBehaviour
             _timeCount += Time.deltaTime;
 
             // percentage of half a unit circle rotation
-            float t = (_timeCount / _movePeriod + 0.005f) * Mathf.PI;
+            float t = (_timeCount / _movePeriod + 0.005f + _timeOffset / _movePeriod) * Mathf.PI;
 
             // what's the amplitude of the sign curve? (varies 0 to 1)
             float percent = Mathf.Clamp(0.5f * (Mathf.Sin(t - 0.5f * Mathf.PI) + 1f), 0f, 1f);
