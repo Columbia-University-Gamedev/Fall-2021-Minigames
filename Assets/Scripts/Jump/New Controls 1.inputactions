@@ -1,0 +1,185 @@
+{
+    "name": "New Controls 1",
+    "maps": [
+        {
+            "name": "Sheep (player)",
+            "id": "0ab60e1d-f056-424d-a138-07be6e7dd366",
+            "actions": [
+                {
+                    "name": "Shield",
+                    "type": "Button",
+                    "id": "75240a71-2e77-4a26-a1aa-a96af0a076d5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "128fae5d-79ec-48e3-97d0-baedeb76230e",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "EnterGame",
+                    "type": "Value",
+                    "id": "c99d72f7-4f47-41e4-8371-acff2de4c0d5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a41f4e97-fe29-4538-aeb0-52d55c6dda6b",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "arrow keys and space bar",
+                    "action": "Shield",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "b06b8f0c-5983-4a3c-b41b-82254cd51ba8",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "fbc1b371-7d42-4e48-8d61-c9760131b060",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "49a86f9c-31ee-420e-b72d-129d40ca83de",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "ed1a6d5f-f4cb-492e-b237-a6c2835350f4",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "arrow keys and space bar",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "481319f9-a03f-4615-95ed-bd792b2d6a6a",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "arrow keys and space bar",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "85fbc057-1fa5-4169-8149-7901cfa545dc",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "1e45bf58-ee80-4c57-a7d4-7860f4f1ce8c",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "49e8b8f7-a1ca-4deb-b214-b0db0f1c968d",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "7f406f29-d7d9-4852-b072-596d679ef960",
+                    "path": "<Keyboard>/leftarrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "arrow keys and space bar",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "fc812be3-cb7a-4caa-beaa-37d3e9fe940a",
+                    "path": "<Keyboard>/rightarrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "arrow keys and space bar",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "8c7799fe-791e-44ad-b42f-a29fb85865d9",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "arrow keys and space bar",
+                    "action": "EnterGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "arrow keys and space bar",
+            "bindingGroup": "arrow keys and space bar",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

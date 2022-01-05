@@ -28,6 +28,15 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
             ""id"": ""0ab60e1d-f056-424d-a138-07be6e7dd366"",
             ""actions"": [
                 {
+                    ""name"": ""Shield"",
+                    ""type"": ""Button"",
+                    ""id"": ""75240a71-2e77-4a26-a1aa-a96af0a076d5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Move"",
                     ""type"": ""Value"",
                     ""id"": ""128fae5d-79ec-48e3-97d0-baedeb76230e"",
@@ -38,9 +47,9 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""EnterGame"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""c99d72f7-4f47-41e4-8371-acff2de4c0d5"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -49,32 +58,21 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""8edeb39b-2c8e-4909-adc3-1b423efb2ff9"",
-                    ""path"": ""<Joystick>/stick"",
+                    ""id"": ""a41f4e97-fe29-4538-aeb0-52d55c6dda6b"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""joystick"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e95a7267-9437-431f-b413-0968d0b9f582"",
-                    ""path"": ""<HID::SNES PC Game Pad    SNES PC Game Pad   >/stick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""joystick"",
-                    ""action"": ""Move"",
+                    ""groups"": ""arrow keys and space bar"",
+                    ""action"": ""Shield"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""2D Vector"",
-                    ""id"": ""128c1d46-a7dd-472c-92cc-3ddbaf40dfef"",
+                    ""id"": ""b06b8f0c-5983-4a3c-b41b-82254cd51ba8"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
-                    ""processors"": ""NormalizeVector2"",
+                    ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Move"",
                     ""isComposite"": true,
@@ -82,29 +80,29 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""e3ba7128-2acc-476a-bbac-600e84a92c7e"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""id"": ""fbc1b371-7d42-4e48-8d61-c9760131b060"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""arrow keys and space bar"",
+                    ""groups"": """",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""d900b637-12db-4c53-9d45-03785885b44b"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""id"": ""49a86f9c-31ee-420e-b72d-129d40ca83de"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""arrow keys and space bar"",
+                    ""groups"": """",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""63eb0664-3ca9-44ef-891a-decf02e6d19e"",
+                    ""id"": ""ed1a6d5f-f4cb-492e-b237-a6c2835350f4"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -115,7 +113,7 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""2ccf85f5-8caa-41d0-80db-08dfc52f3544"",
+                    ""id"": ""481319f9-a03f-4615-95ed-bd792b2d6a6a"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -125,15 +123,59 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""880d3407-04e6-494f-ba65-552bf351d705"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""85fbc057-1fa5-4169-8149-7901cfa545dc"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""1e45bf58-ee80-4c57-a7d4-7860f4f1ce8c"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""49e8b8f7-a1ca-4deb-b214-b0db0f1c968d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""7f406f29-d7d9-4852-b072-596d679ef960"",
+                    ""path"": ""<Keyboard>/leftarrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""arrow keys and space bar"",
-                    ""action"": ""EnterGame"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""fc812be3-cb7a-4caa-beaa-37d3e9fe940a"",
+                    ""path"": ""<Keyboard>/rightarrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""arrow keys and space bar"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -143,76 +185,6 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""arrow keys and space bar"",
                     ""action"": ""EnterGame"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5aa854f5-7de2-4ff9-9b18-0702bb5b7313"",
-                    ""path"": ""<HID::SNES PC Game Pad    SNES PC Game Pad   >/button8"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""joystick"",
-                    ""action"": ""EnterGame"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b181d8fd-5a3a-40d9-9e27-c3dd43084eca"",
-                    ""path"": ""<Joystick>/trigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""joystick"",
-                    ""action"": ""EnterGame"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""UI"",
-            ""id"": ""ce2394bf-d334-48df-ac9e-d2b0ea40a5a9"",
-            ""actions"": [
-                {
-                    ""name"": ""Point"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""9caccc71-6768-4580-b50a-800cf1cb23da"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Click"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""04abb382-51e0-4a8d-b170-5b43cafc503f"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""4d6ecacd-2715-4939-b92d-f5e03ec53d31"",
-                    ""path"": ""<Pointer>/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""arrow keys and space bar;joystick"",
-                    ""action"": ""Point"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c0926117-872e-489b-b43a-3214cbf61da5"",
-                    ""path"": ""<Pointer>/press"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""arrow keys and space bar;joystick"",
-                    ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -230,28 +202,14 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
                     ""isOR"": false
                 }
             ]
-        },
-        {
-            ""name"": ""joystick"",
-            ""bindingGroup"": ""joystick"",
-            ""devices"": [
-                {
-                    ""devicePath"": ""<Joystick>"",
-                    ""isOptional"": false,
-                    ""isOR"": false
-                }
-            ]
         }
     ]
 }");
         // Sheep (player)
         m_Sheepplayer = asset.FindActionMap("Sheep (player)", throwIfNotFound: true);
+        m_Sheepplayer_Shield = m_Sheepplayer.FindAction("Shield", throwIfNotFound: true);
         m_Sheepplayer_Move = m_Sheepplayer.FindAction("Move", throwIfNotFound: true);
         m_Sheepplayer_EnterGame = m_Sheepplayer.FindAction("EnterGame", throwIfNotFound: true);
-        // UI
-        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
-        m_UI_Click = m_UI.FindAction("Click", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -311,12 +269,14 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
     // Sheep (player)
     private readonly InputActionMap m_Sheepplayer;
     private ISheepplayerActions m_SheepplayerActionsCallbackInterface;
+    private readonly InputAction m_Sheepplayer_Shield;
     private readonly InputAction m_Sheepplayer_Move;
     private readonly InputAction m_Sheepplayer_EnterGame;
     public struct SheepplayerActions
     {
         private @NewControls1 m_Wrapper;
         public SheepplayerActions(@NewControls1 wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Shield => m_Wrapper.m_Sheepplayer_Shield;
         public InputAction @Move => m_Wrapper.m_Sheepplayer_Move;
         public InputAction @EnterGame => m_Wrapper.m_Sheepplayer_EnterGame;
         public InputActionMap Get() { return m_Wrapper.m_Sheepplayer; }
@@ -328,6 +288,9 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_SheepplayerActionsCallbackInterface != null)
             {
+                @Shield.started -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnShield;
+                @Shield.performed -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnShield;
+                @Shield.canceled -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnShield;
                 @Move.started -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnMove;
@@ -338,6 +301,9 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
             m_Wrapper.m_SheepplayerActionsCallbackInterface = instance;
             if (instance != null)
             {
+                @Shield.started += instance.OnShield;
+                @Shield.performed += instance.OnShield;
+                @Shield.canceled += instance.OnShield;
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
@@ -348,47 +314,6 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
         }
     }
     public SheepplayerActions @Sheepplayer => new SheepplayerActions(this);
-
-    // UI
-    private readonly InputActionMap m_UI;
-    private IUIActions m_UIActionsCallbackInterface;
-    private readonly InputAction m_UI_Point;
-    private readonly InputAction m_UI_Click;
-    public struct UIActions
-    {
-        private @NewControls1 m_Wrapper;
-        public UIActions(@NewControls1 wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Point => m_Wrapper.m_UI_Point;
-        public InputAction @Click => m_Wrapper.m_UI_Click;
-        public InputActionMap Get() { return m_Wrapper.m_UI; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
-        public void SetCallbacks(IUIActions instance)
-        {
-            if (m_Wrapper.m_UIActionsCallbackInterface != null)
-            {
-                @Point.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPoint;
-                @Point.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPoint;
-                @Point.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPoint;
-                @Click.started -= m_Wrapper.m_UIActionsCallbackInterface.OnClick;
-                @Click.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnClick;
-                @Click.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnClick;
-            }
-            m_Wrapper.m_UIActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @Point.started += instance.OnPoint;
-                @Point.performed += instance.OnPoint;
-                @Point.canceled += instance.OnPoint;
-                @Click.started += instance.OnClick;
-                @Click.performed += instance.OnClick;
-                @Click.canceled += instance.OnClick;
-            }
-        }
-    }
-    public UIActions @UI => new UIActions(this);
     private int m_arrowkeysandspacebarSchemeIndex = -1;
     public InputControlScheme arrowkeysandspacebarScheme
     {
@@ -398,23 +323,10 @@ public partial class @NewControls1 : IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_arrowkeysandspacebarSchemeIndex];
         }
     }
-    private int m_joystickSchemeIndex = -1;
-    public InputControlScheme joystickScheme
-    {
-        get
-        {
-            if (m_joystickSchemeIndex == -1) m_joystickSchemeIndex = asset.FindControlSchemeIndex("joystick");
-            return asset.controlSchemes[m_joystickSchemeIndex];
-        }
-    }
     public interface ISheepplayerActions
     {
+        void OnShield(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnEnterGame(InputAction.CallbackContext context);
-    }
-    public interface IUIActions
-    {
-        void OnPoint(InputAction.CallbackContext context);
-        void OnClick(InputAction.CallbackContext context);
     }
 }

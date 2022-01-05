@@ -78,7 +78,7 @@ public class player_at_homescreen : MonoBehaviour
     void FixedUpdate()
     {
         grounded = detectGround();
-        if (grounded){
+        if (grounded && rb.velocity.y <= 0f){
             rb.AddForce(Vector2.up * CalculateJumpForce());
         }
 
