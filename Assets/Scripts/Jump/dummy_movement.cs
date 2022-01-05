@@ -108,19 +108,10 @@ public class dummy_movement : MonoBehaviour
 
     TimedSquishing _squish;
 
-    UnityEngine.Gyroscope _gyroscope;
-
     bool _isMobileEnabled = false;
-    Vector3 _lastGyroVelocity = Vector3.zero;
-    float _lastGyroMeasurementTime = 0f;
-
-    bool _shouldUseAccelerationInsteadOfGyro = false;
 
     [SerializeField]
     float _accelerometerSensitivity = 0.4f;
-
-    [SerializeField]
-    float _gyroDegreeCap = 30f; 
 
     // event delegates
 
@@ -149,102 +140,14 @@ public class dummy_movement : MonoBehaviour
         yield break;
     }
 
-    bool InitGyroscope()
-    {
-        // FYI new input system gyroscope readings are busted.
-        // Gyroscope.current always returns null.
-        // Bug reported is filed; case 1285994. Unresolved.
-
-        // more bugs: gyroscope doesn't necessarily work on android?
-        // workaround: Input.acceleration instead
-
-        if (!SystemInfo.supportsGyroscope)
-        {
-            Debug.LogWarning("This system doesn't support a gyroscope.");
-            return false;
-        }
-
-        _gyroscope = Input.gyro;
-        _gyroscope.enabled = true;
-
-        // InputSystem.EnableDevice(_gyroscope);
-
-        _lastGyroVelocity = _gyroscope.rotationRate;
-        _lastGyroMeasurementTime = Time.time;
-
-        Debug.Log($"Gyroscope initialized {(_gyroscope.enabled ? "successfully" : "unsuccessfully")}");
-
-        return true; 
-    }
 
     bool TryInitMobileControls()
     {
-        bool success = false;
+        _isMobileEnabled = SystemInfo.supportsAccelerometer;
 
-        try
-        {
-            success = InitGyroscope();
-        } catch (Exception e)
-        {
-            Debug.LogError("Something went wrong enabling device gyroscope");
-            Debug.LogError(e); 
-        }
-
-        if (!success)
-        {
-            // try linear acceleration
-            if (SystemInfo.supportsAccelerometer)
-            {
-                success = true;
-                _shouldUseAccelerationInsteadOfGyro = true; 
-            }
-
-        }
-
-        _isMobileEnabled = success;
-
-        // debug: gyro is kind of messy
-        _shouldUseAccelerationInsteadOfGyro = true; 
-
-        return success; 
+        return _isMobileEnabled; 
     }
 
-    Vector3 GetGyroAcceleration()
-    {
-        var raw = _gyroscope.rotationRate;
-
-        // https://stackoverflow.com/questions/11175599/how-to-measure-the-tilt-of-the-phone-in-xy-plane-using-accelerometer-in-android
-
-        var normalized = raw.normalized;
-
-        // var inclination = Mathf.Round(Mathf.Rad2Deg * Mathf.Acos(normalized.z));
-
-        //if (!(inclination < 25 || inclination > 155))
-        //{
-        // device is not flat
-
-        //    float time = Time.time - _lastGyroMeasurementTime;
-
-        //    var acceleration = (raw - _lastGyroVelocity) / time;
-
-        // Debug.Log($"Gyro acceleration: {acceleration.x}, {acceleration.y}, {acceleration.z}");
-
-        //    return acceleration;  
-        //}
-
-        float time = Time.time - _lastGyroMeasurementTime;
-
-        var acceleration = (raw - _lastGyroVelocity) / time;
-
-        _lastGyroVelocity = raw;
-        _lastGyroMeasurementTime = Time.time;
-
-        // return acceleration;
-
-        return Quaternion.FromToRotation(Vector3.right, Vector3.forward) * raw; 
-
-        // return Vector3.zero; 
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -348,15 +251,7 @@ public class dummy_movement : MonoBehaviour
 
             if (_isMobileEnabled)
             {
-                Vector3 acceleration;
-
-                if (_shouldUseAccelerationInsteadOfGyro)
-                {
-                    acceleration = _accelerometerSensitivity * Input.acceleration;
-                } else
-                {
-                    acceleration = GetGyroAcceleration();
-                }
+                Vector3 acceleration = _accelerometerSensitivity * Input.acceleration;
 
                 horizontalComponent = Vector3.Dot(Vector3.right, acceleration);
 
