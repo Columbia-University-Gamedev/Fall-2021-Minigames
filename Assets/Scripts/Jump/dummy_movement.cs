@@ -211,7 +211,7 @@ public class dummy_movement : MonoBehaviour
 
         var normalized = raw.normalized;
 
-        var inclination = Mathf.Round(Mathf.Rad2Deg * Mathf.Acos(normalized.z));
+        var inclination = Mathf.Round(Mathf.Rad2Deg * Mathf.Acos(normalized.x));
 
         if (!(inclination < 25 || inclination > 155))
         {
@@ -351,10 +351,10 @@ public class dummy_movement : MonoBehaviour
                 {
                     horizontalComponent = 0f; 
                 }
-            } else
-            {
-                horizontalComponent = moveVector.x; 
             }
+
+            // mobile user might have a joystick plugged in
+            horizontalComponent += moveVector.x; 
 
             if (Mathf.Sign(rb.velocity.x) != Mathf.Sign(horizontalComponent) ||
                 Mathf.Abs(rb.velocity.x) < _maxHorizontalSpeed)

@@ -11,6 +11,9 @@ public class PlayerTracker : MonoBehaviour
     float _verticalSpeed = 2f; // meters per second
 
     [SerializeField]
+    bool _allowVerticalMovement = false;
+
+    [SerializeField]
     bool _shouldAccelerate = true;
 
     [SerializeField]
@@ -84,8 +87,10 @@ public class PlayerTracker : MonoBehaviour
             // track character horizontally, but scroll upwards
             var x = _target.transform.position.x;
 
-            var y = Mathf.Max(transform.position.y + Time.deltaTime * _verticalSpeed,
-                              _target.transform.position.y);
+            var y = _allowVerticalMovement ?
+                        Mathf.Max(transform.position.y + Time.deltaTime * _verticalSpeed,
+                              _target.transform.position.y) :
+                        _target.transform.position.y; 
 
             var z = transform.position.z;
 

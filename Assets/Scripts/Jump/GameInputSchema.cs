@@ -126,6 +126,28 @@ public partial class @GameInputSchema : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""7d8f4080-ef23-422b-a5f4-4fce2edf1d35"",
+                    ""path"": ""<Gamepad>/dpad"",
+                    ""interactions"": """",
+                    ""processors"": ""NormalizeVector2"",
+                    ""groups"": ""gamepad"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2b098f87-15fe-49c8-9a78-4e58d185f305"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""gamepad"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""880d3407-04e6-494f-ba65-552bf351d705"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
@@ -164,6 +186,17 @@ public partial class @GameInputSchema : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""joystick"",
+                    ""action"": ""EnterGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""28fe2114-1403-44b3-92f5-6481000ebfd0"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""gamepad"",
                     ""action"": ""EnterGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -237,6 +270,17 @@ public partial class @GameInputSchema : IInputActionCollection2, IDisposable
             ""devices"": [
                 {
                     ""devicePath"": ""<Joystick>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""gamepad"",
+            ""bindingGroup"": ""gamepad"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
                     ""isOptional"": false,
                     ""isOR"": false
                 }
@@ -405,6 +449,15 @@ public partial class @GameInputSchema : IInputActionCollection2, IDisposable
         {
             if (m_joystickSchemeIndex == -1) m_joystickSchemeIndex = asset.FindControlSchemeIndex("joystick");
             return asset.controlSchemes[m_joystickSchemeIndex];
+        }
+    }
+    private int m_gamepadSchemeIndex = -1;
+    public InputControlScheme gamepadScheme
+    {
+        get
+        {
+            if (m_gamepadSchemeIndex == -1) m_gamepadSchemeIndex = asset.FindControlSchemeIndex("gamepad");
+            return asset.controlSchemes[m_gamepadSchemeIndex];
         }
     }
     public interface ISheepplayerActions

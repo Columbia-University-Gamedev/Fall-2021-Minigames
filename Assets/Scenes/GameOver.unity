@@ -495,7 +495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AspectMode: 2
-  m_AspectRatio: 1.9589744
+  m_AspectRatio: 1.6666666
 --- !u!1 &1223033812
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,11 +828,11 @@ MonoBehaviour:
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
   m_ActionsAsset: {fileID: -944628639613478452, guid: a94ba6fdfba8145b8957c89e60f7c1ac, type: 3}
-  m_PointAction: {fileID: -78043614746888641, guid: a94ba6fdfba8145b8957c89e60f7c1ac, type: 3}
+  m_PointAction: {fileID: 1054132383583890850, guid: a94ba6fdfba8145b8957c89e60f7c1ac, type: 3}
   m_MoveAction: {fileID: 0}
   m_SubmitAction: {fileID: 0}
   m_CancelAction: {fileID: 0}
-  m_LeftClickAction: {fileID: -6842035668653901912, guid: a94ba6fdfba8145b8957c89e60f7c1ac, type: 3}
+  m_LeftClickAction: {fileID: 8056856818456041789, guid: a94ba6fdfba8145b8957c89e60f7c1ac, type: 3}
   m_MiddleClickAction: {fileID: 0}
   m_RightClickAction: {fileID: 0}
   m_ScrollWheelAction: {fileID: 0}
