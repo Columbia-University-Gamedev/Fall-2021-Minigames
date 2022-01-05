@@ -117,7 +117,10 @@ public class dummy_movement : MonoBehaviour
     bool _shouldUseAccelerationInsteadOfGyro = false;
 
     [SerializeField]
-    float _accelerometerSensitivity = 0.4f; 
+    float _accelerometerSensitivity = 0.4f;
+
+    [SerializeField]
+    float _gyroDegreeCap = 30f; 
 
     // event delegates
 
@@ -200,6 +203,9 @@ public class dummy_movement : MonoBehaviour
 
         _isMobileEnabled = success;
 
+        // debug: gyro is kind of messy
+        _shouldUseAccelerationInsteadOfGyro = true; 
+
         return success; 
     }
 
@@ -211,25 +217,33 @@ public class dummy_movement : MonoBehaviour
 
         var normalized = raw.normalized;
 
-        var inclination = Mathf.Round(Mathf.Rad2Deg * Mathf.Acos(normalized.x));
+        // var inclination = Mathf.Round(Mathf.Rad2Deg * Mathf.Acos(normalized.z));
 
-        if (!(inclination < 25 || inclination > 155))
-        {
-            // device is not flat
+        //if (!(inclination < 25 || inclination > 155))
+        //{
+        // device is not flat
 
-            float time = Time.time - _lastGyroMeasurementTime;
+        //    float time = Time.time - _lastGyroMeasurementTime;
 
-            var acceleration = (raw - _lastGyroVelocity) / time;
+        //    var acceleration = (raw - _lastGyroVelocity) / time;
 
-            Debug.Log($"Gyro acceleration: {acceleration.x}, {acceleration.y}, {acceleration.z}");
+        // Debug.Log($"Gyro acceleration: {acceleration.x}, {acceleration.y}, {acceleration.z}");
 
-            return acceleration;  
-        }
+        //    return acceleration;  
+        //}
+
+        float time = Time.time - _lastGyroMeasurementTime;
+
+        var acceleration = (raw - _lastGyroVelocity) / time;
 
         _lastGyroVelocity = raw;
         _lastGyroMeasurementTime = Time.time;
 
-        return Vector3.zero; 
+        // return acceleration;
+
+        return Quaternion.FromToRotation(Vector3.right, Vector3.forward) * raw; 
+
+        // return Vector3.zero; 
     }
 
     // Start is called before the first frame update
@@ -338,23 +352,25 @@ public class dummy_movement : MonoBehaviour
 
                 if (_shouldUseAccelerationInsteadOfGyro)
                 {
-                    acceleration = (_accelerometerSensitivity * Input.acceleration).normalized;
+                    acceleration = _accelerometerSensitivity * Input.acceleration;
                 } else
                 {
-                    acceleration = GetGyroAcceleration().normalized;
+                    acceleration = GetGyroAcceleration();
                 }
 
                 horizontalComponent = Vector3.Dot(Vector3.right, acceleration);
 
                 // tilt input threshold 
-                if (Mathf.Abs(horizontalComponent) < 0.4f)
+                if (Mathf.Abs(horizontalComponent) < 0.25f)
                 {
                     horizontalComponent = 0f; 
                 }
             }
 
             // mobile user might have a joystick plugged in
-            horizontalComponent += moveVector.x; 
+            horizontalComponent += moveVector.x;
+
+            horizontalComponent = Mathf.Clamp(horizontalComponent, -1f, 1f);
 
             if (Mathf.Sign(rb.velocity.x) != Mathf.Sign(horizontalComponent) ||
                 Mathf.Abs(rb.velocity.x) < _maxHorizontalSpeed)
