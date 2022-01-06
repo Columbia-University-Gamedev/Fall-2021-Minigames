@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.29698998, g: 0.33998322, b: 0.38195074, a: 1}
+  m_IndirectSpecularColor: {r: 0.29762036, g: 0.34000203, b: 0.38386634, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: a94ba6fdfba8145b8957c89e60f7c1ac, type: 3}
   m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
+  m_UIInputModule: {fileID: 2103508151}
   m_DeviceLostEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -302,22 +302,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 161062902}
-        m_TargetAssemblyTypeName: dummy_movement, Assembly-CSharp
-        m_MethodName: OnShield
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 75240a71-2e77-4a26-a1aa-a96af0a076d5
-    m_ActionName: Sheep (player)/sheild[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 161062902}
@@ -338,11 +322,48 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c99d72f7-4f47-41e4-8371-acff2de4c0d5
     m_ActionName: Sheep (player)/EnterGame[/Keyboard/space,/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9caccc71-6768-4580-b50a-800cf1cb23da
+    m_ActionName: UI/Point[/Mouse/position,/Pen/position,/Simulated Touchscreen/position]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 161062902}
+        m_TargetAssemblyTypeName: dummy_movement, Assembly-CSharp
+        m_MethodName: OnShield
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 04abb382-51e0-4a8d-b170-5b43cafc503f
+    m_ActionName: UI/Click[/Mouse/press,/Pen/press,/Simulated Touchscreen/press]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 161062902}
+        m_TargetAssemblyTypeName: dummy_movement, Assembly-CSharp
+        m_MethodName: OnShield
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d07f92e0-551c-4e9a-8608-2fce07b2b802
+    m_ActionName: Sheep (player)/Shield[/Keyboard/space,/SNES PC Game Pad    SNES
+      PC Game Pad   /trigger,/Overdrive VirtualHID/trigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: arrow keys and space bar
   m_DefaultActionMap: Sheep (player)
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1734920490}
 --- !u!50 &161062900
 Rigidbody2D:
   serializedVersion: 4
@@ -416,7 +437,6 @@ MonoBehaviour:
   - {fileID: 1171621861}
   - {fileID: 337674078}
   - {fileID: 1600754006}
-  shield: {fileID: 888488588}
   _horizontalAcceleration: 100
   _maxHorizontalSpeed: 10
   _horizontalDrag: 0.5
@@ -437,6 +457,7 @@ MonoBehaviour:
     min: 0.8
     max: 2.4
     duration: 2
+  _accelerometerSensitivity: 2.7
 --- !u!212 &161062903
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -536,6 +557,7 @@ GameObject:
   - component: {fileID: 222219161}
   - component: {fileID: 222219160}
   - component: {fileID: 222219164}
+  - component: {fileID: 222219165}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -593,7 +615,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1734920490}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -601,7 +623,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_SortingLayerID: 912120473
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &222219163
@@ -642,6 +664,19 @@ MonoBehaviour:
   pausePanel: {fileID: 612549135}
   pauseButton: {fileID: 495559684}
   pauseOpacity: 0.6
+--- !u!114 &222219165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222219159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab5a8426319345fd997b191e04121eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 1734920490}
 --- !u!1 &337674076
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,7 +788,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -38.62491, y: -17.14412}
+  m_AnchoredPosition: {x: -38.625, y: -17.144165}
   m_SizeDelta: {x: 65.0498, y: 22.4402}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &495559686
@@ -1141,7 +1176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: f70be28a2abd8481b883d4e5d5526b63, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1414,7 +1449,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 67.272095, y: -14.200073}
+  m_AnchoredPosition: {x: 67.27197, y: -14.200073}
   m_SizeDelta: {x: 120.5063, y: 16.5513}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &715598730
@@ -1804,6 +1839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 161062898}
   _verticalSpeed: 0.2
+  _allowVerticalMovement: 0
   _shouldAccelerate: 1
   _accleration: 0.04
   _shouldClampSpeed: 0
@@ -2030,6 +2066,7 @@ GameObject:
   - component: {fileID: 1734920493}
   - component: {fileID: 1734920496}
   - component: {fileID: 1734920495}
+  - component: {fileID: 1734920494}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2088,15 +2125,15 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!4 &1734920491
-Transform:
+--- !u!224 &1734920491
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734920488}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -6.77}
+  m_LocalPosition: {x: 0, y: 0, z: -6.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1691204518}
@@ -2104,6 +2141,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 1}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1734920492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2139,6 +2181,22 @@ MonoBehaviour:
   _acceleration: 20
   _maxSpeed: 20
   _killAcceleration: 0
+  _scaleBoundsWithAspect: 1
+  _aspectTracker: {fileID: 222219165}
+--- !u!114 &1734920494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734920488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7953d82bbe5414df88fc46400e9cf3c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _portraitModeScaleFactor: 2.2
+  _aspectTracker: {fileID: 222219165}
 --- !u!114 &1734920495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2330,17 +2388,17 @@ MonoBehaviour:
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_PointAction: {fileID: 1054132383583890850, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MoveAction: {fileID: 3710738434707379630, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_SubmitAction: {fileID: 2064916234097673511, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_CancelAction: {fileID: -1967631576421560919, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_LeftClickAction: {fileID: 8056856818456041789, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MiddleClickAction: {fileID: 3279352641294131588, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_RightClickAction: {fileID: 3837173908680883260, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_ScrollWheelAction: {fileID: 4502412055082496612, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDevicePositionAction: {fileID: 4754684134866288074, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: 1025543830046995696, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: a94ba6fdfba8145b8957c89e60f7c1ac, type: 3}
+  m_PointAction: {fileID: 1054132383583890850, guid: a94ba6fdfba8145b8957c89e60f7c1ac, type: 3}
+  m_MoveAction: {fileID: -4599190119752159418, guid: a94ba6fdfba8145b8957c89e60f7c1ac, type: 3}
+  m_SubmitAction: {fileID: 0}
+  m_CancelAction: {fileID: 0}
+  m_LeftClickAction: {fileID: 8056856818456041789, guid: a94ba6fdfba8145b8957c89e60f7c1ac, type: 3}
+  m_MiddleClickAction: {fileID: 0}
+  m_RightClickAction: {fileID: 0}
+  m_ScrollWheelAction: {fileID: 0}
+  m_TrackedDevicePositionAction: {fileID: 0}
+  m_TrackedDeviceOrientationAction: {fileID: 0}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
 --- !u!114 &2103508152

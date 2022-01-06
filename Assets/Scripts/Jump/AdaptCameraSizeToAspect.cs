@@ -7,6 +7,8 @@ public class AdaptCameraSizeToAspect : MonoBehaviour
     [SerializeField]
     float _portraitModeScaleFactor = 3f;
 
+    public float PortraitModeScaleFactor { get { return _portraitModeScaleFactor; } }
+
     [SerializeField]
     AdaptiveAspectRatio _aspectTracker;
 

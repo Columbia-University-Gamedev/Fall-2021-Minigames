@@ -28,6 +28,7 @@ public class gameover : MonoBehaviour
 
     public static void OnStart()
     {
+        Debug.Log("Load game");
         SceneManager.LoadScene("jumpPlatformGen");
     }
 

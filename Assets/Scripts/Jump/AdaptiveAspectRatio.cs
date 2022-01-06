@@ -4,13 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [ExecuteAlways]
-[RequireComponent(typeof(AspectRatioFitter))]
 public class AdaptiveAspectRatio : MonoBehaviour
 {
     float _width;
     float _height;
 
-    AspectRatioFitter _fitter;
+    float _aspectRatio;
+
+    public float AspectRatio
+    {
+        get { return _aspectRatio; }
+    }
 
     public delegate void AspectUpdated(float ratio);
     public AspectUpdated OnAspectUpdated; 
@@ -20,8 +24,6 @@ public class AdaptiveAspectRatio : MonoBehaviour
 
     private void Awake()
     {
-        _fitter = GetComponent<AspectRatioFitter>();
-
         UpdateAndSetRatio();
     }
 
@@ -38,9 +40,9 @@ public class AdaptiveAspectRatio : MonoBehaviour
         _width = _camera.scaledPixelWidth;
         _height = _camera.scaledPixelHeight;
 
-        _fitter.aspectRatio = _width / _height;
+        _aspectRatio = _width / _height;
 
-        OnAspectUpdated?.Invoke(_fitter.aspectRatio);
+        OnAspectUpdated?.Invoke(_aspectRatio);
     }
 
     bool DidDimensionsChange()

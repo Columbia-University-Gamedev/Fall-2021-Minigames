@@ -44,6 +44,15 @@ public partial class @GameInputSchema : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Shield"",
+                    ""type"": ""Button"",
+                    ""id"": ""d07f92e0-551c-4e9a-8608-2fce07b2b802"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -200,6 +209,61 @@ public partial class @GameInputSchema : IInputActionCollection2, IDisposable
                     ""action"": ""EnterGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""38d2d2ff-de56-45d1-a4a9-27bec4659432"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""arrow keys and space bar"",
+                    ""action"": ""Shield"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""74f03d6f-4c52-4a41-a5b7-4874f0ebb9c5"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""gamepad"",
+                    ""action"": ""Shield"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c2e1063-cb8b-4410-bf98-8e1b76e7b2ff"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""gamepad"",
+                    ""action"": ""Shield"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f4c6a4f9-adaa-495e-bd69-99ff7f978779"",
+                    ""path"": ""<HID::SNES PC Game Pad    SNES PC Game Pad   >/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""joystick"",
+                    ""action"": ""Shield"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3da8d9bc-d846-47cf-a2f3-16627d1143a5"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""joystick"",
+                    ""action"": ""Shield"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -223,7 +287,7 @@ public partial class @GameInputSchema : IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -233,7 +297,18 @@ public partial class @GameInputSchema : IInputActionCollection2, IDisposable
                     ""path"": ""<Pointer>/position"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""arrow keys and space bar;joystick"",
+                    ""groups"": ""arrow keys and space bar;joystick;gamepad"",
+                    ""action"": ""Point"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""30bdabbb-6472-4751-ae92-bf7eb2fdca86"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""arrow keys and space bar"",
                     ""action"": ""Point"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -244,7 +319,18 @@ public partial class @GameInputSchema : IInputActionCollection2, IDisposable
                     ""path"": ""<Pointer>/press"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""arrow keys and space bar;joystick"",
+                    ""groups"": ""arrow keys and space bar;joystick;gamepad"",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""101e1d82-4977-47ae-b5f6-ab126d6f9a03"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""arrow keys and space bar"",
                     ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -292,6 +378,7 @@ public partial class @GameInputSchema : IInputActionCollection2, IDisposable
         m_Sheepplayer = asset.FindActionMap("Sheep (player)", throwIfNotFound: true);
         m_Sheepplayer_Move = m_Sheepplayer.FindAction("Move", throwIfNotFound: true);
         m_Sheepplayer_EnterGame = m_Sheepplayer.FindAction("EnterGame", throwIfNotFound: true);
+        m_Sheepplayer_Shield = m_Sheepplayer.FindAction("Shield", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
@@ -357,12 +444,14 @@ public partial class @GameInputSchema : IInputActionCollection2, IDisposable
     private ISheepplayerActions m_SheepplayerActionsCallbackInterface;
     private readonly InputAction m_Sheepplayer_Move;
     private readonly InputAction m_Sheepplayer_EnterGame;
+    private readonly InputAction m_Sheepplayer_Shield;
     public struct SheepplayerActions
     {
         private @GameInputSchema m_Wrapper;
         public SheepplayerActions(@GameInputSchema wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Sheepplayer_Move;
         public InputAction @EnterGame => m_Wrapper.m_Sheepplayer_EnterGame;
+        public InputAction @Shield => m_Wrapper.m_Sheepplayer_Shield;
         public InputActionMap Get() { return m_Wrapper.m_Sheepplayer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -378,6 +467,9 @@ public partial class @GameInputSchema : IInputActionCollection2, IDisposable
                 @EnterGame.started -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnEnterGame;
                 @EnterGame.performed -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnEnterGame;
                 @EnterGame.canceled -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnEnterGame;
+                @Shield.started -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnShield;
+                @Shield.performed -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnShield;
+                @Shield.canceled -= m_Wrapper.m_SheepplayerActionsCallbackInterface.OnShield;
             }
             m_Wrapper.m_SheepplayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -388,6 +480,9 @@ public partial class @GameInputSchema : IInputActionCollection2, IDisposable
                 @EnterGame.started += instance.OnEnterGame;
                 @EnterGame.performed += instance.OnEnterGame;
                 @EnterGame.canceled += instance.OnEnterGame;
+                @Shield.started += instance.OnShield;
+                @Shield.performed += instance.OnShield;
+                @Shield.canceled += instance.OnShield;
             }
         }
     }
@@ -464,6 +559,7 @@ public partial class @GameInputSchema : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnEnterGame(InputAction.CallbackContext context);
+        void OnShield(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -38,7 +38,7 @@ public class PlayerTracker : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         transform.position = _target.transform.position;
 

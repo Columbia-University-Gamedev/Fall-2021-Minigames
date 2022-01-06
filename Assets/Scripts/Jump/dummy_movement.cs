@@ -27,8 +27,8 @@ public class dummy_movement : MonoBehaviour
     [SerializeField] private Transform bottomBounds;
 
     [SerializeField] private Image[] healthbar;
-    [SerializeField] private GameObject shield;
 
+    Shielding _shield; 
 
     Vector2 moveVector;
 
@@ -156,8 +156,10 @@ public class dummy_movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // check for a gyroscope
+        // check for an accelerometer (tilt controls)
         TryInitMobileControls();
+
+        _shield = GetComponentInChildren<Shielding>();
 
         _squish = gameObject.AddComponent<TimedSquishing>();
 
@@ -522,7 +524,7 @@ public class dummy_movement : MonoBehaviour
 
     public void OnShield(InputAction.CallbackContext context)
     {
-        StartCoroutine(shield.GetComponent<Shielding>().Shield());
+        _shield.TriggerShield();
     }
 
     void SetCountText()

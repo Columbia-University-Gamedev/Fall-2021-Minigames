@@ -5,10 +5,12 @@ using UnityEngine;
 public class Shielding : MonoBehaviour
 {
     [SerializeField] float timer = 1f;
-    private Vector3 shieldSize;
-    private SpriteRenderer sprite;
     [SerializeField] private float alpha;
     [SerializeField] private GameObject coinCollected;
+
+    private Vector3 shieldSize;
+    private SpriteRenderer sprite;
+    
 
     void Start()
     {
@@ -17,9 +19,13 @@ public class Shielding : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
     }
 
-    public IEnumerator Shield()
+    public void TriggerShield()
     {
-        //transform.localScale = new Vector3(1f, 1f, 1f);
+        StartCoroutine(ShieldTimer());
+    }
+
+    IEnumerator ShieldTimer()
+    {
         StartCoroutine(ImageFade.FadeSprite(true, timer, alpha, sprite));
         
         for (float i = 0; i <= timer; i += Time.deltaTime)
@@ -42,7 +48,7 @@ public class Shielding : MonoBehaviour
             Vector3 monsterPos = other.transform.position + Vector3.up;
             Instantiate(coinCollected, monsterPos, Quaternion.identity);
 
-            Debug.Log("Shielded");
+            // Debug.Log("Shielded");
 
         }
     }

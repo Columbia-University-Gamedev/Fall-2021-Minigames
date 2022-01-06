@@ -45,15 +45,19 @@ public class FollowCamera : MonoBehaviour
 
     float _aspectScaling = 1f;
 
-    float _baseAspectScaling = 1f; 
+    float _baseAspectScaling = 1f;
+
+    float _baseAspectRatio = 16f / 9f; 
 
     [SerializeField]
     AdaptiveAspectRatio _aspectTracker;
 
+    AdaptCameraSizeToAspect _aspectAdapter; 
+
 
     private void HandleAspectUpdate(float ratio)
     {
-        _aspectScaling = _baseAspectScaling * ratio; 
+        _aspectScaling = _baseAspectScaling * ratio / _baseAspectRatio; 
     }
 
     private void OnEnable()
@@ -72,9 +76,16 @@ public class FollowCamera : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Awake()
     {
-        _velocity = Vector3.zero; 
+        _velocity = Vector3.zero;
+
+        if (_aspectTracker)
+        {
+            _baseAspectRatio = _aspectTracker.AspectRatio;
+        }
+
+        _aspectAdapter = GetComponent<AdaptCameraSizeToAspect>();
     }
 
 
@@ -84,13 +95,7 @@ public class FollowCamera : MonoBehaviour
         var flattenedPosition = transform.position;
         flattenedPosition.z = _target.transform.position.z;
 
-        float scaleFactor = 1f;
-
-        // scaling based on aspect ratio
-        if (_scaleBoundsWithAspect && _aspectTracker)
-        {
-            scaleFactor = _aspectScaling; 
-        }
+        float scaleFactor = GetScalingFromCamera();
 
         var outerBounds = new Bounds(flattenedPosition + scaleFactor * (Vector3)_outerZoneOffset, scaleFactor * _outerZoneExtent);
         var innerBounds = new Bounds(flattenedPosition + scaleFactor * (Vector3)_safezoneOffset, scaleFactor * _safeZoneExtent);
@@ -128,7 +133,19 @@ public class FollowCamera : MonoBehaviour
         }
         else
         {
-            _velocity *= (1f - _friction);
+            // if velocity is large and inner bounds are tiny
+            // camera can yo-yo dizzyingly
+
+            // also experimented with scaling acceleration / max velocity
+            // by reciprocal of scale factor but results were too snappy
+
+            if (_velocity.magnitude > innerBounds.extents.magnitude)
+            {
+                _velocity *= 0.3f;
+            } else
+            {
+                _velocity *= (1f - _friction);
+            }
         }
 
         _velocity = Vector3.ClampMagnitude(_velocity, _maxSpeed);
@@ -137,16 +154,36 @@ public class FollowCamera : MonoBehaviour
 
     }
 
+    float GetScalingFromCamera()
+    {
+        float scaleFactor = 1f;
+
+        // scaling based on aspect ratio
+        if (_scaleBoundsWithAspect && _aspectTracker)
+        {
+            scaleFactor = _aspectScaling;
+
+            if (_aspectAdapter)
+            {
+                scaleFactor /= _aspectAdapter.PortraitModeScaleFactor;
+            }
+        }
+
+        return scaleFactor; 
+    }
+
     // editor visualization
     void OnDrawGizmos()
     { 
         Color lineColor = Color.yellow;
 
+        float scaleFactor = GetScalingFromCamera();
+
         Gizmos.color = lineColor;
-        Gizmos.DrawWireCube(transform.position + (Vector3)_safezoneOffset, _safeZoneExtent);
+        Gizmos.DrawWireCube(transform.position + scaleFactor * (Vector3)_safezoneOffset, scaleFactor * _safeZoneExtent);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position + (Vector3)_outerZoneOffset, _outerZoneExtent);
+        Gizmos.DrawWireCube(transform.position + scaleFactor * (Vector3)_outerZoneOffset, scaleFactor * _outerZoneExtent);
 
     }
 }
