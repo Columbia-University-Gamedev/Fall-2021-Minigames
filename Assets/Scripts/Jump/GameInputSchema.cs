@@ -212,6 +212,50 @@ public partial class @GameInputSchema : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""50da065c-f920-4344-92f4-2d0997296de3"",
+                    ""path"": ""<Mouse>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""touch"",
+                    ""action"": ""EnterGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""61139432-7fbf-4376-8556-77999902a23e"",
+                    ""path"": ""<Pen>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""touch"",
+                    ""action"": ""EnterGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""67c2650c-d087-450c-9bc8-205ac1bf4c32"",
+                    ""path"": ""<Pointer>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""touch"",
+                    ""action"": ""EnterGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8ee9f517-5cba-45c3-9a5f-5ab2fb729c61"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""touch"",
+                    ""action"": ""EnterGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""38d2d2ff-de56-45d1-a4a9-27bec4659432"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
@@ -264,6 +308,50 @@ public partial class @GameInputSchema : IInputActionCollection2, IDisposable
                     ""action"": ""Shield"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""10a62a5b-f1ca-455b-8b6d-e163f8323cc8"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""touch"",
+                    ""action"": ""Shield"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""648a6243-974f-4aed-9e9f-8ec9f79edab0"",
+                    ""path"": ""<Pointer>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""touch"",
+                    ""action"": ""Shield"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7b5b2e07-0ad0-48df-8304-cd207a38bc6a"",
+                    ""path"": ""<Pen>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""touch"",
+                    ""action"": ""Shield"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c88763f-3801-408b-ad0a-0e03a9c86185"",
+                    ""path"": ""<Mouse>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""touch"",
+                    ""action"": ""Shield"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -297,7 +385,7 @@ public partial class @GameInputSchema : IInputActionCollection2, IDisposable
                     ""path"": ""<Pointer>/position"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""arrow keys and space bar;joystick;gamepad"",
+                    ""groups"": ""arrow keys and space bar;joystick;gamepad;touch"",
                     ""action"": ""Point"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -308,7 +396,29 @@ public partial class @GameInputSchema : IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""arrow keys and space bar"",
+                    ""groups"": ""arrow keys and space bar;touch"",
+                    ""action"": ""Point"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0638c9f1-2a5f-4685-91e5-299f0376acd6"",
+                    ""path"": ""<Touchscreen>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""touch"",
+                    ""action"": ""Point"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bafcdfed-5ff1-4bd9-823f-92cb04ed6e14"",
+                    ""path"": ""<Pen>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""touch;arrow keys and space bar"",
                     ""action"": ""Point"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -319,18 +429,40 @@ public partial class @GameInputSchema : IInputActionCollection2, IDisposable
                     ""path"": ""<Pointer>/press"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""arrow keys and space bar;joystick;gamepad"",
+                    ""groups"": ""arrow keys and space bar;joystick;gamepad;touch"",
                     ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""101e1d82-4977-47ae-b5f6-ab126d6f9a03"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""id"": ""4df3364d-6e74-4ef9-bae9-d418b249b8f3"",
+                    ""path"": ""<Mouse>/press"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""arrow keys and space bar"",
+                    ""groups"": ""touch;arrow keys and space bar"",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0bb03ca2-14e3-47b4-87cb-b795f42a5395"",
+                    ""path"": ""<Pen>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""touch;arrow keys and space bar"",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4b484956-29db-4709-a68e-be3bfa7362f2"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""touch"",
                     ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -368,6 +500,27 @@ public partial class @GameInputSchema : IInputActionCollection2, IDisposable
                 {
                     ""devicePath"": ""<Gamepad>"",
                     ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""touch"",
+            ""bindingGroup"": ""touch"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Touchscreen>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": true,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Pointer>"",
+                    ""isOptional"": true,
                     ""isOR"": false
                 }
             ]
@@ -553,6 +706,15 @@ public partial class @GameInputSchema : IInputActionCollection2, IDisposable
         {
             if (m_gamepadSchemeIndex == -1) m_gamepadSchemeIndex = asset.FindControlSchemeIndex("gamepad");
             return asset.controlSchemes[m_gamepadSchemeIndex];
+        }
+    }
+    private int m_touchSchemeIndex = -1;
+    public InputControlScheme touchScheme
+    {
+        get
+        {
+            if (m_touchSchemeIndex == -1) m_touchSchemeIndex = asset.FindControlSchemeIndex("touch");
+            return asset.controlSchemes[m_touchSchemeIndex];
         }
     }
     public interface ISheepplayerActions
