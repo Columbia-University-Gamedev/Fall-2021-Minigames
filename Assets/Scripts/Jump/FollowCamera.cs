@@ -35,6 +35,9 @@ public class FollowCamera : MonoBehaviour
     float _acceleration = 12f;
 
     [SerializeField]
+    float _catchupDampingFactor = 3.5f; 
+
+    [SerializeField]
     float _maxSpeed = 20f;
 
     [SerializeField]
@@ -52,7 +55,9 @@ public class FollowCamera : MonoBehaviour
     [SerializeField]
     AdaptiveAspectRatio _aspectTracker;
 
-    AdaptCameraSizeToAspect _aspectAdapter; 
+    AdaptCameraSizeToAspect _aspectAdapter;
+
+    Vector3 _lastTargetPosition; 
 
 
     private void HandleAspectUpdate(float ratio)
@@ -79,6 +84,7 @@ public class FollowCamera : MonoBehaviour
     private void Awake()
     {
         _velocity = Vector3.zero;
+        _lastTargetPosition = _target.position; 
 
         if (_aspectTracker)
         {
@@ -93,7 +99,7 @@ public class FollowCamera : MonoBehaviour
     void Update()
     {
         var flattenedPosition = transform.position;
-        flattenedPosition.z = _target.transform.position.z;
+        flattenedPosition.z = _target.position.z;
 
         float scaleFactor = GetScalingFromCamera();
 
@@ -123,13 +129,27 @@ public class FollowCamera : MonoBehaviour
 
         if (_moving)
         {
-            Vector3 targetPos = _target.transform.position;
+            Vector3 targetVelocity = GetTargetVelocity();
+            float damping = 1f; 
+
+            // if camera is moving opposite the player
+            // slow it down
+            if (Vector3.Dot(targetVelocity, _velocity) < 0f)
+            {
+                damping = 1 / _catchupDampingFactor; 
+            }
+
+            Vector3 targetPos = _target.position;
             targetPos.z = transform.position.z;
 
             var direction = (targetPos - transform.position).normalized;
             var acceleration = direction * _acceleration;
 
-            _velocity += acceleration * Time.deltaTime;
+            _velocity *= damping; 
+
+            _velocity += Time.deltaTime * acceleration;
+
+
         }
         else
         {
@@ -152,6 +172,13 @@ public class FollowCamera : MonoBehaviour
 
         transform.position += _velocity * Time.deltaTime;
 
+        _lastTargetPosition = _target.position; 
+
+    }
+
+    Vector3 GetTargetVelocity()
+    {
+        return (_target.position - _lastTargetPosition) / Time.deltaTime; 
     }
 
     float GetScalingFromCamera()
