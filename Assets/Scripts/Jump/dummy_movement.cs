@@ -27,8 +27,8 @@ public class dummy_movement : MonoBehaviour
     [SerializeField] private Transform bottomBounds;
 
     [SerializeField] private Image[] healthbar;
-    [SerializeField] private GameObject shield;
 
+    Shielding _shield; 
 
     Vector2 moveVector;
 
@@ -110,7 +110,12 @@ public class dummy_movement : MonoBehaviour
     //bool _isSquishing = false;
     Vector3 _originalScale;
 
-    TimedSquishing _squish; 
+    TimedSquishing _squish;
+
+    bool _isMobileEnabled = false;
+
+    [SerializeField]
+    float _accelerometerSensitivity = 0.4f;
 
     // event delegates
 
@@ -140,22 +145,25 @@ public class dummy_movement : MonoBehaviour
     }
 
 
+    bool TryInitMobileControls()
+    {
+        _isMobileEnabled = SystemInfo.supportsAccelerometer;
+
+        return _isMobileEnabled; 
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
+        // check for an accelerometer (tilt controls)
+        TryInitMobileControls();
+
+        _shield = GetComponentInChildren<Shielding>();
+
         _squish = gameObject.AddComponent<TimedSquishing>();
 
-        /*
-        _squish.SquishSpeed = _squishSpeed;
-        _squish.MinSquish = 0.8f;
-        _squish.MaxSquish = 2.4f;
-
-        _squish.SquishSpeed = _squishSpeed;
-        _squish.MinSquish = 0.7f;
-        _squish.MaxSquish = 1.3f;
-        */
-
-
+        // setup for which way player is facing
         _leftScaleSign = _startingDirectionIsLeft ?
             Mathf.Sign(transform.localScale.x) :
             -1f * Mathf.Sign(transform.localScale.x);
@@ -174,10 +182,18 @@ public class dummy_movement : MonoBehaviour
         anim = GetComponent<Animator>();
 
         cameraBottomBounds = Camera.main.ViewportToWorldPoint(new Vector3 (1f, 1f, 0f)).y;
+    }
 
+    public void UpdateCameraBottomBounds()
+    {
+        cameraBottomBounds = Camera.main.ViewportToWorldPoint(new Vector3(1f, 1f, 0f)).y;
+    }
+
+    private void OnEnable()
+    {
         OnPlayerDied += HandlePlayerDied;
         OnDeathAnimationEnded += HandleDeathAnimationEnded;
-        OnPlayerHurt += HandlePlayerHurt; 
+        OnPlayerHurt += HandlePlayerHurt;
     }
 
     private void OnDisable()
@@ -210,6 +226,9 @@ public class dummy_movement : MonoBehaviour
             count = transform.position.y;
             SetCountText();
         }
+
+        // TODO: move this into camera state
+        UpdateCameraBottomBounds();
     }
 
     // Update is called once per frame
@@ -234,13 +253,33 @@ public class dummy_movement : MonoBehaviour
 
         if (_areControlsEnabled)
         {
-            if (Mathf.Sign(rb.velocity.x) != Mathf.Sign(moveVector.x) ||
-                Mathf.Abs(rb.velocity.x) < _maxHorizontalSpeed)
+            float horizontalComponent = 0f; 
+
+            if (_isMobileEnabled)
             {
-                rb.velocity += moveVector * _horizontalAcceleration * Time.deltaTime;
+                Vector3 acceleration = _accelerometerSensitivity * Input.acceleration;
+
+                horizontalComponent = Vector3.Dot(Vector3.right, acceleration);
+
+                // tilt input threshold 
+                if (Mathf.Abs(horizontalComponent) < 0.25f)
+                {
+                    horizontalComponent = 0f; 
+                }
             }
 
-            if (moveVector.x == 0f)
+            // mobile user might have a joystick plugged in
+            horizontalComponent += moveVector.x;
+
+            horizontalComponent = Mathf.Clamp(horizontalComponent, -1f, 1f);
+
+            if (Mathf.Sign(rb.velocity.x) != Mathf.Sign(horizontalComponent) ||
+                Mathf.Abs(rb.velocity.x) < _maxHorizontalSpeed)
+            {
+                rb.velocity += horizontalComponent * Vector2.right * _horizontalAcceleration * Time.deltaTime;
+            }
+
+            if (horizontalComponent == 0f)
             {
                 rb.velocity -= rb.velocity.x * _horizontalDrag * Vector2.right;
             }
@@ -485,7 +524,7 @@ public class dummy_movement : MonoBehaviour
 
     public void OnShield(InputAction.CallbackContext context)
     {
-        StartCoroutine(shield.GetComponent<Shielding>().Shield());
+        _shield.TriggerShield();
     }
 
     void SetCountText()

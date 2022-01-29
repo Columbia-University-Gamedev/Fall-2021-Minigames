@@ -162,25 +162,6 @@ public class player_at_homescreen : MonoBehaviour
 		
 		return (left.collider != null || right.collider != null);
     }
-
-    void Jump() 
-    { 
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce); 
-    } 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-    }
-    void BetterJump()
-    {
-		if (rb.velocity.y < 0)
-		{
-		    rb.velocity += Vector2.up * Physics2D.gravity * (fallMultiplier - 1) * Time.deltaTime;
-		}
-		else if (rb.velocity.y > 0)
-		{
-		    rb.velocity += Vector2.up * Physics2D.gravity * (lowJumpMultiplier - 1) * Time.deltaTime;
-		}
-    }
     
     public void OnMovementChange(InputAction.CallbackContext context){
         Debug.Log("on move");
@@ -189,6 +170,12 @@ public class player_at_homescreen : MonoBehaviour
     }
     
     public void OnStartGame(InputAction.CallbackContext context)
+    {
+        DoStartGame();
+    }
+
+    // need to break this out from OnStartGame so that it can be triggered by canvas unity event
+    public void DoStartGame()
     {
         if (SceneManager.GetActiveScene().name == "HomeScreen")
         {

@@ -41,7 +41,7 @@ public class DestroyOnInvisible : MonoBehaviour
             // if is below camera origin
             if (up_dot < 0f)
             {
-                Vector2 cutoff = _camera.ViewportToWorldPoint(new Vector3(0, 1, forward_dot)) - _camera.transform.position;
+                Vector2 cutoff = _camera.ViewportToWorldPoint(new Vector3(0, 0, forward_dot)) - _camera.transform.position;
 
                 float cutoff_dot = Vector3.Dot(_camera.transform.up, cutoff);
 
