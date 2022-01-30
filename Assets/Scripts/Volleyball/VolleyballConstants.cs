@@ -3,6 +3,9 @@ public static class VolleyballConstants
     //Game settings
 
     public const int maxBounces = 3;
+    //Camera settings
+
+    public const float cameraSize = 15.0f;
 
     //The following variables don't do anything, but in the future if we want to add multiple players/balls, we can do that
     public const int startingBallNum = 1;

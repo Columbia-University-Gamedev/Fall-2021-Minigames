@@ -75,6 +75,7 @@ public class PlayerScript : MonoBehaviour
 
         movement.x = 0;
 
+        //TODO: Make this key
         if(isPlayerOne){
             move(kb.aKey.isPressed, kb.dKey.isPressed, kb.wKey.isPressed, kb.wKey.wasPressedThisFrame, kb.wKey.wasReleasedThisFrame);
             chargeUp(kb.fKey.wasPressedThisFrame,kb.fKey.wasReleasedThisFrame);
@@ -149,7 +150,7 @@ public class PlayerScript : MonoBehaviour
 
                 if(playerToBallVec.magnitude <= VolleyballConstants.ballMaxHitDistance){
                     ballRB.velocity = playerToBallVec.normalized * VolleyballConstants.playerMaxStoredEnergy * chargePercentage;
-                    ballS.bounces += 1;
+                    //ballS.bounces += 1;
                     if(ballS.lastHitPlayer != isPlayerOne){
                         ballS.lastHitPlayer = !ballS.lastHitPlayer;
                         ballS.bounces = 0;
@@ -173,10 +174,15 @@ public class PlayerScript : MonoBehaviour
     void resetPlayer(){
         canJump = false;
         onGround = false;
-        charging = false;
+        //charging = false;
 
-        chargeStartTime = 0;
         chargePercentage = 0;
+
+        if(charging == true){
+            chargeStartTime = Time.time;
+        } else {
+            chargeStartTime = 0;
+        }
 
         rb2d.gravityScale = VolleyballConstants.playerGravityScale;
 

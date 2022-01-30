@@ -36,7 +36,7 @@ public class GameManagerScript : MonoBehaviour
 
         playerTwo = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
         playerTwo.GetComponent<PlayerScript>().isPlayerOne = false;
-        playerTwo.AddComponent(typeof(SillyAI));
+        //playerTwo.AddComponent(typeof(SillyAI));
 
         ball = Instantiate(ballPrefab, Vector3.zero, Quaternion.identity);
 
@@ -44,6 +44,8 @@ public class GameManagerScript : MonoBehaviour
 
         playerOneScore = 0;
         playerTwoScore = 0;
+
+        EventManager.TriggerEvent("initCamera");
     }
 
     // Update is called once per frame
@@ -55,5 +57,8 @@ public class GameManagerScript : MonoBehaviour
     {
         if(ball.GetComponent<BallScript>().lastHitPlayer) playerOneScore+=1;
         else playerTwoScore += 1;
+
+        //Debug.Log(playerOneScore);
+        //Debug.Log(playerTwoScore);
     }
 }

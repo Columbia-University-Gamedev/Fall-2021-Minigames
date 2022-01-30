@@ -54,7 +54,7 @@ public class BallScript : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D other){
-        if(other.gameObject.tag == "Player") Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(),GetComponent<Collider2D>());
+        if(other.gameObject.tag == "Player" || other.gameObject.tag == "Net") Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(),GetComponent<Collider2D>());
         else{
             Debug.Log("Touched something");
             EventManager.TriggerEvent("reset");
