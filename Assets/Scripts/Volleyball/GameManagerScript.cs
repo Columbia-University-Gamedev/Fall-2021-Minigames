@@ -55,10 +55,41 @@ public class GameManagerScript : MonoBehaviour
     }
     void updateScore() //Where the actual score updating happens
     {
-        if(ball.GetComponent<BallScript>().lastHitPlayer) playerOneScore+=1;
-        else playerTwoScore += 1;
+        //In bounds score handling
+        //This is if red hit ball last and lands on red side
+        if (ball.GetComponent<BallScript>().lastHitPlayer && (ball.GetComponent<BallScript>().lastHitFloor == 1)) 
+        {
+            playerTwoScore += 1;
+        }
+        //This is if red hit ball and lands on blue side
+        else if(ball.GetComponent<BallScript>().lastHitPlayer && (ball.GetComponent<BallScript>().lastHitFloor == 2))
+        {
+            playerOneScore += 1;
+        }
+        //This is if blue hit ball and lands on red side
+        else if (!ball.GetComponent<BallScript>().lastHitPlayer && (ball.GetComponent<BallScript>().lastHitFloor == 1))
+        {
+            playerTwoScore += 1;
+        }
+        //This is if blue hit ball and lands on blue side
+        else if (!ball.GetComponent<BallScript>().lastHitPlayer && (ball.GetComponent<BallScript>().lastHitFloor == 2))
+        {
+            playerOneScore += 1;
+        }
 
-        //Debug.Log(playerOneScore);
-        //Debug.Log(playerTwoScore);
+        //Out Of Bounds score handling
+        //This is if red hits the ball and lands out of bounds
+        if (ball.GetComponent<BallScript>().lastHitPlayer && ball.GetComponent<BallScript>().outOfBounds)
+        {
+            playerTwoScore += 1;
+        }
+        //This is if blue hits the ball and lands out of bounds
+        else if (!ball.GetComponent<BallScript>().lastHitPlayer && ball.GetComponent<BallScript>().outOfBounds)
+        {
+            playerOneScore += 1;
+        }
+
+        Debug.Log("playerOneScore " + playerOneScore.ToString());
+        Debug.Log("playerTwoScore " + playerTwoScore.ToString());
     }
 }

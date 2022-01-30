@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ball
   - Net
+  - OutOfBounds
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
+  - Background
   - 
   - 
   - 
@@ -40,6 +41,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 994800527
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

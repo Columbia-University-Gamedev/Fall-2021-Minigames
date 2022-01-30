@@ -14,6 +14,8 @@ public class BallScript : MonoBehaviour
     public int bounces;
     public bool hasBeenHit;
     public bool lastHitPlayer; //true if hit by player one, false if hit by player two
+    public int lastHitFloor; //1 if hit red floor, 2 if hit blue floor, 3 otherwise
+    public bool outOfBounds; //true if ball went out of bounds, otherwise false
 
     void OnEnable(){
         EventManager.StartListening("reset",resetListener);
@@ -54,32 +56,54 @@ public class BallScript : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D other){
+        outOfBounds = false;
         if(other.gameObject.tag == "Player" || other.gameObject.tag == "Net") Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(),GetComponent<Collider2D>());
         else{
             Debug.Log("Touched something");
+            if(other.gameObject.name == "RedFloor")
+            {
+                lastHitFloor = 1;
+                Debug.Log("Last Hit Floor is RedFloor");
+            }
+            else
+            {
+                lastHitFloor = 2;
+                Debug.Log("Last Hit Floor is BlueFloor");
+            }
             EventManager.TriggerEvent("reset");
         }
     }
 
     void OnTriggerEnter2D(Collider2D other){
-
-        if(other.gameObject.name == "BallBounceTrigger"){
+        if (other.gameObject.name == "BallBounceTrigger")
+        {
+            outOfBounds = false;
             //Bounce off of the player
             enableGravity();
             rb2d.velocity = (Vector2)(rb2d.velocity.magnitude * (transform.position - other.gameObject.GetComponent<Transform>().position).normalized * VolleyballConstants.ballBounceMultiplier) + other.gameObject.GetComponentInParent<Rigidbody2D>().velocity * VolleyballConstants.ballPlayerVelocityAdditionMultiplier;
-            if(lastHitPlayer != other.gameObject.GetComponentInParent<PlayerScript>().isPlayerOne){
+            if (lastHitPlayer != other.gameObject.GetComponentInParent<PlayerScript>().isPlayerOne)
+            {
                 bounces = 0;
                 lastHitPlayer = !lastHitPlayer;
-            } else {
+            }
+            else
+            {
                 bounces += 1;
             }
         }
-        else if(other.gameObject.name == "OutOfBoundsTrigger") EventManager.TriggerEvent("reset"); //Ball went out of bounds
+        //if Ball goes out of Bounds
+        else if (other.gameObject.name == "OutOfBoundsTrigger")
+        {
+            outOfBounds = true;
+            Debug.Log("Is the ball out of bounds: " + outOfBounds.ToString());
+            EventManager.TriggerEvent("reset");
+        }
     }
 
     void resetBall(){
 
         bool startingSide;
+        lastHitFloor = 3;
 
         bounces = 0;
         hasBeenHit = false;
