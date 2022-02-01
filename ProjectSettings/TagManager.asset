@@ -3,15 +3,24 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Monster
+  - Coin
+  - Ball
+  - Net
+  - OutOfBounds
+  - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
+  - Player
+  - Background
+  - Bullets
   - 
   - 
   - 
@@ -38,6 +47,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 994800527
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: World
+    uniqueID: 2978501151
+    locked: 0
+  - name: UI
+    uniqueID: 912120473
     locked: 0
