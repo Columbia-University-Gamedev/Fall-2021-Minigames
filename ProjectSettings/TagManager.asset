@@ -4,8 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Monster
   - Coin
+=======
+  - Ball
+  - Net
+  - OutOfBounds
+>>>>>>> volleyball
   layers:
   - Default
   - TransparentFX
@@ -40,6 +46,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 994800527
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

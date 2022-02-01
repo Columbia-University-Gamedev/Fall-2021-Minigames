@@ -179,7 +179,6 @@ public class MonsterMove : MonoBehaviour
             _timeOffset = Random.Range(0f, _movePeriod); 
         }
     }
-
     void Update()
     {
         if (!Application.isPlaying)

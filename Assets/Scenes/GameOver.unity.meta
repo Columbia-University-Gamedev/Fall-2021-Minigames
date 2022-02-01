@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/GameOver.unity.meta
 guid: 3b1b08cba446545ad94968ba9e0f9ab8
+========
+guid: 83ebeb5436dd59943a34a030772d1c4b
+>>>>>>>> volleyball:Assets/Scenes/Volleyball.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
