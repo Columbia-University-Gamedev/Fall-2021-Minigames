@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     float _horizontalDrag = 0.2f; 
     
     [SerializeField]
-    float _floorcastFudgeFactor = 0.23f;
+    float _floorcastFudgeFactor = 0.2f;
     
     [SerializeField]
     float _jumpHeight = 5f; // in meters
@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
     {
         bool grounded = detectGround();
         Debug.Log(grounded);
-        if (grounded && rb.velocity.y <= 0)
+        if (grounded)
         {
             // do player jump
             rb.AddForce(Vector2.up * CalculateJumpForce());
