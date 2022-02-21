@@ -11,7 +11,8 @@ public class ReadCSV : MonoBehaviour
     [SerializeField] private TextMeshProUGUI characterName;
     [SerializeField] private TextMeshProUGUI dialogue;
     [SerializeField] private string path;
-
+    public Sprite[] spritesArraytest;
+    public string[] namesArray;
     private StreamReader strReader;
     private bool EOF;
     
@@ -48,11 +49,12 @@ public class ReadCSV : MonoBehaviour
             }
             var dataValues = dataString.Split(',');
 
-            string nameInput = dataValues[0];
+            int characterIndex = int.Parse(dataValues[0]);
             string dialogueInput = dataValues[1];
 
-            characterName.text = nameInput;
+            characterName.text = namesArray[characterIndex];
             dialogue.text = dialogueInput;
+            characterImage.sprite = spritesArraytest[characterIndex];
         }
     }
 }

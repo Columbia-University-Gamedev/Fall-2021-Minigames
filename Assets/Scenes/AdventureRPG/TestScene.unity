@@ -241,6 +241,12 @@ MonoBehaviour:
   characterName: {fileID: 1282549370}
   dialogue: {fileID: 294849290}
   path: Assets/Scripts/Adventure_RPG/testDialogue.csv
+  spritesArraytest:
+  - {fileID: 21300000, guid: d99c8e8676a19e340ac88dfbfbdf54ba, type: 3}
+  - {fileID: 21300000, guid: 89af4219637a3d4498f518b2315f30d1, type: 3}
+  namesArray:
+  - char0
+  - char1
 --- !u!1 &294849288
 GameObject:
   m_ObjectHideFlags: 0
