@@ -18,10 +18,10 @@ public class CityGeneration : MonoBehaviour
     //Vectors
     [SerializeField] Vector2 buildingRange = new Vector2(2, 10); //(Min, max) number of buildings in succession
 
-    public Vector2 xBounds; //Make private later
-    public Vector2 yBounds; //Make private later
+    public Vector2Int xBounds; //Make private later
+    public Vector2Int yBounds; //Make private later
 
-    public Vector2 currentPos;
+    public Vector2Int currentPos;
 
     //Floats
     [Range(5, 30)] public float generationRadius; //Radius that generates outside of player position (is what is used to check with bounds)
@@ -54,21 +54,21 @@ public class CityGeneration : MonoBehaviour
 
     private void Awake()
     {
-        xBounds = new Vector2(player.position.x - generationRadius, player.position.x + generationRadius);
-        yBounds = new Vector2(player.position.y - generationRadius, player.position.y + generationRadius);
+        xBounds = new Vector2Int(Mathf.FloorToInt(player.position.x - generationRadius), Mathf.CeilToInt(player.position.x + generationRadius));
+        yBounds = new Vector2Int(Mathf.FloorToInt(player.position.y - generationRadius), Mathf.CeilToInt(player.position.y + generationRadius));
 
         viewportHeight = Mathf.CeilToInt(mainCamera.orthographicSize * 2);
         viewportWidth = Mathf.CeilToInt(viewportHeight * mainCamera.aspect);
 
-        minYBuildingMap = new GenerationType[viewportWidth];
-        maxYBuildingMap = new GenerationType[viewportWidth];
-        minXBuildingMap = new GenerationType[viewportHeight];
-        maxXBuildingMap = new GenerationType[viewportHeight];
+        minYBuildingMap = GetRandomBlockLine(viewportWidth);
+        maxYBuildingMap = GetRandomBlockLine(viewportWidth);
+        minXBuildingMap = GetRandomBlockLine(viewportHeight);
+        maxXBuildingMap = GetRandomBlockLine(viewportHeight);
     }
 
     void Update()
     {
-        currentPos = new Vector2(Mathf.Ceil(player.position.x), Mathf.Ceil(player.position.y));
+        currentPos = new Vector2Int(Mathf.CeilToInt(player.position.x), Mathf.CeilToInt(player.position.y));
 
         CheckIfOutOfRange(currentPos);
     }
@@ -102,41 +102,71 @@ public class CityGeneration : MonoBehaviour
                 return;
         }
 
-        for (int i = 0; i < maxYBuildingMap.Length; i++)
-        {
-            switch (maxYBuildingMap[i])
-            {
-                case GenerationType.Building:
-                    if (Random.Range(1, 100) >= roadProbablity)
-                        blockLine[i] = GenerationType.Building;
-                    else
-                        blockLine[i] = GenerationType.Road;
-                    break;
-                case GenerationType.Road:
-                    blockLine[i] = GenerationType.Road;
-                    break;
-            }
-        }
-
         switch (dir)
         {
             case GenerationDirection.Up:
-                blockLine = new GenerationType[viewportWidth];
-                break;
-            case GenerationDirection.Down:
-                blockLine = new GenerationType[viewportWidth];
+                blockLine = ContinueBlockLine(maxYBuildingMap);
 
-                Debug.Log("Generate New Block Below");
+                for (int i = 0; i < blockLine.Length; i++)
+                {
+                    switch (blockLine[i])
+                    {
+                        case GenerationType.Building:
+                            Instantiate(tempBuildingPrefab, new Vector3(xBounds.x + i + 0.5f, yBounds.y + 0.5f, 0.0f), Quaternion.identity);
+                            break;
+                        case GenerationType.Road:
+                            Instantiate(tempRoadPrefab, new Vector3(xBounds.x + i + 0.5f, yBounds.y + 0.5f, 0.0f), Quaternion.identity);
+                            break;
+                    }
+                }
+                break;
+
+            case GenerationDirection.Down:
+                blockLine = ContinueBlockLine(minYBuildingMap);
+
+                for (int i = 0; i < blockLine.Length; i++)
+                {
+                    switch (blockLine[i])
+                    {
+                        case GenerationType.Building:
+                            Instantiate(tempBuildingPrefab, new Vector3(xBounds.x + i + 0.5f, yBounds.x - 0.5f, 0.0f), Quaternion.identity);
+                            break;
+                        case GenerationType.Road:
+                            Instantiate(tempRoadPrefab, new Vector3(xBounds.x + i + 0.5f, yBounds.x - 0.5f, 0.0f), Quaternion.identity);
+                            break;
+                    }
+                }
                 break;
             case GenerationDirection.Left:
-                blockLine = new GenerationType[viewportHeight];
+                blockLine = ContinueBlockLine(minXBuildingMap);
 
-                Debug.Log("Generate New Block Leftward");
+                for (int i = 0; i < blockLine.Length; i++)
+                {
+                    switch (blockLine[i])
+                    {
+                        case GenerationType.Building:
+                            Instantiate(tempBuildingPrefab, new Vector3(xBounds.x - 0.5f, yBounds.x + i + 0.5f, 0.0f), Quaternion.identity);
+                            break;
+                        case GenerationType.Road:
+                            Instantiate(tempRoadPrefab, new Vector3(xBounds.x - 0.5f, yBounds.x + i + 0.5f, 0.0f), Quaternion.identity);
+                            break;
+                    }
+                }
                 break;
             case GenerationDirection.Right:
-                blockLine = new GenerationType[viewportHeight];
-
-                Debug.Log("Generate New Block Rightward");
+                blockLine = ContinueBlockLine(maxXBuildingMap);
+                for (int i = 0; i < blockLine.Length; i++)
+                {
+                    switch (blockLine[i])
+                    {
+                        case GenerationType.Building:
+                            Instantiate(tempBuildingPrefab, new Vector3(xBounds.y + 0.5f, yBounds.x + i + 0.5f, 0.0f), Quaternion.identity);
+                            break;
+                        case GenerationType.Road:
+                            Instantiate(tempRoadPrefab, new Vector3(xBounds.y + 0.5f, yBounds.x + i + 0.5f, 0.0f), Quaternion.identity);
+                            break;
+                    }
+                }
                 break;
             default:
                 Debug.LogError("Invalid Direction Given: " + dir);
@@ -153,7 +183,7 @@ public class CityGeneration : MonoBehaviour
         {
             GenerateNewBlockLine(GenerationDirection.Left);
 
-            xBounds.x = Mathf.Floor(pos.x) - generationRadius;
+            xBounds.x = Mathf.FloorToInt(pos.x - generationRadius);
         }
 
         //Max
@@ -161,7 +191,7 @@ public class CityGeneration : MonoBehaviour
         {
             GenerateNewBlockLine(GenerationDirection.Right);
 
-            xBounds.y = Mathf.Ceil(pos.x) + generationRadius;
+            xBounds.y = Mathf.CeilToInt(pos.x + generationRadius);
         }
 
         //Check for change in y-bounds
@@ -171,7 +201,7 @@ public class CityGeneration : MonoBehaviour
         {
             GenerateNewBlockLine(GenerationDirection.Down);
 
-            yBounds.x = Mathf.Floor(pos.y) - generationRadius;
+            yBounds.x = Mathf.FloorToInt(pos.y - generationRadius);
         }
 
         //Max
@@ -179,8 +209,59 @@ public class CityGeneration : MonoBehaviour
         {
             GenerateNewBlockLine(GenerationDirection.Up);
 
-            yBounds.y = Mathf.Ceil(pos.y) + generationRadius;
+            yBounds.y = Mathf.CeilToInt(pos.y + generationRadius);
         }
     }
 
+    private GenerationType[] GetRandomBlockLine(int length)
+    {
+        GenerationType[] blockLine = new GenerationType[length];
+
+        int buildingsInARow = 0;
+
+        for (int i = 0; i < length; i++)
+        {
+            if (Random.Range(1, 100) >= roadProbablity)
+            {
+                buildingsInARow++;
+
+                blockLine[i] = GenerationType.Building;
+            }
+            else
+            {
+                if (buildingsInARow == 0 && i > 0)
+                {
+                    blockLine[i] = GenerationType.Building;
+                }
+                else
+                {
+                    buildingsInARow = 0;
+
+                    blockLine[i] = GenerationType.Road;
+                }
+            }
+        }
+
+        return blockLine;
+    }
+
+    private GenerationType[] ContinueBlockLine(GenerationType[] previousBlockLine)
+    {
+        GenerationType[] blockLine = new GenerationType[previousBlockLine.Length];
+
+        for (int i = 0; i < previousBlockLine.Length; i++)
+        {
+            switch (previousBlockLine[i])
+            {
+                case GenerationType.Building:
+                    blockLine[i] = GenerationType.Building;
+                    break;
+                case GenerationType.Road:
+                    blockLine[i] = GenerationType.Road;
+                    break;
+            }
+        }
+
+        return blockLine;
+    }
 }
