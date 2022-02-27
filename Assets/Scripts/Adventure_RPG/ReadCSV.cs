@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.IO;
+using CharacterStruct;
 
 public class ReadCSV : MonoBehaviour
 {
@@ -11,8 +12,7 @@ public class ReadCSV : MonoBehaviour
     [SerializeField] private TextMeshProUGUI characterName;
     [SerializeField] private TextMeshProUGUI dialogue;
     [SerializeField] private string path;
-    public Sprite[] spritesArraytest;
-    public string[] namesArray;
+    public Character[] characterArray;
     private StreamReader strReader;
     private bool EOF;
     
@@ -52,9 +52,9 @@ public class ReadCSV : MonoBehaviour
             int characterIndex = int.Parse(dataValues[0]);
             string dialogueInput = dataValues[1];
 
-            characterName.text = namesArray[characterIndex];
+            characterName.text = characterArray[characterIndex].GetName();
             dialogue.text = dialogueInput;
-            characterImage.sprite = spritesArraytest[characterIndex];
+            characterImage.sprite = characterArray[characterIndex].GetImage();
         }
     }
 }
