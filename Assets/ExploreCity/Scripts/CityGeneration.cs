@@ -21,10 +21,43 @@ public class CityGeneration : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private GameObject[] buildings;
 
+    private void Awake()
+    {
+        xBounds = new Vector2(player.position.x - generationRadius, player.position.x + generationRadius);
+        yBounds = new Vector2(player.position.y - generationRadius, player.position.y + generationRadius);
+    }
+
     void Update()
     {
         currentPos = player.position;
 
+        //Check for change in x-bounds
+
+        //Min
+        if (xBounds.x > player.position.x - generationRadius)
+        {
+            generateNewBlock();
+        }
+
+        //Max
+        if (xBounds.y < player.position.x + generationRadius)
+        {
+            generateNewBlock();
+        }
+
+        //Check for change in y-bounds
+
+        //Min
+        if (yBounds.x > player.position.y - generationRadius)
+        {
+            generateNewBlock();
+        }
+
+        //Max
+        if (yBounds.y < player.position.y + generationRadius)
+        {
+            generateNewBlock();
+        }
 
     }
 
