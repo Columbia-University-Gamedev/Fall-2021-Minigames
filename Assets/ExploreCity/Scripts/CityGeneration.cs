@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class CityGeneration : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    int[,] buildingMap;
 
-    // Update is called once per frame
+    [SerializeField] Vector2 buildingRange = new Vector2(2, 10); //(Min, max) number of buildings in succession
+
+    [SerializeField] GameObject[] buildings;
+
     void Update()
     {
-        
+
     }
 }
