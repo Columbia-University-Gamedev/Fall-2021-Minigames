@@ -21,7 +21,6 @@ public class TriggerDialogue : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log("Test: " + collider.name);
         readCsv.attemptStart(csvPath);
     }
 }
