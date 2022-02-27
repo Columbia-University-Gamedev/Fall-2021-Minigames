@@ -177,7 +177,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -256,7 +256,7 @@ MonoBehaviour:
   xBounds: {x: 0, y: 0}
   yBounds: {x: 0, y: 0}
   currentPos: {x: 0, y: 0}
-  generationRadius: 15
+  generationRadius: 25
   player: {fileID: 433534940}
   buildings: []
 --- !u!4 &293472080

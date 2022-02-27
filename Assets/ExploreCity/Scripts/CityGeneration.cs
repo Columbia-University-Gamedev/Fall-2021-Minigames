@@ -21,6 +21,14 @@ public class CityGeneration : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private GameObject[] buildings;
 
+    enum GenerationDirection
+    {
+        Up,
+        Down,
+        Left,
+        Right
+    }
+
     private void Awake()
     {
         xBounds = new Vector2(player.position.x - generationRadius, player.position.x + generationRadius);
@@ -29,41 +37,66 @@ public class CityGeneration : MonoBehaviour
 
     void Update()
     {
-        currentPos = player.position;
+        currentPos = new Vector2(Mathf.Ceil(player.position.x), Mathf.Ceil(player.position.y));
 
         //Check for change in x-bounds
 
         //Min
-        if (xBounds.x > player.position.x - generationRadius)
+        if (xBounds.x > Mathf.Floor(player.position.x) - generationRadius)
         {
-            generateNewBlock();
+            generateNewBlock(GenerationDirection.Left);
+
+            xBounds.x = Mathf.Floor(player.position.x) - generationRadius;
         }
 
         //Max
-        if (xBounds.y < player.position.x + generationRadius)
+        if (xBounds.y < Mathf.Ceil(player.position.x) + generationRadius)
         {
-            generateNewBlock();
+            generateNewBlock(GenerationDirection.Right);
+
+            xBounds.y = Mathf.Ceil(player.position.x) + generationRadius;
         }
 
         //Check for change in y-bounds
 
         //Min
-        if (yBounds.x > player.position.y - generationRadius)
+        if (yBounds.x > Mathf.Floor(player.position.y) - generationRadius)
         {
-            generateNewBlock();
+            generateNewBlock(GenerationDirection.Down);
+
+            yBounds.x = Mathf.Floor(player.position.y) - generationRadius;
         }
 
         //Max
-        if (yBounds.y < player.position.y + generationRadius)
+        if (yBounds.y < Mathf.Ceil(player.position.y) + generationRadius)
         {
-            generateNewBlock();
+            generateNewBlock(GenerationDirection.Up);
+
+            yBounds.y = Mathf.Ceil(player.position.y) + generationRadius;
         }
 
     }
 
     //Generate blocks in the player's FOV and in a radius outside of that
-    private void generateNewBlock()
+    private void generateNewBlock(GenerationDirection dir)
     {
-
+        switch (dir)
+        {
+            case GenerationDirection.Up:
+                Debug.Log("Generate New Block Above");
+                break;
+            case GenerationDirection.Down:
+                Debug.Log("Generate New Block Below");
+                break;
+            case GenerationDirection.Left:
+                Debug.Log("Generate New Block Leftward");
+                break;
+            case GenerationDirection.Right:
+                Debug.Log("Generate New Block Rightward");
+                break;
+            default:
+                Debug.LogError("Invalid Direction Given: " + dir);
+                break;
+        }
     }
 }
