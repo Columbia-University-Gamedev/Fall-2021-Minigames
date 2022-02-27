@@ -236,7 +236,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d3925c7983f9f345bdb17f86477ef54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingRange: {x: 2, y: 3}
+  buildingRange: {x: 2, y: 5}
+  xBounds: {x: 0, y: 0}
+  yBounds: {x: 0, y: 0}
+  currentPos: {x: 0, y: 0}
+  generationRadius: 15
+  player: {fileID: 433534940}
   buildings: []
 --- !u!4 &293472080
 Transform:
