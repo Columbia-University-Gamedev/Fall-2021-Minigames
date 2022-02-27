@@ -11,26 +11,57 @@ public class ReadCSV : MonoBehaviour
     [SerializeField] private Image characterImage;
     [SerializeField] private TextMeshProUGUI characterName;
     [SerializeField] private TextMeshProUGUI dialogue;
-    [SerializeField] private string path;
+    [SerializeField] private GameObject dialogueBox;
     public Character[] characterArray;
     private StreamReader strReader;
     private bool EOF;
+    private bool busy = false; // Busy if some dialogue has been started by not finished
     
     // Start is called before the first frame update
     void Start()
     {
-        strReader = new StreamReader(path);
-        EOF = false;
-        
-        strReader.ReadLine();
-        ReadNextLine();
-        Debug.Log("ahdskjflahsdkjlfsdah");
+        EOF = true; // No text at start
+        dialogueBox.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    // Claim control of the dialogue box if possible
+    // Returns `true` if control is claimed
+    private bool tryClaim()
+    {
+        if (busy)
+        {
+            return false;
+        }
+        else
+        {
+            busy = true;
+            return true;
+        }
+    }
+
+    // Attempt to start dialogue using a specified CSV file
+    // Returns `true` if successful
+    public bool attemptStart(string csvPath)
+    {
+        if (tryClaim())
+        {
+            strReader = new StreamReader(csvPath);
+            EOF = false;
+            dialogueBox.SetActive(true);
+            strReader.ReadLine();
+            ReadNextLine();
+            return true; // Successfully started dialogue
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public void ReadNextLine()
@@ -41,13 +72,14 @@ public class ReadCSV : MonoBehaviour
             if (dataString == null)
             {
                 EOF = true;
+                busy = false;
+                dialogueBox.SetActive(false);
                 return;
             }
             else if (dataString.Contains("characterName"))
             {
                 return;
             }
-            var dataValues = dataString.Split(',');
 
             int characterIndex = int.Parse(dataValues[0]);
             string dialogueInput = dataValues[1];
