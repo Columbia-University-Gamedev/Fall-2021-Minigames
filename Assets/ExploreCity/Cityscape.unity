@@ -257,8 +257,12 @@ MonoBehaviour:
   yBounds: {x: 0, y: 0}
   currentPos: {x: 0, y: 0}
   generationRadius: 25
+  roadProbablity: 15
   player: {fileID: 433534940}
   buildings: []
+  mainCamera: {fileID: 143442975}
+  tempBuildingPrefab: {fileID: 976943942252582654, guid: 2aef4779fa06be444ab39ec7ed01dcc3, type: 3}
+  tempRoadPrefab: {fileID: 976943942252582654, guid: 08e3c43bf5b98461485854854c86210a, type: 3}
 --- !u!4 &293472080
 Transform:
   m_ObjectHideFlags: 0
@@ -288,7 +292,7 @@ GameObject:
   - component: {fileID: 433534941}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
