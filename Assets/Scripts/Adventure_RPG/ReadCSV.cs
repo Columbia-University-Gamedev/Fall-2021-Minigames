@@ -8,6 +8,9 @@ using CharacterStruct;
 
 public class ReadCSV : MonoBehaviour
 {
+    [SerializeField] private GameObject player;
+    private PlayerMovement playerMovement;
+    
     [SerializeField] private Image characterImage;
     [SerializeField] private TextMeshProUGUI characterName;
     [SerializeField] private TextMeshProUGUI dialogue;
@@ -22,6 +25,7 @@ public class ReadCSV : MonoBehaviour
     {
         EOF = true; // No text at start
         dialogueBox.SetActive(false);
+        playerMovement = player.GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -57,6 +61,7 @@ public class ReadCSV : MonoBehaviour
             strReader.ReadLine();
             ReadNextLine();
             return true; // Successfully started dialogue
+            playerMovement.canMove = false;
         }
         else
         {
@@ -138,6 +143,10 @@ public class ReadCSV : MonoBehaviour
             characterName.text = characterArray[characterIndex].GetName();
             dialogue.text = dialogueInput;
             characterImage.sprite = characterArray[characterIndex].GetImage();
+        }
+        if (EOF)
+        {
+            playerMovement.canMove = true;
         }
     }
 }

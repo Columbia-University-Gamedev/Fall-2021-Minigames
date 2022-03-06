@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public bool canMove;
     private Vector2 moveVector;
     private Rigidbody2D rb;
     private Collider2D playerCollider;
@@ -33,10 +33,12 @@ public class PlayerMovement : MonoBehaviour
     float _gravityScaleInfluence = 0.75f; // how much of rigid body's gravity scale to take into account
 
     [SerializeField] private LayerMask ground;    
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<Collider2D>();
+        canMove = true;
     }
 
     // Update is called once per frame
@@ -70,13 +72,16 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void OnMove(InputAction.CallbackContext context){
-        Vector2 direction = context.ReadValue<Vector2>();
-        moveVector = new Vector3(direction.x, 0, direction.y);
+        if (canMove)
+        {
+            Vector2 direction = context.ReadValue<Vector2>();
+            moveVector = new Vector3(direction.x, 0, direction.y);
+        }   
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (grounded)
+        if (grounded && canMove)
         {
             // do player jump
             rb.AddForce(Vector2.up * CalculateJumpForce());
