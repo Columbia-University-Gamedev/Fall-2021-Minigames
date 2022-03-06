@@ -5,11 +5,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    
-    // Start is called before the first frame update
+    public bool canMove;
     private Vector2 moveVector;
     private Rigidbody2D rb;
     private Collider2D playerCollider;
+    private bool grounded;
 
     [SerializeField]
     float _horizontalAcceleration = 20f; // meters per second per second
@@ -33,10 +33,12 @@ public class PlayerMovement : MonoBehaviour
     float _gravityScaleInfluence = 0.75f; // how much of rigid body's gravity scale to take into account
 
     [SerializeField] private LayerMask ground;    
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<Collider2D>();
+        canMove = true;
     }
 
     // Update is called once per frame
@@ -66,48 +68,33 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity -= rb.velocity.x * _horizontalDrag * Vector2.right;
             //rb.AddForce(new Vector2(-0.1f, rb.velocity.y), ForceMode2D.Impulse);
         }
+
+       
+        float depth = playerCollider.bounds.extents.y + 0.3f;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.down, depth, ground);
+        grounded = (hit.collider != null);
+        if (grounded)
+        {            
+            transform.up = Vector2.Lerp(transform.up, hit.normal, Time.deltaTime * 5f);
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context){
-        Vector2 direction = context.ReadValue<Vector2>();
-        moveVector = new Vector3(direction.x, 0, direction.y);
+        if (canMove)
+        {
+            Vector2 direction = context.ReadValue<Vector2>();
+            moveVector = new Vector3(direction.x, 0, direction.y);
+        }   
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        bool grounded = detectGround();
-        Debug.Log(grounded);
-        if (grounded && rb.velocity.y < 0.001f)
+        if (grounded && canMove && rb.velocity.y < 0.001f)
         {
             // do player jump
             //rb.AddForce(Vector2.up * CalculateJumpForce());
             rb.AddForce(new Vector2(0,4), ForceMode2D.Impulse);
         }
-    }
-
-    bool detectGround()
-    {
-        float size = playerCollider.bounds.extents.magnitude; 
-
-        Vector3 playerPosLeft = playerCollider.bounds.center - playerCollider.bounds.extents;
-		Vector3 playerPosRight = new Vector3(playerPosLeft.x + 2f * playerCollider.bounds.extents.x, playerPosLeft.y, playerPosLeft.z);
-		RaycastHit2D left = Physics2D.Raycast(playerPosLeft, Vector2.down, _floorcastFudgeFactor * size, ground);
-		RaycastHit2D right = Physics2D.Raycast(playerPosRight, Vector2.down, _floorcastFudgeFactor * size, ground);
-
-		Color rayColor;
-		if (left.collider != null || right.collider != null)
-		{
-		   rayColor = Color.green;
-		}
-		else
-		{
-		   rayColor = Color.red;
-		}	
-
-		Debug.DrawRay(playerPosLeft, Vector2.down * _floorcastFudgeFactor * size, rayColor);
-		Debug.DrawRay(playerPosRight, Vector2.down * _floorcastFudgeFactor * size, rayColor);
-        
-		return (left.collider != null || right.collider != null);
     }
 
     float CalculateJumpForce()
@@ -129,5 +116,14 @@ public class PlayerMovement : MonoBehaviour
         float t_impulse = Time.deltaTime; 
 
         return m * (vf - v0) / t_impulse; 
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+        }
     }
 }
