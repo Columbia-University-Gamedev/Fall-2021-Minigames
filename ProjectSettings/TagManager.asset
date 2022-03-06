@@ -11,6 +11,7 @@ TagManager:
   - OutOfBounds
   - Enemy
   - Bullet
+  - Ground
   layers:
   - Default
   - TransparentFX
