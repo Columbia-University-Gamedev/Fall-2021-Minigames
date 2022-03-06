@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    
     // Start is called before the first frame update
     private Vector2 moveVector;
     private Rigidbody2D rb;
@@ -14,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     float _horizontalAcceleration = 20f; // meters per second per second
 
     [SerializeField]
-    float _maxHorizontalSpeed = 10f;
+    float _maxHorizontalSpeed = 1f;
 
     [SerializeField]
     float _horizontalDrag = 0.2f; 
@@ -41,6 +42,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Debuging Outputs
+        Debug.Log(rb.velocity.x);
+
+
+
         //horizontal movement components
         float horizontalComponent = 0f;
         horizontalComponent += moveVector.x;
@@ -51,11 +57,14 @@ public class PlayerMovement : MonoBehaviour
             Mathf.Abs(rb.velocity.x) < _maxHorizontalSpeed)
         {
             rb.velocity += horizontalComponent * Vector2.right * _horizontalAcceleration * Time.deltaTime;
+            //rb.AddForce(new Vector2(0.1f, rb.velocity.y), ForceMode2D.Impulse);
+            
         }
 
         if (horizontalComponent == 0f)
         {
             rb.velocity -= rb.velocity.x * _horizontalDrag * Vector2.right;
+            //rb.AddForce(new Vector2(-0.1f, rb.velocity.y), ForceMode2D.Impulse);
         }
     }
 
@@ -68,10 +77,11 @@ public class PlayerMovement : MonoBehaviour
     {
         bool grounded = detectGround();
         Debug.Log(grounded);
-        if (grounded)
+        if (grounded && rb.velocity.y < 0.001f)
         {
             // do player jump
-            rb.AddForce(Vector2.up * CalculateJumpForce());
+            //rb.AddForce(Vector2.up * CalculateJumpForce());
+            rb.AddForce(new Vector2(0,4), ForceMode2D.Impulse);
         }
     }
 
