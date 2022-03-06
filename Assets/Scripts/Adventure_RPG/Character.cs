@@ -5,10 +5,11 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
 
+[Serializable]
 public class Character
 {
-    public Sprite characterImage;
-    public string characterName;
+    [SerializeField] private Sprite characterImage;
+    [SerializeField] private string characterName;
 
     public string GetName()
     {
