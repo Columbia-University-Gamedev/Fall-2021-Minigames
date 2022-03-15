@@ -256,7 +256,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 173301477}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -756,14 +756,12 @@ MonoBehaviour:
   canMove: 0
   _horizontalAcceleration: 20
   _maxHorizontalSpeed: 10
-  _horizontalDrag: 0.2
+  _groundFrictionCoefficient: 0.2
   _floorcastFudgeFactor: 0.23
   _jumpHeight: 1
-  _jumpTime: 1
-  _gravityScaleInfluence: 0.75
-  ground:
+  _groundMask:
     serializedVersion: 2
-    m_Bits: 1032
+    m_Bits: 8
 --- !u!114 &513792742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1470,8 +1468,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047224583}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.023899928, y: 0, z: 0}
-  m_LocalScale: {x: 15.770389, y: 1, z: 1}
+  m_LocalPosition: {x: 0.023899928, y: -2.0428, z: 0}
+  m_LocalScale: {x: 15.770389, y: 5.0856, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 173301477}
@@ -1992,8 +1990,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1640898877}
   m_LocalRotation: {x: -0, y: -0, z: -0.19674356, w: 0.98045504}
-  m_LocalPosition: {x: 11.2087, y: -1.43, z: 0}
-  m_LocalScale: {x: 7.621335, y: 1, z: 1}
+  m_LocalPosition: {x: 10.4987, y: -3.128, z: 0}
+  m_LocalScale: {x: 7.621335, y: 4.6809, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 173301477}
@@ -2103,7 +2101,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693561113}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 1.61, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
