@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.IsolatedStorage;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,21 +19,15 @@ public class PlayerMovement : MonoBehaviour
     float _maxHorizontalSpeed = 1f;
 
     [SerializeField]
-    float _horizontalDrag = 0.2f; 
+    float _groundFrictionCoefficient = 0.2f; 
     
     [SerializeField]
     float _floorcastFudgeFactor = 0.2f;
     
     [SerializeField]
     float _jumpHeight = 5f; // in meters
-
-    [SerializeField]
-    float _jumpTime = 1f; // in seconds
-
-    [SerializeField]
-    float _gravityScaleInfluence = 0.75f; // how much of rigid body's gravity scale to take into account
-
-    [SerializeField] private LayerMask ground;    
+    
+    [SerializeField] private LayerMask _groundMask;    
     
     void Start()
     {
@@ -46,54 +41,67 @@ public class PlayerMovement : MonoBehaviour
     {
         //Debuging Outputs
         Debug.Log(rb.velocity.x);
-
-
-
-        //horizontal movement components
-        float horizontalComponent = 0f;
-        horizontalComponent += moveVector.x;
-
-        horizontalComponent = Mathf.Clamp(horizontalComponent, -1f, 1f);
-
-        if (Mathf.Sign(rb.velocity.x) != Mathf.Sign(horizontalComponent) ||
+    
+        if (Mathf.Sign(rb.velocity.x) != Mathf.Sign(moveVector.x) ||
             Mathf.Abs(rb.velocity.x) < _maxHorizontalSpeed)
         {
-            rb.velocity += horizontalComponent * Vector2.right * _horizontalAcceleration * Time.deltaTime;
+            
             //rb.AddForce(new Vector2(0.1f, rb.velocity.y), ForceMode2D.Impulse);
             
+            float force = rb.mass * moveVector.x * _horizontalAcceleration; 
+            rb.AddForce(force * Vector2.right);
         }
 
-        if (horizontalComponent == 0f)
-        {
-            rb.velocity -= rb.velocity.x * _horizontalDrag * Vector2.right;
-            //rb.AddForce(new Vector2(-0.1f, rb.velocity.y), ForceMode2D.Impulse);
-        }
-
-       
-        float depth = playerCollider.bounds.extents.y + 0.3f;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.down, depth, ground);
-        grounded = (hit.collider != null);
+        Vector2 extents = playerCollider.bounds.extents; 
+        float colliderHeight = extents.y + 0.1f;
+        float checkRadius = 0.8f * extents.magnitude;
+        Vector2 offset = (Vector2)playerCollider.bounds.center + colliderHeight * Vector2.down; 
+        
+        Collider2D ground = Physics2D.OverlapCircle(offset, checkRadius, _groundMask);
+        
+        grounded = ground != null; 
         if (grounded)
-        {            
-            transform.up = Vector2.Lerp(transform.up, hit.normal, Time.deltaTime * 5f);
+        {
+            Vector2 normal =
+                (rb.worldCenterOfMass - ground.ClosestPoint(rb.worldCenterOfMass))
+                .normalized;
+            
+            Vector2 tangent = Quaternion.FromToRotation(Vector3.up, Vector3.right) * normal; 
+            
+            // orientation 
+            transform.up = Vector3.Lerp(transform.up, normal, Time.fixedDeltaTime * 5f);
+            
+            
+            // friction (only apply if no lateral force on player) 
+            if (Mathf.Abs(moveVector.x) < 0.07f)
+            {
+                // project gravity vector onto the ground normal 
+                float dottedAcceleration = Mathf.Abs(Vector2.Dot(normal, Physics2D.gravity));
+                float normalForce = rb.mass * dottedAcceleration;
+
+                // does velocity oppose tangent? friction needs to oppose velocity. 
+                int sign = Vector2.Dot(tangent, rb.velocity) < 0f ? 1 : -1;
+
+                // construct friction vector
+                Vector2 friction = sign * _groundFrictionCoefficient * normalForce * tangent;
+
+                rb.AddForce(friction);
+            }
         }
     }
 
-    public void OnMove(InputAction.CallbackContext context){
-        if (canMove)
-        {
-            Vector2 direction = context.ReadValue<Vector2>();
-            moveVector = new Vector3(direction.x, 0, direction.y);
-        }   
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        moveVector = context.performed && canMove ? context.ReadValue<Vector2>() : Vector2.zero;
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (grounded && canMove && rb.velocity.y < 0.001f)
+        if (!context.performed) return; 
+        
+        if (grounded && canMove)
         {
-            // do player jump
-            //rb.AddForce(Vector2.up * CalculateJumpForce());
-            rb.AddForce(new Vector2(0,4), ForceMode2D.Impulse);
+            rb.AddForce(CalculateJumpForce() * Vector2.up);
         }
     }
 
@@ -101,21 +109,20 @@ public class PlayerMovement : MonoBehaviour
     {
         /*
             F = (mass (targetVelocity - current_velocity)) / Time.deltaTime
-         */
-
-        // doesnt' work perfectly but if you play with the jump inputs 
-        // you can get good results
-
+        */
+        
         float h = _jumpHeight;
-        float t_flight = _jumpTime;
+        float g = Physics2D.gravity.magnitude;
 
-        float vf = h / t_flight + 0.5f * Physics.gravity.magnitude * rb.gravityScale * _gravityScaleInfluence * t_flight;
+        float t_flight = Mathf.Sqrt(2 * h / g);
+
+        float vf = h / t_flight + 0.5f * g * t_flight;
 
         float m = rb.mass;
         float v0 = rb.velocity.y;
-        float t_impulse = Time.deltaTime; 
+        float t_impulse = Time.fixedDeltaTime;
 
-        return m * (vf - v0) / t_impulse; 
+        return m * (vf - v0) / t_impulse;
     }
 
     void OnCollisionEnter2D(Collision2D other)
