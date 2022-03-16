@@ -8,10 +8,12 @@ public class TriggerDialogue : MonoBehaviour
     [SerializeField] private string csvPath;
     private ReadCSV readCsv;
     private bool read;
+    private Task task;
     // Start is called before the first frame update
     void Start()
     {
         readCsv = canvas.GetComponent<ReadCSV>();
+        task = GetComponent<Task>();
         read = false;
     }
 
@@ -28,5 +30,6 @@ public class TriggerDialogue : MonoBehaviour
             readCsv.attemptStart(csvPath);
         }
         read = true;
+        task.completed = true;
     }
 }

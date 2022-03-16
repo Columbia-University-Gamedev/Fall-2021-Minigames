@@ -60,8 +60,8 @@ public class ReadCSV : MonoBehaviour
             dialogueBox.SetActive(true);
             strReader.ReadLine();
             ReadNextLine();
-            return true; // Successfully started dialogue
             playerMovement.canMove = false;
+            return true; // Successfully started dialogue
         }
         else
         {
@@ -129,6 +129,7 @@ public class ReadCSV : MonoBehaviour
                 EOF = true;
                 busy = false;
                 dialogueBox.SetActive(false);
+                playerMovement.canMove = true;
                 return;
             }
             else if (dataString.Contains("characterName"))
@@ -143,10 +144,6 @@ public class ReadCSV : MonoBehaviour
             characterName.text = characterArray[characterIndex].GetName();
             dialogue.text = dialogueInput;
             characterImage.sprite = characterArray[characterIndex].GetImage();
-        }
-        if (EOF)
-        {
-            playerMovement.canMove = true;
         }
     }
 }

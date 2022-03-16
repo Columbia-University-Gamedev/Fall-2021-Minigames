@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TriggerNextScene : MonoBehaviour
 {
     // Start is called before the first frame update
-    public bool[] tasks;
+    public Task[] tasks;
     [SerializeField] private string nextScene;
     void Start()
     {
@@ -18,13 +19,13 @@ public class TriggerNextScene : MonoBehaviour
         
     }
 
-    void OnTriggerEnter2D(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            foreach (bool b in tasks)
+            foreach (Task task in tasks)
             {
-                if (!b)
+                if (!task.completed)
                 {
                     return;
                 }

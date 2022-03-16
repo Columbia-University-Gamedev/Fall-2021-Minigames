@@ -27,6 +27,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float _jumpHeight = 5f; // in meters
     
+    [SerializeField]
+    bool _startingDirectionIsLeft = false;
+
+    float _leftScaleSign = -1f; 
+    
     [SerializeField] private LayerMask _groundMask;    
     
     void Start()
@@ -39,15 +44,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Debuging Outputs
-        Debug.Log(rb.velocity.x);
-    
         if (Mathf.Sign(rb.velocity.x) != Mathf.Sign(moveVector.x) ||
             Mathf.Abs(rb.velocity.x) < _maxHorizontalSpeed)
-        {
-            
-            //rb.AddForce(new Vector2(0.1f, rb.velocity.y), ForceMode2D.Impulse);
-            
+        {            
             float force = rb.mass * moveVector.x * _horizontalAcceleration; 
             rb.AddForce(force * Vector2.right);
         }
@@ -87,6 +86,21 @@ public class PlayerMovement : MonoBehaviour
 
                 rb.AddForce(friction);
             }
+        }
+
+        // deterministic flipping
+        if (Mathf.Abs(rb.velocity.x) > 0.2f)
+        {
+            float flag1 = rb.velocity.x < 0 ? 1f : -1f;
+            float flag2 = _startingDirectionIsLeft ? 1f : -1f;
+
+            float signX = _leftScaleSign * flag1 * flag2;
+
+            Vector3 scale = transform.localScale;
+
+            scale.x = Mathf.Abs(scale.x) * signX;
+
+            transform.localScale = scale;
         }
     }
 
