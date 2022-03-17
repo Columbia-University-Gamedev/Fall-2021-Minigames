@@ -39,11 +39,11 @@ public class CureSpirit : MonoBehaviour
     {
         for (float i = 0; i <= timer; i += Time.deltaTime)
         {
-            transform.localScale = Vector3.Lerp(transform.localScale, animSize, Time.deltaTime);
+            companionAnim.transform.localScale = Vector3.Lerp(companionAnim.transform.localScale, animSize, Time.deltaTime);
             yield return null;
         }
         mutatedSpirit.sprite = curedSpirit;
-        StartCoroutine(ImageFade.FadeSprite(true, timer, alpha, companionAnim.GetComponent<SpriteRenderer>()));
+        yield return StartCoroutine(ImageFade.FadeSprite(true, timer, alpha, companionAnim.GetComponent<SpriteRenderer>()));
 
         transform.localScale = Vector3.zero;
         cured = true;
