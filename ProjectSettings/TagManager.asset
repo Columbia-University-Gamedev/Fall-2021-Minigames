@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - Bullet
   - Ground
+  - PushableObject
   layers:
   - Default
   - TransparentFX
