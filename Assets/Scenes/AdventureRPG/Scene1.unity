@@ -463,6 +463,7 @@ MonoBehaviour:
   _groundFrictionCoefficient: 0.35
   _floorcastFudgeFactor: 0.2
   _jumpHeight: 5
+  _startingDirectionIsLeft: 0
   _groundMask:
     serializedVersion: 2
     m_Bits: 8
@@ -796,7 +797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tasks:
   - {fileID: 1130940667}
-  nextScene: TestScene
+  nextScene: Scene2
 --- !u!61 &469824906
 BoxCollider2D:
   m_ObjectHideFlags: 0

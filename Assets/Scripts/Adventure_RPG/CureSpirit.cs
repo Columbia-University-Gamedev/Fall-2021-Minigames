@@ -45,7 +45,7 @@ public class CureSpirit : MonoBehaviour
         mutatedSpirit.sprite = curedSpirit;
         yield return StartCoroutine(ImageFade.FadeSprite(true, timer, alpha, companionAnim.GetComponent<SpriteRenderer>()));
 
-        transform.localScale = Vector3.zero;
+        companionAnim.transform.localScale = Vector3.zero;
         cured = true;
     }
 }

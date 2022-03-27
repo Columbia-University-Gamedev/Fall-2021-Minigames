@@ -1484,6 +1484,7 @@ MonoBehaviour:
   - {fileID: 418637529}
   - {fileID: 1311182840}
   - {fileID: 395267994}
+  - {fileID: 839878067}
   nextScene: TestScene
 --- !u!61 &469824906
 BoxCollider2D:
@@ -2065,6 +2066,24 @@ Transform:
   m_Father: {fileID: 27757520}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &839878062 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8705114972585438102, guid: 4ab4947d2044a4a2fb48645d15beb0cd, type: 3}
+  m_PrefabInstance: {fileID: 1070691993}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &839878067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839878062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62e2eb4beb11e4f6a8c935f1eb66d820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  completed: 0
 --- !u!1 &1012082591
 GameObject:
   m_ObjectHideFlags: 0
