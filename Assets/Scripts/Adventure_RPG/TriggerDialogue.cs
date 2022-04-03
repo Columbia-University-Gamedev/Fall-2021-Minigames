@@ -27,9 +27,8 @@ public class TriggerDialogue : MonoBehaviour
     {
         if (!read)
         {
-            readCsv.attemptStart(textAsset);
+            read = readCsv.attemptStart(textAsset);
         }
-        read = true;
         task.completed = true;
     }
 }
