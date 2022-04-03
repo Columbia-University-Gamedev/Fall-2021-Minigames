@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CircleCollider2D))]
-public class EPNPCBehavior : MonoBehaviour
+public class ECNPCBehavior : MonoBehaviour
 {
     //if not empty the NPC will patrol while not in range
     public Transform[] patrolPoints = { };

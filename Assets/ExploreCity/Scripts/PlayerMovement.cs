@@ -1,19 +1,23 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed;
 
-    private Vector2 _moveDirection;
+    private Vector2 move;
+    private bool isInteractPressed;
+    [SerializeField] 
+    private Rigidbody2D rb2d;
 
-    private float moveX;
-    private float moveY;
+    private void Awake()
+    {
 
-    [SerializeField] private Rigidbody2D rb2d;
+    }
 
     private void Update() //Every frame
     {
-        ProcessInputs();
+
     }
 
     private void FixedUpdate() //Every tick
@@ -21,16 +25,22 @@ public class PlayerMovement : MonoBehaviour
         Move();
     }
 
-    private void ProcessInputs()
+    public void OnMovement(InputValue res)
     {
-        moveX = Input.GetAxisRaw("Horizontal");
-        moveY = Input.GetAxisRaw("Vertical");
-
-        _moveDirection = new Vector2(moveX, moveY).normalized;
+        move = res.Get<Vector2>();
+        Debug.Log("INPUT: Input Vector: " + move);
     }
 
+    public void OnInteract(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            isInteractPressed = true;
+            Debug.Log("INPUT: Interact pressed");
+        }
+    }
     private void Move()
     {
-        rb2d.MovePosition(rb2d.position + _moveDirection * moveSpeed * Time.fixedDeltaTime);
+        rb2d.MovePosition(rb2d.position + move * moveSpeed * Time.fixedDeltaTime);
     }
 }

@@ -409,6 +409,7 @@ GameObject:
   m_Component:
   - component: {fileID: 797335393}
   - component: {fileID: 797335392}
+  - component: {fileID: 797335395}
   - component: {fileID: 797335391}
   - component: {fileID: 797335390}
   - component: {fileID: 797335394}
@@ -436,7 +437,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -537,6 +538,56 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &797335395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797335389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: ee8017022c0556942b8245b9026c5716, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fc41e7f6-fef5-4600-b46b-1b98011e8dc1
+    m_ActionName: PlayerMovement/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fec76535-92ed-4653-8b6d-e3f00222c86d
+    m_ActionName: PlayerMovement/Interact[/Keyboard/e]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: PlayerMovement
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 2085704664}
 --- !u!1 &1031223031
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,5 +884,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e40517676a740c3469903d5036e3148b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 797335393}
-  offset: {x: 0, y: 0, z: -10}
+  dampTime: 0.15
+  target: {fileID: 797335393}
+  offset: {x: 0, y: 0, z: 0}
