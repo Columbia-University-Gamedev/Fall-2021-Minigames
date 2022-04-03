@@ -5,7 +5,7 @@ using UnityEngine;
 public class TriggerDialogue : MonoBehaviour
 {
     [SerializeField] private GameObject canvas;
-    [SerializeField] private string csvPath;
+    [SerializeField] private TextAsset textAsset;
     private ReadCSV readCsv;
     private bool read;
     private Task task;
@@ -27,7 +27,7 @@ public class TriggerDialogue : MonoBehaviour
     {
         if (!read)
         {
-            readCsv.attemptStart(csvPath);
+            readCsv.attemptStart(textAsset);
         }
         read = true;
         task.completed = true;

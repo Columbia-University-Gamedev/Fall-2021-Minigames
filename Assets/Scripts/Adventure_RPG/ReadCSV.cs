@@ -16,7 +16,7 @@ public class ReadCSV : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogue;
     [SerializeField] private GameObject dialogueBox;
     public Character[] characterArray;
-    private StreamReader strReader;
+    private StringReader strReader;
     private bool EOF;
     private bool busy = false; // Busy if some dialogue has been started by not finished
     
@@ -51,11 +51,11 @@ public class ReadCSV : MonoBehaviour
 
     // Attempt to start dialogue using a specified CSV file
     // Returns `true` if successful
-    public bool attemptStart(string csvPath)
+    public bool attemptStart(TextAsset textAsset)
     {
         if (tryClaim())
         {
-            strReader = new StreamReader(csvPath);
+            strReader = new StringReader(textAsset.text);
             EOF = false;
             dialogueBox.SetActive(true);
             strReader.ReadLine();
