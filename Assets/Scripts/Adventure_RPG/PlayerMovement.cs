@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 extents = playerCollider.bounds.extents; 
         float colliderHeight = extents.y + 0.1f;
-        float checkRadius = 0.8f * extents.magnitude;
+        float checkRadius = 0.5f * extents.magnitude;
         Vector2 offset = (Vector2)playerCollider.bounds.center + colliderHeight * Vector2.down; 
         
         Collider2D ground = Physics2D.OverlapCircle(offset, checkRadius, _groundMask);
