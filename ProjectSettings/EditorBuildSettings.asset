@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AdventureRPG/TestScene.unity
     guid: 8779a13f26ae64e408f32bda5a161fb5
+  - enabled: 1
+    path: Assets/Scenes/AdventureRPG/Scene2.unity
+    guid: fad740548b1c14cc895060ca1b7a759d
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: ab441e66b41b1744c8e0dc4cc44102f1, type: 2}

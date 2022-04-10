@@ -19,7 +19,8 @@ public class ReadCSV : MonoBehaviour
     private StreamReader strReader;
     private bool EOF;
     private bool busy = false; // Busy if some dialogue has been started by not finished
-    
+    private StoryEvent currentEvent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,11 +52,12 @@ public class ReadCSV : MonoBehaviour
 
     // Attempt to start dialogue using a specified CSV file
     // Returns `true` if successful
-    public bool attemptStart(string csvPath)
+    public bool attemptStart(StoryEvent se)
     {
         if (tryClaim())
         {
-            strReader = new StreamReader(csvPath);
+            strReader = new StreamReader(se.dialogueCSVpath);
+            currentEvent = se;
             EOF = false;
             dialogueBox.SetActive(true);
             strReader.ReadLine();
@@ -130,6 +132,12 @@ public class ReadCSV : MonoBehaviour
                 busy = false;
                 dialogueBox.SetActive(false);
                 playerMovement.canMove = true;
+
+                if(currentEvent.progressCharacter)
+                {
+                    currentEvent.character.GetComponent<NPCMovement>().ProgressNPC();
+                }
+                currentEvent.completed = true;
                 return;
             }
             else if (dataString.Contains("characterName"))

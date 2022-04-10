@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -899,8 +899,6 @@ GameObject:
   - component: {fileID: 395267998}
   - component: {fileID: 395267997}
   - component: {fileID: 395267996}
-  - component: {fileID: 395267995}
-  - component: {fileID: 395267994}
   - component: {fileID: 395267993}
   m_Layer: 0
   m_Name: LetterSpiritTrigger
@@ -929,33 +927,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &395267994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395267992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62e2eb4beb11e4f6a8c935f1eb66d820, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  completed: 0
---- !u!114 &395267995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395267992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f482814afe984fd4494e3d7bc26d2989, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 27757515}
-  csvPath: Assets/Scripts/Adventure_RPG/testDialogue.csv
 --- !u!61 &395267996
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1020,11 +991,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 994800527
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1197,8 +1168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f482814afe984fd4494e3d7bc26d2989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 27757515}
-  csvPath: Assets/Scripts/Adventure_RPG/testDialogue2.csv
 --- !u!212 &418637532
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1479,13 +1448,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57e20afbac16c49cda2224b88534c250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tasks:
-  - {fileID: 1130940667}
-  - {fileID: 418637529}
-  - {fileID: 1311182840}
-  - {fileID: 395267994}
-  - {fileID: 839878067}
-  nextScene: TestScene
 --- !u!61 &469824906
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1730,6 +1692,106 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &741783134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 741783136}
+  - component: {fileID: 741783135}
+  m_Layer: 0
+  m_Name: StoryManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &741783135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741783134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bede6002f2baf414e8e4493d6785546c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneEvents:
+  - eventName: Arrival
+    trigger: {fileID: 1130940662}
+    progressCharacter: 0
+    character: {fileID: 0}
+    prereqs: 
+    sceneTransition: 0
+    nextScene: 
+    hasDialogue: 0
+    dialogueCSVpath: 
+  - eventName: Spirit Companion
+    trigger: {fileID: 418637528}
+    progressCharacter: 0
+    character: {fileID: 0}
+    prereqs: 
+    sceneTransition: 0
+    nextScene: 
+    hasDialogue: 1
+    dialogueCSVpath: Assets/Scripts/Adventure_RPG/testDialogue.csv
+  - eventName: Mutated Spirit
+    trigger: {fileID: 1311182835}
+    progressCharacter: 0
+    character: {fileID: 0}
+    prereqs: 
+    sceneTransition: 0
+    nextScene: 
+    hasDialogue: 1
+    dialogueCSVpath: Assets/Scripts/Adventure_RPG/testDialogue3.csv
+  - eventName: LetterSpirit
+    trigger: {fileID: 395267992}
+    progressCharacter: 0
+    character: {fileID: 0}
+    prereqs: 
+    sceneTransition: 0
+    nextScene: 
+    hasDialogue: 0
+    dialogueCSVpath: Assets/Scripts/Adventure_RPG/testDialogue3.csv
+  - eventName: Letter Pickup
+    trigger: {fileID: 839878062}
+    progressCharacter: 0
+    character: {fileID: 0}
+    prereqs: 03000000
+    sceneTransition: 0
+    nextScene: TestScene
+    hasDialogue: 0
+    dialogueCSVpath: Assets/Scripts/Adventure_RPG/testDialogue3.csv
+  - eventName: Leave
+    trigger: {fileID: 469824902}
+    progressCharacter: 0
+    character: {fileID: 0}
+    prereqs: 04000000
+    sceneTransition: 1
+    nextScene: TestScene
+    hasDialogue: 0
+    dialogueCSVpath: Assets/Scripts/Adventure_RPG/testDialogue3.csv
+  canvas: {fileID: 27757515}
+--- !u!4 &741783136
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741783134}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.4419312, y: 0.538592, z: -6.3907304}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &764489837
 GameObject:
@@ -2431,8 +2493,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f482814afe984fd4494e3d7bc26d2989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 27757515}
-  csvPath: Assets/Scripts/Adventure_RPG/testDialogue2.csv
 --- !u!212 &1130940665
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2524,8 +2584,6 @@ GameObject:
   - component: {fileID: 1311182839}
   - component: {fileID: 1311182838}
   - component: {fileID: 1311182837}
-  - component: {fileID: 1311182836}
-  - component: {fileID: 1311182840}
   - component: {fileID: 1311182841}
   - component: {fileID: 1311182842}
   m_Layer: 0
@@ -2535,20 +2593,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1311182836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1311182835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f482814afe984fd4494e3d7bc26d2989, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 27757515}
-  csvPath: Assets/Scripts/Adventure_RPG/testDialogue.csv
 --- !u!61 &1311182837
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2613,11 +2657,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 994800527
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9528302, g: 0.6395741, b: 0.22921856, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2642,19 +2686,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1311182840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1311182835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62e2eb4beb11e4f6a8c935f1eb66d820, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  completed: 0
 --- !u!114 &1311182841
 MonoBehaviour:
   m_ObjectHideFlags: 0

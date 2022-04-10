@@ -1,42 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FollowCam : MonoBehaviour
 {
-    [SerializeField] private Transform leftBounds;
-    [SerializeField] private Transform rightBounds;
     [SerializeField] private GameObject player;
-    private Vector3 offset;
-    private Vector3 leftOffset;
-    private Vector3 rightOffset;
+    private static float horizontalLerpFactor = 2.0f;
+    private static float verticalLerpFactor = 6.0f;
+    private static Vector3 offset = new Vector3(0,1,-10);
+    private Transform tr;
+    private Transform player_tr;
     
     // Start is called before the first frame update
     void Start()
     {
-        leftOffset = (transform.position.x - leftBounds.position.x) * Vector3.right;
-        rightOffset = (transform.position.x - rightBounds.position.x) * Vector3.right;
-        Debug.Log(rightOffset);
-        Debug.Log(leftOffset);
+        tr = transform;
+        player_tr = player.transform;
+        tr.position = player_tr.position + offset;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float rightBoundsx = rightBounds.position.x;
-        float leftBoundsx = leftBounds.position.x;
-
-        bool hitRightBounds = player.transform.position.x >= rightBoundsx;
-        bool hitLeftBounds = player.transform.position.x <= leftBoundsx;
-        
-        Vector3 newPos;
-        if (hitLeftBounds || hitRightBounds)
-        {
-            Debug.Log("moving cam");
-            offset = (hitLeftBounds) ? leftOffset : rightOffset;            
-
-            newPos = offset + player.transform.position - 10f * Vector3.forward;
-            transform.position = Vector3.Lerp(transform.position, newPos, 0.5f);
-        }
+        Vector3 curpos = tr.position;
+        Vector3 ppos = player_tr.position;
+        tr.position = new Vector3(
+            Mathf.Lerp(curpos.x,ppos.x + offset.x,Time.deltaTime*horizontalLerpFactor),
+            Mathf.Lerp(curpos.y,ppos.y + offset.y,Time.deltaTime*verticalLerpFactor),
+            curpos.z);
     }
 }
