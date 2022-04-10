@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     float _leftScaleSign = -1f; 
     
-    [SerializeField] private LayerMask _groundMask;    
+    [SerializeField] private LayerMask _groundMask;
     
     void Start()
     {
