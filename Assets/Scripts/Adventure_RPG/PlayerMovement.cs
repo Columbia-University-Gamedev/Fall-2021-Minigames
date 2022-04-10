@@ -6,6 +6,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private static Transform _playerTransform;
+
+    public static Transform PlayerTransform { get { return _playerTransform; } }
+    
     public bool canMove;
     private Vector2 moveVector;
     private Rigidbody2D rb;
@@ -39,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<Collider2D>();
         canMove = true;
+        _playerTransform = this.transform;
     }
 
     // Update is called once per frame
