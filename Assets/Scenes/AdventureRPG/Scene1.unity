@@ -1517,7 +1517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 27757515}
-  csvPath: Assets/Scripts/Adventure_RPG/testDialogue2.csv
+  textAsset: {fileID: 4900000, guid: 1814e7071a7789f4c96110dcec6c8e08, type: 3}
 --- !u!212 &1130940665
 SpriteRenderer:
   m_ObjectHideFlags: 0

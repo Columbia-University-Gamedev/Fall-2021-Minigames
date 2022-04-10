@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 121180617}
-  csvPath: Assets/Scripts/Adventure_RPG/testDialogue2.csv
+  textAsset: {fileID: 4900000, guid: 1814e7071a7789f4c96110dcec6c8e08, type: 3}
 --- !u!212 &237383791
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -759,6 +759,7 @@ MonoBehaviour:
   _groundFrictionCoefficient: 0.2
   _floorcastFudgeFactor: 0.23
   _jumpHeight: 1
+  _startingDirectionIsLeft: 0
   _groundMask:
     serializedVersion: 2
     m_Bits: 8
@@ -2259,7 +2260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 121180617}
-  csvPath: Assets/Scripts/Adventure_RPG/testDialogue3.csv
+  textAsset: {fileID: 4900000, guid: 72d3a5b66d68c46b195ea2da8a3ad8c9, type: 3}
 --- !u!212 &1778698724
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2580,7 +2581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 121180617}
-  csvPath: Assets/Scripts/Adventure_RPG/testDialogue.csv
+  textAsset: {fileID: 4900000, guid: 806c98d45d4bd814995d1980cf2f871e, type: 3}
 --- !u!212 &2087104790
 SpriteRenderer:
   m_ObjectHideFlags: 0
