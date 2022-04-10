@@ -931,7 +931,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    dialogueCSVpath: Assets/Scripts/Adventure_RPG/testDialogue2.csv
+    textAsset: {fileID: 4900000, guid: 1814e7071a7789f4c96110dcec6c8e08, type: 3}
   - eventName: Revisit Prof
     trigger: {fileID: 117186077}
     progressCharacter: 1
@@ -940,7 +940,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 0
-    dialogueCSVpath: 
+    textAsset: {fileID: 0}
   - eventName: Go To Next Scene
     trigger: {fileID: 469824902}
     progressCharacter: 0
@@ -949,7 +949,7 @@ MonoBehaviour:
     sceneTransition: 1
     nextScene: Scene2
     hasDialogue: 0
-    dialogueCSVpath: 
+    textAsset: {fileID: 0}
   canvas: {fileID: 27757515}
 --- !u!4 &482471754
 Transform:

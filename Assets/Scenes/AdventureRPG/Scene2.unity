@@ -1279,8 +1279,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d273974f43344a3a6b31974cf96d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftBounds: {fileID: 1012082592}
-  rightBounds: {fileID: 2101917627}
   player: {fileID: 208308851}
 --- !u!81 &429421703
 AudioListener:
@@ -1731,7 +1729,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 0
-    dialogueCSVpath: 
+    textAsset: {fileID: 0}
   - eventName: Spirit Companion
     trigger: {fileID: 418637528}
     progressCharacter: 0
@@ -1740,7 +1738,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    dialogueCSVpath: Assets/Scripts/Adventure_RPG/testDialogue.csv
+    textAsset: {fileID: 4900000, guid: 72d3a5b66d68c46b195ea2da8a3ad8c9, type: 3}
   - eventName: Mutated Spirit
     trigger: {fileID: 1311182835}
     progressCharacter: 0
@@ -1749,7 +1747,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    dialogueCSVpath: Assets/Scripts/Adventure_RPG/testDialogue3.csv
+    textAsset: {fileID: 4900000, guid: 806c98d45d4bd814995d1980cf2f871e, type: 3}
   - eventName: LetterSpirit
     trigger: {fileID: 395267992}
     progressCharacter: 0
@@ -1758,7 +1756,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 0
-    dialogueCSVpath: Assets/Scripts/Adventure_RPG/testDialogue3.csv
+    textAsset: {fileID: 0}
   - eventName: Letter Pickup
     trigger: {fileID: 839878062}
     progressCharacter: 0
@@ -1767,7 +1765,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: TestScene
     hasDialogue: 0
-    dialogueCSVpath: Assets/Scripts/Adventure_RPG/testDialogue3.csv
+    textAsset: {fileID: 0}
   - eventName: Leave
     trigger: {fileID: 469824902}
     progressCharacter: 0
@@ -1776,7 +1774,7 @@ MonoBehaviour:
     sceneTransition: 1
     nextScene: TestScene
     hasDialogue: 0
-    dialogueCSVpath: Assets/Scripts/Adventure_RPG/testDialogue3.csv
+    textAsset: {fileID: 0}
   canvas: {fileID: 27757515}
 --- !u!4 &741783136
 Transform:

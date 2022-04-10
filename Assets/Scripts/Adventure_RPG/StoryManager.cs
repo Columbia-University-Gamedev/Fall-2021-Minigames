@@ -88,5 +88,5 @@ public class StoryEvent
     public bool sceneTransition;
     public string nextScene;
     public bool hasDialogue;
-    public string dialogueCSVpath;
+    public TextAsset textAsset;
 }
