@@ -32,6 +32,7 @@ public class CheckInventory : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerIsOn = true;
+            Debug.Log("IN");
         }
     }
 
@@ -40,6 +41,7 @@ public class CheckInventory : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerIsOn = false;
+            Debug.Log("OUT");
         }
     }
 }
