@@ -30,7 +30,7 @@ public class MutatedSpiritCurable : MonoBehaviour
     public void curingProcess()
     {
 
-        
+        task.completed = true;
 
         //Run the 
         StartCoroutine(CureSequence());
@@ -42,8 +42,7 @@ public class MutatedSpiritCurable : MonoBehaviour
         child.GetComponent<BoxCollider2D>().enabled = false;
         child.GetComponent<MutatedSpiritCureable_Hurtbox>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
-
-        task.completed = true;
+        
         
 
     }

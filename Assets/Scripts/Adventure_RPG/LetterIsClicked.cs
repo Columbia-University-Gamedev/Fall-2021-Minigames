@@ -9,6 +9,10 @@ public class LetterIsClicked : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject detect;
 
+    //Script keeping track if player is in right spot
+    [SerializeField] private CheckInventory spotCheck;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +25,12 @@ public class LetterIsClicked : MonoBehaviour
         
     }
 
-    private void onClick() 
+    public void onClick() 
     {
+        if (spotCheck.getIsPlayerOn())
+        {
+            Debug.Log("YAY!");
+        }
 
 
     }

@@ -802,7 +802,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 208656420}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.33, y: 0.029999971, z: 0}
+  m_LocalPosition: {x: 10.2, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -841,6 +841,38 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 208308851}
+    - target: {fileID: 570166060359961700, guid: f1996f8f830cb424db63fd8a1e4419e9, type: 3}
+      propertyPath: spotCheck
+      value: 
+      objectReference: {fileID: 1880569542}
+    - target: {fileID: 4039807551012782449, guid: f1996f8f830cb424db63fd8a1e4419e9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039807551012782449, guid: f1996f8f830cb424db63fd8a1e4419e9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039807551012782449, guid: f1996f8f830cb424db63fd8a1e4419e9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 224186644}
+    - target: {fileID: 4039807551012782449, guid: f1996f8f830cb424db63fd8a1e4419e9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039807551012782449, guid: f1996f8f830cb424db63fd8a1e4419e9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: onClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039807551012782449, guid: f1996f8f830cb424db63fd8a1e4419e9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LetterIsClicked, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039807551012782449, guid: f1996f8f830cb424db63fd8a1e4419e9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6157630358454070230, guid: f1996f8f830cb424db63fd8a1e4419e9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -936,6 +968,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6157630358454070230, guid: f1996f8f830cb424db63fd8a1e4419e9, type: 3}
   m_PrefabInstance: {fileID: 224186642}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &224186644 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 570166060359961700, guid: f1996f8f830cb424db63fd8a1e4419e9, type: 3}
+  m_PrefabInstance: {fileID: 224186642}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4583c4b3fe6134849a9cfc48b11b9d3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &248732371
 GameObject:
   m_ObjectHideFlags: 0
@@ -1230,8 +1273,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d273974f43344a3a6b31974cf96d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftBounds: {fileID: 1012082592}
-  rightBounds: {fileID: 2101917627}
   player: {fileID: 208308851}
 --- !u!81 &429421703
 AudioListener:
@@ -1399,10 +1440,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57e20afbac16c49cda2224b88534c250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tasks:
-  - {fileID: 1130940667}
-  - {fileID: 511716284}
-  nextScene: TestScene
 --- !u!61 &469824906
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1610,8 +1647,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f482814afe984fd4494e3d7bc26d2989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
-  csvPath: Assets/Scripts/Adventure_RPG/testDialogue.csv
 --- !u!61 &511716286
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2557,8 +2592,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f482814afe984fd4494e3d7bc26d2989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 27757515}
-  csvPath: Assets/Scripts/Adventure_RPG/testDialogue2.csv
 --- !u!212 &1130940665
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3140,7 +3173,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1880569541}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 46.15, y: -1.01, z: -4.020666}
+  m_LocalPosition: {x: 4.4, y: -0.2, z: -4.020666}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
