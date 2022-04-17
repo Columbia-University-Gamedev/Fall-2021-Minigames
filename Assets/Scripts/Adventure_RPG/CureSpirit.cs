@@ -6,12 +6,13 @@ public class CureSpirit : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private GameObject companionAnim;
-    [SerializeField] private SpriteRenderer mutatedSpirit;
-    [SerializeField] private Sprite curedSpirit;
+    //[SerializeField] private SpriteRenderer mutatedSpirit;
+    //[SerializeField] private Sprite curedSpirit;
     [SerializeField] float timer = 1f;
     [SerializeField] private float alpha;
     [SerializeField] private Vector3 animSize;
     [SerializeField] private Rigidbody2D playerRb;
+    [SerializeField] private Animator mutatedSpirit;
     private bool cured;
     void Start()
     {
@@ -42,7 +43,8 @@ public class CureSpirit : MonoBehaviour
             companionAnim.transform.localScale = Vector3.Lerp(companionAnim.transform.localScale, animSize, Time.deltaTime);
             yield return null;
         }
-        mutatedSpirit.sprite = curedSpirit;
+        mutatedSpirit.SetTrigger("cured");
+        //mutatedSpirit.sprite = curedSpirit;
         yield return StartCoroutine(ImageFade.FadeSprite(true, timer, alpha, companionAnim.GetComponent<SpriteRenderer>()));
 
         companionAnim.transform.localScale = Vector3.zero;
