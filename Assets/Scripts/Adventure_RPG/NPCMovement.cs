@@ -8,6 +8,11 @@ public class NPCMovement : MonoBehaviour
     private int locIndex = 0;
     private Transform tr;
     [SerializeField] private float lerpFactor;
+    private float stopDistSq = 0.05f;
+    
+    //at this distance it will start to rotate to face the player
+    //rather than the direction it's moving
+    private float rotateDistSq = 1.0f;
 
     public void Start()
     {
@@ -21,8 +26,23 @@ public class NPCMovement : MonoBehaviour
     {
         if (characterLocations.Count > 0)
         {
-            tr.position = Vector3.Lerp(tr.position,
-                characterLocations[locIndex], Time.deltaTime * lerpFactor);
+            float distSq = Vector3.SqrMagnitude(tr.position - characterLocations[locIndex]);
+            if (distSq >= stopDistSq) {
+                tr.position = Vector3.Lerp(tr.position,
+                    characterLocations[locIndex], Time.deltaTime * lerpFactor);
+            }
+            if (distSq >= rotateDistSq) {
+                tr.localScale = new Vector3(
+                    (tr.position.x - characterLocations[locIndex].x < 0 ? 1 : -1) * Mathf.Abs(tr.localScale.x),
+                    tr.localScale.y, tr.localScale.z);
+            }
+            else
+            {
+                tr.localScale = new Vector3(
+                    (tr.position.x - PlayerMovement.PlayerTransform.position.x < 0 ? 1 : -1) 
+                    * Mathf.Abs(tr.localScale.x),
+                    tr.localScale.y, tr.localScale.z);
+            }
         }
     }
 
