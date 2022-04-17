@@ -66,15 +66,25 @@ public class ECNPCBehavior : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             isPatrolling = false;
+            gameObject.BroadcastMessage("OnInRange");
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && patrolPoints.Length > 1)
         {
             isPatrolling = true;
         }
+        gameObject.BroadcastMessage("OnLeaveRange");
+
+    }
+
+    public string generateDialogue()
+    {
+        //access grand list of dialogue
+
+        return null;
     }
 
 }
