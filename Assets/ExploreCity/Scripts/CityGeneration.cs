@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class CityGeneration : MonoBehaviour
 {
+    [SerializeField] private List<GameObject> buildingList;
     private int viewportWidth; //In world space
     private int viewportHeight; //In world space
 
@@ -30,12 +33,13 @@ public class CityGeneration : MonoBehaviour
 
     //GameObjects/Transforms
     [Header("Serializable Objects")]
+
     [SerializeField] private Transform player;
-    [SerializeField] private GameObject[] buildings;
 
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private List<GameObject> buildings;
 
-    public GameObject tempBuildingPrefab;
+    //public GameObject tempBuildingPrefab;
     public GameObject tempRoadPrefab;
 
     enum GenerationDirection
@@ -64,6 +68,10 @@ public class CityGeneration : MonoBehaviour
         maxYBuildingMap = GetRandomBlockLine(viewportWidth);
         minXBuildingMap = GetRandomBlockLine(viewportHeight);
         maxXBuildingMap = GetRandomBlockLine(viewportHeight);
+    }
+
+    private GameObject getRandomBuilding(){
+        return buildings[Random.Range(0, buildings.Count)];
     }
 
     void Update()
@@ -112,7 +120,7 @@ public class CityGeneration : MonoBehaviour
                     switch (blockLine[i])
                     {
                         case GenerationType.Building:
-                            Instantiate(tempBuildingPrefab, new Vector3(xBounds.x + i + 0.5f, yBounds.y + 0.5f, 0.0f), Quaternion.identity);
+                            Instantiate(getRandomBuilding(), new Vector3(xBounds.x + i + 0.5f, yBounds.y + 0.5f, 0.0f), Quaternion.identity);
                             break;
                         case GenerationType.Road:
                             Instantiate(tempRoadPrefab, new Vector3(xBounds.x + i + 0.5f, yBounds.y + 0.5f, 0.0f), Quaternion.identity);
@@ -129,7 +137,7 @@ public class CityGeneration : MonoBehaviour
                     switch (blockLine[i])
                     {
                         case GenerationType.Building:
-                            Instantiate(tempBuildingPrefab, new Vector3(xBounds.x + i + 0.5f, yBounds.x - 0.5f, 0.0f), Quaternion.identity);
+                            Instantiate(getRandomBuilding(), new Vector3(xBounds.x + i + 0.5f, yBounds.x - 0.5f, 0.0f), Quaternion.identity);
                             break;
                         case GenerationType.Road:
                             Instantiate(tempRoadPrefab, new Vector3(xBounds.x + i + 0.5f, yBounds.x - 0.5f, 0.0f), Quaternion.identity);
@@ -145,7 +153,7 @@ public class CityGeneration : MonoBehaviour
                     switch (blockLine[i])
                     {
                         case GenerationType.Building:
-                            Instantiate(tempBuildingPrefab, new Vector3(xBounds.x - 0.5f, yBounds.x + i + 0.5f, 0.0f), Quaternion.identity);
+                            Instantiate(getRandomBuilding(), new Vector3(xBounds.x - 0.5f, yBounds.x + i + 0.5f, 0.0f), Quaternion.identity);
                             break;
                         case GenerationType.Road:
                             Instantiate(tempRoadPrefab, new Vector3(xBounds.x - 0.5f, yBounds.x + i + 0.5f, 0.0f), Quaternion.identity);
@@ -160,7 +168,7 @@ public class CityGeneration : MonoBehaviour
                     switch (blockLine[i])
                     {
                         case GenerationType.Building:
-                            Instantiate(tempBuildingPrefab, new Vector3(xBounds.y + 0.5f, yBounds.x + i + 0.5f, 0.0f), Quaternion.identity);
+                            Instantiate(getRandomBuilding(), new Vector3(xBounds.y + 0.5f, yBounds.x + i + 0.5f, 0.0f), Quaternion.identity);
                             break;
                         case GenerationType.Road:
                             Instantiate(tempRoadPrefab, new Vector3(xBounds.y + 0.5f, yBounds.x + i + 0.5f, 0.0f), Quaternion.identity);
