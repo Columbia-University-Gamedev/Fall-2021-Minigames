@@ -14,6 +14,10 @@ public class CureSpirit : MonoBehaviour
     [SerializeField] private Rigidbody2D playerRb;
     [SerializeField] private Animator mutatedSpirit;
     private bool cured;
+
+    [SerializeField] private ParticleSystem ember;
+    [SerializeField] private ParticleSystem rain;
+
     void Start()
     {
         cured = false;
@@ -23,6 +27,14 @@ public class CureSpirit : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("approachignspirit");
+        PollenProjectiles p = mutatedSpirit.transform.GetChild(0).GetComponent<PollenProjectiles>();
+        Debug.Log(p);
+        p.stillMutated = false;
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -49,5 +61,11 @@ public class CureSpirit : MonoBehaviour
 
         companionAnim.transform.localScale = Vector3.zero;
         cured = true;
+
+        if (ember != null && rain != null)
+        {
+            ember.Stop();
+            rain.Play();
+        }
     }
 }
