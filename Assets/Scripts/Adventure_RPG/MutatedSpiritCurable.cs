@@ -33,7 +33,7 @@ public class MutatedSpiritCurable : MonoBehaviour
     public void curingProcess()
     {
 
-        task.completed = true;
+        //task.completed = true;
 
         //Run the 
         StartCoroutine(CureSequence());
