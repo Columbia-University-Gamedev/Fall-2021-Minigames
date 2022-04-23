@@ -28,8 +28,8 @@ public class NPCMovement : MonoBehaviour
         {
             float distSq = Vector3.SqrMagnitude(tr.position - characterLocations[locIndex]);
             if (distSq >= stopDistSq) {
-                tr.position = Vector3.Lerp(tr.position,
-                    characterLocations[locIndex], Time.deltaTime * lerpFactor / distSq);
+                tr.position = Vector3.MoveTowards(tr.position,
+                    characterLocations[locIndex], Time.deltaTime * lerpFactor);
             }
             if (distSq >= rotateDistSq) {
                 tr.localScale = new Vector3(
