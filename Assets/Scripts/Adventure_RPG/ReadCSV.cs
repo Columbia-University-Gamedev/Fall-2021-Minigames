@@ -12,7 +12,7 @@ public class ReadCSV : MonoBehaviour
     private PlayerMovement playerMovement;
     
     [SerializeField] private Image characterImage;
-    [SerializeField] private TextMeshProUGUI characterName;
+    //[SerializeField] private TextMeshProUGUI characterName;
     [SerializeField] private TextMeshProUGUI dialogue;
     [SerializeField] private GameObject dialogueBox;
     public Character[] characterArray;
@@ -149,7 +149,7 @@ public class ReadCSV : MonoBehaviour
             int characterIndex = int.Parse(dataValues[0]);
             string dialogueInput = dataValues[1];
 
-            characterName.text = characterArray[characterIndex].GetName();
+            //characterName.text = characterArray[characterIndex].GetName();
             dialogue.text = dialogueInput;
             characterImage.sprite = characterArray[characterIndex].GetImage();
         }

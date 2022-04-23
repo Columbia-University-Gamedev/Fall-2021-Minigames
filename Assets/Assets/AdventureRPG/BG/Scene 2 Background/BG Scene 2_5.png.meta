@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a51dab2e6d21d459f903b181c476588e
+guid: 7f849dce3d3f34f34a887cd6c57888ce
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -100,26 +100,101 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Adventure RPG Game Background Scene 1_2_0
+      name: BG Scene 2_5_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 5
-        width: 22397
-        height: 4601
+        x: 8542
+        y: 6593
+        width: 538
+        height: 2124
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a405f970e19804f13825425a790b86d6
-      internalID: 1304002036
+      spriteID: 064265c63710b412e97ad2dbc6012871
+      internalID: 1726981561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG Scene 2_5_1
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 0
+        width: 13317
+        height: 5505
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f49f7a03237324381b2625c9c71bb7c8
+      internalID: -1525127904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG Scene 2_5_2
+      rect:
+        serializedVersion: 2
+        x: 14002
+        y: 0
+        width: 1213
+        height: 4239
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7351c8583e3db4478975f6b09a982f09
+      internalID: -2065196167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG Scene 2_5_3
+      rect:
+        serializedVersion: 2
+        x: 19401
+        y: 0
+        width: 5946
+        height: 3505
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6722243d646ce4633ac6e6177fb04822
+      internalID: 153148360
       vertices: []
       indices: 
       edges: []
@@ -135,7 +210,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Adventure RPG Game Background Scene 1_2_0: 1304002036
+      BG Scene 2_5_2: -2065196167
+      BG Scene 2_5_1: -1525127904
+      BG Scene 2_5_3: 153148360
+      BG Scene 2_5_0: 1726981561
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

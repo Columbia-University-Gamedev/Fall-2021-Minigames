@@ -27,7 +27,6 @@ public class Pickup : MonoBehaviour {
 
             letterSprite.enabled = false;
             letterCollision.enabled = false;
-            task.completed = true;
             for (int i = 0; i < inventory.items.Length; i++)
             {
                 if (inventory.items[i] == 0) { // check whether the slot is EMPTY
