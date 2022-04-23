@@ -46,4 +46,6 @@ public class CheckInventory : MonoBehaviour
             Debug.Log("OUT");
         }
     }
+
+
 }

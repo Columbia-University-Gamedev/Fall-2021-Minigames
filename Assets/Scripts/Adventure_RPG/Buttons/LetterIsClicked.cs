@@ -32,6 +32,7 @@ public class LetterIsClicked : MonoBehaviour
         {
             Debug.Log("YOU CLICKED THE LETTER!");
             task.completed = true;
+
         }
 
 

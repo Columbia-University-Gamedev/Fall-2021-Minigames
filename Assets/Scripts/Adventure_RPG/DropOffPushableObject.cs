@@ -5,6 +5,7 @@ using UnityEngine;
 public class DropOffPushableObject : MonoBehaviour
 {
     private Task task;
+    [SerializeField] private StoryManager StoryManager;
     void Start()
     {
         task = GetComponent<Task>();
@@ -19,6 +20,7 @@ public class DropOffPushableObject : MonoBehaviour
             Rigidbody2D otherRb = other.gameObject.GetComponent<Rigidbody2D>();
             otherRb.constraints = RigidbodyConstraints2D.FreezeAll;
             task.completed = true;
+            StoryManager.PerformEvent(1);
         }
     }
 

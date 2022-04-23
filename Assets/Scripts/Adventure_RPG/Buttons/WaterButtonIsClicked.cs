@@ -15,6 +15,8 @@ public class WaterButtonIsClicked : MonoBehaviour
     [SerializeField] private GameObject trigger;
     //private Task task;
 
+    [SerializeField] private StoryManager StoryManager;
+
     //Checks if button has already been clicked
     bool click;
 
@@ -40,14 +42,8 @@ public class WaterButtonIsClicked : MonoBehaviour
             Debug.Log("YOU CLICKED THE WATER!");
 
             click = true;
-
-            //Teleports the respective trigger onto the player so that the trigger code activates the story managers
-            trigger.transform.position = player.transform.position;
-
-
-            //task.completed = true;
+            StoryManager.PerformEvent(0);
+            
         }
-
-
     }
 }
