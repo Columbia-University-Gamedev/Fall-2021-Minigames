@@ -19,6 +19,7 @@ public class DropOffPushableObject : MonoBehaviour
             Rigidbody2D otherRb = other.gameObject.GetComponent<Rigidbody2D>();
             otherRb.constraints = RigidbodyConstraints2D.FreezeAll;
             task.completed = true;
+            SM.PerformEvent(1);
         }
     }
 
