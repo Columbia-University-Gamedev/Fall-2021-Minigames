@@ -46,9 +46,9 @@ public class StoryManager : MonoBehaviour
 
     private bool checkPrereqs(StoryEvent se)
     {
-        foreach (int i in se.prereqs)
+        foreach (var prereq in se.prereqs)
         {
-            if (!sceneEvents[i].completed)
+            if (!prereq.completed)
                 return false;
         }
         return true;
@@ -76,17 +76,4 @@ public class StoryManager : MonoBehaviour
     }
 }
 
-[Serializable]
-public class StoryEvent
-{
-    public string eventName;
-    public GameObject trigger;
-    public bool progressCharacter;
-    public GameObject character;
-    public List<int> prereqs; //could be a bitmask
-    [NonSerialized] public bool completed;
-    public bool sceneTransition;
-    public string nextScene;
-    public bool hasDialogue;
-    public TextAsset textAsset;
-}
+
