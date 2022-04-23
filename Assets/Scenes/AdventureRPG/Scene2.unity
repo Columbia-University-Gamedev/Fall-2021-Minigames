@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1855,6 +1855,7 @@ GameObject:
   m_Component:
   - component: {fileID: 477085286}
   - component: {fileID: 477085287}
+  - component: {fileID: 477085288}
   m_Layer: 0
   m_Name: BG Scene 2
   m_TagString: Untagged
@@ -1870,8 +1871,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 477085285}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17, y: -0.78, z: 0}
-  m_LocalScale: {x: 0.1836525, y: 0.1836525, z: 0.1836525}
+  m_LocalPosition: {x: 17, y: -0.78, z: 10}
+  m_LocalScale: {x: 0.21230122, y: 0.21230122, z: 0.21230122}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1609558085}
@@ -1929,6 +1930,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &477085288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477085285}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbd5f18d0f3c58442a658a704fd09d21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 429421704}
+  anchorZDepthSerializationHelper: 10
 --- !u!1 &504196100
 GameObject:
   m_ObjectHideFlags: 0
@@ -2074,6 +2089,7 @@ GameObject:
   m_Component:
   - component: {fileID: 536546230}
   - component: {fileID: 536546229}
+  - component: {fileID: 536546231}
   m_Layer: 0
   m_Name: BG Scene 2_3
   m_TagString: Untagged
@@ -2141,13 +2157,27 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 536546228}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.9719, y: -0.85, z: 0}
-  m_LocalScale: {x: 0.1836525, y: 0.18310319, z: 0.18310319}
+  m_LocalPosition: {x: 16.9719, y: -0.85, z: 1.45}
+  m_LocalScale: {x: 0.18812467, y: 0.18756199, z: 0.18756199}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1609558085}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &536546231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536546228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbd5f18d0f3c58442a658a704fd09d21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 429421704}
+  anchorZDepthSerializationHelper: 10
 --- !u!1 &687557591
 GameObject:
   m_ObjectHideFlags: 0
@@ -3042,6 +3072,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1081208400}
   - component: {fileID: 1081208401}
+  - component: {fileID: 1081208402}
   m_Layer: 0
   m_Name: BG Scene 2_6
   m_TagString: Untagged
@@ -3057,8 +3088,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1081208399}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.4631, y: -3.8941, z: 0}
-  m_LocalScale: {x: 0.18552576, y: 0.18552576, z: 0.18552576}
+  m_LocalPosition: {x: 9.4631, y: -3.8941, z: 0.35}
+  m_LocalScale: {x: 0.18482082, y: 0.18482082, z: 0.18482082}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1609558085}
@@ -3116,6 +3147,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1081208402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081208399}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbd5f18d0f3c58442a658a704fd09d21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 429421704}
+  anchorZDepthSerializationHelper: 10
 --- !u!1 &1086805123
 GameObject:
   m_ObjectHideFlags: 0
@@ -3846,6 +3891,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1420365642}
   - component: {fileID: 1420365641}
+  - component: {fileID: 1420365643}
   m_Layer: 0
   m_Name: BG Scene 2_2
   m_TagString: Untagged
@@ -3913,13 +3959,27 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1420365640}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.94, y: 0.7808, z: 0}
-  m_LocalScale: {x: 0.1836525, y: 0.18189307, z: 0.18189307}
+  m_LocalPosition: {x: 16.94, y: 0.7808, z: 3.18}
+  m_LocalScale: {x: 0.18690315, y: 0.18511257, z: 0.18511257}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1609558085}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1420365643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420365640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbd5f18d0f3c58442a658a704fd09d21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 429421704}
+  anchorZDepthSerializationHelper: 10
 --- !u!1 &1423833971
 GameObject:
   m_ObjectHideFlags: 0
@@ -3930,6 +3990,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1423833972}
   - component: {fileID: 1423833973}
+  - component: {fileID: 1423833974}
   m_Layer: 0
   m_Name: BG Scene 2_4
   m_TagString: Untagged
@@ -4004,6 +4065,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1423833974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423833971}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbd5f18d0f3c58442a658a704fd09d21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 429421704}
+  anchorZDepthSerializationHelper: 10
 --- !u!1 &1571453009
 GameObject:
   m_ObjectHideFlags: 0
@@ -4217,6 +4292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1604308189}
   - component: {fileID: 1604308190}
+  - component: {fileID: 1604308191}
   m_Layer: 0
   m_Name: BG Scene 2_1
   m_TagString: Untagged
@@ -4232,7 +4308,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604308188}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.06, y: 2.54, z: -0}
+  m_LocalPosition: {x: 17.06, y: 2.54, z: 5.62}
   m_LocalScale: {x: 0.18385874, y: 0.18385874, z: 0.18385874}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4291,6 +4367,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1604308191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604308188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbd5f18d0f3c58442a658a704fd09d21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 429421704}
+  anchorZDepthSerializationHelper: 10
 --- !u!1 &1609558084
 GameObject:
   m_ObjectHideFlags: 0
