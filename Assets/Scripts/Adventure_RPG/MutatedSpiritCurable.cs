@@ -14,6 +14,9 @@ public class MutatedSpiritCurable : MonoBehaviour
     [SerializeField] private Vector3 animSize;
     private Task task;
 
+    [SerializeField] private ParticleSystem ember;
+    [SerializeField] private ParticleSystem rain;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,9 +42,13 @@ public class MutatedSpiritCurable : MonoBehaviour
         currentState = states[1];
 
         //Change AI (remove hit box)\
-        child.GetComponent<BoxCollider2D>().enabled = false;
-        child.GetComponent<MutatedSpiritCureable_Hurtbox>().enabled = false;
-        GetComponent<BoxCollider2D>().enabled = false;
+        //only applies to mutated spirit
+        if (child != null)
+        {
+            child.GetComponent<BoxCollider2D>().enabled = false;
+            child.GetComponent<MutatedSpiritCureable_Hurtbox>().enabled = false;
+            GetComponent<BoxCollider2D>().enabled = false;
+        }
         
         
 
@@ -61,5 +68,11 @@ public class MutatedSpiritCurable : MonoBehaviour
         yield return StartCoroutine(ImageFade.FadeSprite(true, timer, alpha, companionAnim.GetComponent<SpriteRenderer>()));
 
         companionAnim.transform.localScale = Vector3.zero;
+
+        if (ember != null && rain != null)
+        {
+            ember.Stop();
+            rain.Play();
+        }
     }
 }

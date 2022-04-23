@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using System.IO.IsolatedStorage;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private static Transform _playerTransform;
+
+    public static Transform PlayerTransform { get { return _playerTransform; } }
+    
     public bool canMove;
     private Vector2 moveVector;
     private Rigidbody2D rb;
@@ -33,12 +38,23 @@ public class PlayerMovement : MonoBehaviour
     float _leftScaleSign = -1f; 
     
     [SerializeField] private LayerMask _groundMask;
-    
+
+    [SerializeField] private int maxHp;
+    private static int hp;
+
+    void Awake()
+    {
+        _playerTransform = transform;
+    }
+
     void Start()
     {
+        if (hp == 0)
+            hp = maxHp;
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<Collider2D>();
         canMove = true;
+        HealthUI.Instance.InitializeHP(hp);
     }
 
     // Update is called once per frame
@@ -145,6 +161,16 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
             rb.angularVelocity = 0f;
+        }
+    }
+
+    public static void TakeDamage()
+    {
+        hp--;
+        HealthUI.Instance.UpdateHP(hp);
+        if(hp == 0)
+        {
+            SceneManager.LoadScene("GameOver");
         }
     }
 }
