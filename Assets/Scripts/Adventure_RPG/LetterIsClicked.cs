@@ -11,12 +11,13 @@ public class LetterIsClicked : MonoBehaviour
 
     //Script keeping track if player is in right spot
     [SerializeField] private CheckInventory spotCheck;
-
+    [SerializeField] private int EventType;
+    private Task task;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        task = GetComponent<Task>();
     }
 
     // Update is called once per frame
@@ -27,9 +28,10 @@ public class LetterIsClicked : MonoBehaviour
 
     public void onClick() 
     {
-        if (spotCheck.getIsPlayerOn())
+        if (spotCheck.getIsPlayerOn() == 1)
         {
-            Debug.Log("YAY!");
+            Debug.Log("YOU CLICKED THE LETTER!");
+            task.completed = true;
         }
 
 
