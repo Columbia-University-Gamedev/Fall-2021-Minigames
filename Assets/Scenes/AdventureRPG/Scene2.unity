@@ -670,7 +670,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 80459701}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.32, y: -0.35, z: 0}
+  m_LocalPosition: {x: 3.72, y: -0.35, z: 0}
   m_LocalScale: {x: 2.4658303, y: 0.48, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -688,7 +688,6 @@ GameObject:
   - component: {fileID: 105026283}
   - component: {fileID: 105026282}
   - component: {fileID: 105026281}
-  - component: {fileID: 105026280}
   - component: {fileID: 105026279}
   m_Layer: 0
   m_Name: MushroomDialogueTrigger
@@ -717,26 +716,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &105026280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 105026278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29b586063246a433fac7e46788f41ae1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  companionAnim: {fileID: 184551539}
-  timer: 2
-  alpha: 1
-  animSize: {x: 200, y: 200, z: 200}
-  playerRb: {fileID: 208308856}
-  mutatedSpirit: {fileID: 1321549815}
-  ember: {fileID: 0}
-  rain: {fileID: 0}
 --- !u!61 &105026281
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -823,7 +802,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105026278}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.85, y: -5.14, z: 0}
+  m_LocalPosition: {x: 13.15, y: -4.26, z: 0}
   m_LocalScale: {x: 2.4658303, y: 0.48, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2329,7 +2308,7 @@ MonoBehaviour:
     hasDialogue: 1
     textAsset: {fileID: 4900000, guid: 7dad449855d1143759dadb630e1ec9ea, type: 3}
   - eventName: Pre Mutated Spirit
-    trigger: {fileID: 1311182835}
+    trigger: {fileID: 80459701}
     progressCharacter: 0
     character: {fileID: 0}
     prereqs: 
@@ -2341,7 +2320,7 @@ MonoBehaviour:
     trigger: {fileID: 1311182835}
     progressCharacter: 0
     character: {fileID: 0}
-    prereqs: 04000000
+    prereqs: 01000000
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
@@ -2350,7 +2329,7 @@ MonoBehaviour:
     trigger: {fileID: 105026278}
     progressCharacter: 0
     character: {fileID: 0}
-    prereqs: 04000000
+    prereqs: 
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
@@ -2377,7 +2356,7 @@ MonoBehaviour:
     trigger: {fileID: 839878062}
     progressCharacter: 0
     character: {fileID: 0}
-    prereqs: 03000000
+    prereqs: 
     sceneTransition: 0
     nextScene: TestScene
     hasDialogue: 1
@@ -2386,7 +2365,7 @@ MonoBehaviour:
     trigger: {fileID: 469824902}
     progressCharacter: 0
     character: {fileID: 0}
-    prereqs: 04000000
+    prereqs: 010000000500000007000000
     sceneTransition: 1
     nextScene: Scene3 (Pedro - Test)
     hasDialogue: 0
@@ -3617,7 +3596,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321549812}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.329998, y: 1, z: 0}
+  m_LocalPosition: {x: 12.32, y: 2.34, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
