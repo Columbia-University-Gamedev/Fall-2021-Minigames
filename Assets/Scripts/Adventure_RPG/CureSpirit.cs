@@ -17,6 +17,7 @@ public class CureSpirit : MonoBehaviour
 
     [SerializeField] private ParticleSystem ember;
     [SerializeField] private ParticleSystem rain;
+    [SerializeField] private PollenProjectiles p;
 
     void Start()
     {
@@ -29,18 +30,21 @@ public class CureSpirit : MonoBehaviour
         
     }
 
+    /*
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("approachignspirit");
-        PollenProjectiles p = mutatedSpirit.transform.GetChild(0).GetComponent<PollenProjectiles>();
         Debug.Log(p);
-        p.stillMutated = false;
     }
+    */
 
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player") && !cured)
         {
+
+            p.stillMutated = false;
+
             if (playerRb.velocity.x >= 0f)
             {
                 StartCoroutine(CureSequence());
