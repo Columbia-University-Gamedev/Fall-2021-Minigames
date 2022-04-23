@@ -157,7 +157,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 208308851}
   characterImage: {fileID: 325352888}
-  characterName: {fileID: 782259652}
   dialogue: {fileID: 504196103}
   dialogueBox: {fileID: 831529392}
   characterArray:
@@ -352,7 +351,7 @@ MonoBehaviour:
   player: {fileID: 208308851}
   spotCheck: {fileID: 1880569542}
   trigger: {fileID: 0}
-  SM: {fileID: 1833499815}
+  StoryManager: {fileID: 0}
 --- !u!114 &60631991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1711,6 +1710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e907ea582ae515c41986c5d73176007b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StoryManager: {fileID: 1833499815}
 --- !u!1 &519029228
 GameObject:
   m_ObjectHideFlags: 0
