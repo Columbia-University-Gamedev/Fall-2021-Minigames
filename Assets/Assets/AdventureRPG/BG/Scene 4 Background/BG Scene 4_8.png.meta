@@ -220,6 +220,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: BG Scene 4_8_5
+      rect:
+        serializedVersion: 2
+        x: 13656
+        y: 0
+        width: 1832
+        height: 810
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86466209814004d58911597be5d044a6
+      internalID: 1205245878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -231,6 +252,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      BG Scene 4_8_5: 1205245878
       BG Scene 4_8_3: -805313925
       BG Scene 4_8_4: -1747564312
       BG Scene 4_8_0: -1483318390
