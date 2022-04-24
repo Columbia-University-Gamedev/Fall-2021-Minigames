@@ -465,7 +465,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
 --- !u!114 &797335397
 MonoBehaviour:
@@ -551,6 +551,7 @@ MonoBehaviour:
   buildings:
   - {fileID: 5237059604601485817, guid: bf2f426021f8c4afab9246f4ea76891e, type: 3}
   - {fileID: 8138158948038087316, guid: 497ffe90003b24a278f59063e077bdfc, type: 3}
+  - {fileID: 976943942252582654, guid: 4abe7ecb3b31d4b69948b5f5821f583f, type: 3}
   tempRoadPrefab: {fileID: 5656190323385076746, guid: 7803e386ce49b431194f455d89074fa1, type: 3}
 --- !u!4 &1016233282
 Transform:
