@@ -111,7 +111,7 @@ public class CityGeneration : MonoBehaviour
                 if(maxWidth<width){
                     maxWidth = width;
                 }
-                Instantiate(createdBuilding, new Vector3(xBounds.y + far + 0.5f*width, i, 0.0f), Quaternion.identity);
+                Instantiate(createdBuilding, new Vector3(xBounds.y + far + width, i, 0.0f), Quaternion.identity);
             }
             xBounds.y = Mathf.CeilToInt(xBounds.y + generationRadius + maxWidth);
         }
@@ -154,103 +154,6 @@ public class CityGeneration : MonoBehaviour
             }
             yBounds.x = Mathf.FloorToInt(yBounds.x - generationRadius - maxHeight);
         }
-        
-        
-        
-        /*
-        
-        switch (dir)
-        {
-            case GenerationDirection.Up:
-                blockLine = new GenerationType[viewportWidth];
-                break;
-            case GenerationDirection.Down:
-                blockLine = new GenerationType[viewportWidth];
-
-                Debug.Log("Generate New Block Below");
-                break;
-            case GenerationDirection.Left:
-                blockLine = new GenerationType[viewportHeight];
-
-                Debug.Log("Generate New Block Leftward");
-                break;
-            case GenerationDirection.Right:
-                blockLine = new GenerationType[viewportHeight];
-
-                Debug.Log("Generate New Block Rightward");
-                break;
-            default:
-                Debug.LogError("Invalid Direction Given: " + dir);
-                return;
-        }
-
-        switch (dir)
-        {
-           
-            case GenerationDirection.Up:
-                blockLine = ContinueBlockLine(maxYBuildingMap);
-                
-                for (int i = 0; i < blockLine.Length; i++)
-                {
-                    switch (blockLine[i])
-                    {
-                        case GenerationType.Building:
-                            Instantiate(getRandomBuilding(), new Vector3(xBounds.x + i + far, yBounds.y +far, 0.0f), Quaternion.identity);
-                            break;
-                        case GenerationType.Road:
-                            Instantiate(tempRoadPrefab, new Vector3(xBounds.x + i + far, yBounds.y + far, 0.0f), Quaternion.identity);
-                            break;
-                    }
-                }
-                break;
-
-            
-                for (int i = 0; i < blockLine.Length; i++)
-                {
-                    switch (blockLine[i])
-                    {
-                        case GenerationType.Building:
-                            Instantiate(getRandomBuilding(), new Vector3(xBounds.x + i + far, yBounds.x - far, 0.0f), Quaternion.identity);
-                            break;
-                        case GenerationType.Road:
-                            Instantiate(tempRoadPrefab, new Vector3(xBounds.x + i + far, yBounds.x - far, 0.0f), Quaternion.identity);
-                            break;
-                    }
-                }
-                break;
-                for (int i = 0; i < blockLine.Length; i++)
-                {
-                    switch (blockLine[i])
-                    {
-                        case GenerationType.Building:
-                            Instantiate(getRandomBuilding(), new Vector3(xBounds.x - far, yBounds.x + i + far, 0.0f), Quaternion.identity);
-                            break;
-                        case GenerationType.Road:
-                            Instantiate(tempRoadPrefab, new Vector3(xBounds.x - far, yBounds.x + i + far, 0.0f), Quaternion.identity);
-                            break;
-                    }
-                }
-                break;
-           
-                    
-                for (int i = 0; i < blockLine.Length; i++)
-                {
-                    switch (blockLine[i])
-                    {
-                        case GenerationType.Building:
-                            Instantiate(getRandomBuilding(), new Vector3(xBounds.y + far, yBounds.x + i + far, 0.0f), Quaternion.identity);
-                            break;
-                        case GenerationType.Road:
-                            Instantiate(tempRoadPrefab, new Vector3(xBounds.y + far, yBounds.x + i + far, 0.0f), Quaternion.identity);
-                            break;
-                    }
-                }
-                break;
-            default:
-                Debug.LogError("Invalid Direction Given: " + dir);
-                return;
-        }
-        */
     }
 
     private void CheckIfOutOfRange(Vector2 pos)
