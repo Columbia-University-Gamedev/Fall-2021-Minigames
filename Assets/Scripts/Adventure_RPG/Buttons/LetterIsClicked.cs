@@ -31,7 +31,7 @@ public class LetterIsClicked : MonoBehaviour
         if (spotCheck.getIsPlayerOn() == 1)
         {
             Debug.Log("YOU CLICKED THE LETTER!");
-            task.completed = true;
+            spotCheck.runEvent();
 
         }
 

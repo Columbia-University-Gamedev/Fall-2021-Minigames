@@ -63,6 +63,7 @@ public class CheckInventory : MonoBehaviour
                 break;
 
             case 2:
+                StartCoroutine(water_fire());
                 break;
 
             case 3:
@@ -82,9 +83,10 @@ public class CheckInventory : MonoBehaviour
         StoryManager.PerformEvent(0);
     }
 
-    private void water_fire()
+    private IEnumerator water_fire()
     {
-
+        yield return StartCoroutine(ImageFade.FadeSprite(true, 1f, 1f, fire.GetComponent<SpriteRenderer>()));
+        fire.SetActive(false);
     }
 
 
