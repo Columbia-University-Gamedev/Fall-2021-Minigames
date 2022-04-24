@@ -6,9 +6,9 @@ public class ECPlayerController : MonoBehaviour
     public float moveSpeed;
 
     private Vector2 move;
-    private bool isInteractPressed;
     [SerializeField] 
     private Rigidbody2D rb2d;
+    private Canvas canvas;
 
     private void Awake()
     {
@@ -35,7 +35,7 @@ public class ECPlayerController : MonoBehaviour
     {
         if (value.isPressed)
         {
-            isInteractPressed = true;
+            //check if any NPC is in range, if so get their dialogue and 
             Debug.Log("INPUT: Interact pressed");
         }
     }
