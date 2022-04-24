@@ -8,8 +8,15 @@ public class CheckInventory : MonoBehaviour
     private Task task;
     private GameObject player;
     private int playerIsOn = 0;
-    [SerializeField] private int eventNumber;
+    [SerializeField] private StoryManager StoryManager;
     //1 = letter, 2 = water, etc
+    [SerializeField] private int eventType;
+    
+    //1 = Flower, 2= Fire, 3 =
+    [SerializeField] private int eventNumber;
+
+    [SerializeField] private GameObject flower;
+    [SerializeField] private GameObject fire;
 
 
 
@@ -17,12 +24,9 @@ public class CheckInventory : MonoBehaviour
     void Start()
     {
 
-        task = GetComponent<Task>();
-
         
 
-
-}
+    }
 
     public int getIsPlayerOn()
     {
@@ -33,7 +37,7 @@ public class CheckInventory : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            playerIsOn = eventNumber;
+            playerIsOn = eventType;
             Debug.Log("IN");
         }
     }
@@ -45,6 +49,42 @@ public class CheckInventory : MonoBehaviour
             playerIsOn = 0;
             Debug.Log("OUT");
         }
+    }
+
+
+    public void runEvent()
+    {
+        //1 = FLOWER, 2 = FIRE, 3 = LETTER 1ST TIME, 4 = LETTER 2ND TIME
+        switch (eventNumber)
+        {
+            case 1:
+                water_flower();
+                Object.Destroy(this.gameObject);
+                break;
+
+            case 2:
+                break;
+
+            case 3:
+                break;
+
+            case 4:
+                break;
+        }
+
+    }
+
+
+
+    private void water_flower()
+    {
+        Debug.Log("YOU HELPED THE FLOWER!");
+        StoryManager.PerformEvent(0);
+    }
+
+    private void water_fire()
+    {
+
     }
 
 
