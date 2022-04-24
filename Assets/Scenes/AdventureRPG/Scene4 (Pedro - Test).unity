@@ -411,7 +411,6 @@ MonoBehaviour:
   player: {fileID: 208308851}
   spotCheck: {fileID: 1310676843}
   trigger: {fileID: 0}
-  StoryManager: {fileID: 0}
 --- !u!1 &56439372
 GameObject:
   m_ObjectHideFlags: 0
@@ -1140,6 +1139,7 @@ MonoBehaviour:
   timer: 2
   alpha: 1
   animSize: {x: 20, y: 20, z: 20}
+  StoryManager: {fileID: 0}
   ember: {fileID: 0}
   rain: {fileID: 0}
 --- !u!1 &248732371
@@ -3296,7 +3296,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3d96632df43af40a9ecbf507fa062e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StoryManager: {fileID: 0}
+  eventType: 0
   eventNumber: 1
+  flower: {fileID: 0}
+  fire: {fileID: 0}
 --- !u!61 &810837068
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4129,7 +4133,7 @@ MonoBehaviour:
     textAsset: {fileID: 4900000, guid: 1814e7071a7789f4c96110dcec6c8e08, type: 3}
   - eventName: PutOutFire
     trigger: {fileID: 1310676842}
-    progressCharacter: 1
+    progressCharacter: 0
     character: {fileID: 0}
     prereqs: 00000000
     sceneTransition: 0
@@ -5566,7 +5570,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3d96632df43af40a9ecbf507fa062e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StoryManager: {fileID: 0}
+  eventType: 0
   eventNumber: 2
+  flower: {fileID: 0}
+  fire: {fileID: 0}
 --- !u!61 &1310676844
 BoxCollider2D:
   m_ObjectHideFlags: 0

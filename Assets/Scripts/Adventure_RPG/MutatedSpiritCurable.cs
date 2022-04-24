@@ -12,6 +12,7 @@ public class MutatedSpiritCurable : MonoBehaviour
     [SerializeField] float timer = 1f;
     [SerializeField] private float alpha;
     [SerializeField] private Vector3 animSize;
+    [SerializeField] private StoryManager StoryManager;
     private Task task;
 
     [SerializeField] private ParticleSystem ember;
@@ -60,13 +61,14 @@ public class MutatedSpiritCurable : MonoBehaviour
     public IEnumerator CureSequence()
     {
         Debug.Log("In Curing");
+        StoryManager.PerformEvent(2);
         for (float i = 0; i <= timer; i += Time.deltaTime)
         {
             companionAnim.transform.localScale = Vector3.Lerp(companionAnim.transform.localScale, animSize, Time.deltaTime);
             yield return null;
         }
         yield return StartCoroutine(ImageFade.FadeSprite(true, timer, alpha, companionAnim.GetComponent<SpriteRenderer>()));
-
+        
         companionAnim.transform.localScale = Vector3.zero;
 
         if (ember != null && rain != null)

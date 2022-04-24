@@ -26,5 +26,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AdventureRPG/Scene3 (Pedro - Test).unity
     guid: 0136e12d997c65342bf4dc0a3eb4a0f9
+  - enabled: 1
+    path: Assets/Scenes/AdventureRPG/Scene4 (Pedro - Test).unity
+    guid: dbee7873a685a944d8d9479ffc9c1dd5
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: ab441e66b41b1744c8e0dc4cc44102f1, type: 2}
