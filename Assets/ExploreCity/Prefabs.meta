@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: bb2fa3ff1c2319149ad0ed068549e283
+=======
+guid: f3dd8160a98a1411e916789756667f2a
+>>>>>>> EP-city-generation
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
