@@ -5,14 +5,13 @@ using UnityEngine;
 public class MutatedSpiritCurable : MonoBehaviour
 {
 
-    private string[] states = { "Corrupted", "Cured" };
-    private string currentState;
     private GameObject child;
     [SerializeField] private GameObject companionAnim;
     [SerializeField] float timer = 1f;
     [SerializeField] private float alpha;
     [SerializeField] private Vector3 animSize;
     [SerializeField] private StoryManager StoryManager;
+    private Animator anim;
     private Task task;
 
     [SerializeField] private ParticleSystem ember;
@@ -21,9 +20,8 @@ public class MutatedSpiritCurable : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        anim = GetComponent<Animator>();
         task = GetComponent<Task>();
-        currentState = states[0];
         child = GameObject.Find("MutatedSpirit - Hurtbox");
 
 
@@ -39,8 +37,6 @@ public class MutatedSpiritCurable : MonoBehaviour
         //Run the 
         StartCoroutine(CureSequence());
 
-        //Change animation
-        currentState = states[1];
 
         //Change AI (remove hit box)\
         //only applies to mutated spirit
@@ -67,6 +63,7 @@ public class MutatedSpiritCurable : MonoBehaviour
             companionAnim.transform.localScale = Vector3.Lerp(companionAnim.transform.localScale, animSize, Time.deltaTime);
             yield return null;
         }
+        anim.SetTrigger("cured");
         yield return StartCoroutine(ImageFade.FadeSprite(true, timer, alpha, companionAnim.GetComponent<SpriteRenderer>()));
         
         companionAnim.transform.localScale = Vector3.zero;

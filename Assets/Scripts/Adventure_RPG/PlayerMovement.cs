@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Collider2D playerCollider;
     private bool grounded;
+    private Animator anim;
 
     [SerializeField]
     float _horizontalAcceleration = 20f; // meters per second per second
@@ -55,6 +56,8 @@ public class PlayerMovement : MonoBehaviour
         playerCollider = GetComponent<Collider2D>();
         canMove = true;
         HealthUI.Instance.InitializeHP(hp);
+
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -102,6 +105,8 @@ public class PlayerMovement : MonoBehaviour
 
                 rb.AddForce(friction);
             }
+
+            anim.SetFloat("xSpeed", Mathf.Abs(rb.velocity.x));
         }
 
         // deterministic flipping

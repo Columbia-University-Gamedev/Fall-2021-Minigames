@@ -2275,11 +2275,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 937887581}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 490151226}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4583c4b3fe6134849a9cfc48b11b9d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &490151233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490151226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 583dcd988727d0b448c7613fb35f5751, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 208308851}
+  spotCheck: {fileID: 810837067}
+  trigger: {fileID: 0}
 --- !u!1 &518143185
 GameObject:
   m_ObjectHideFlags: 0
@@ -3773,6 +3788,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 208308851}
+    - target: {fileID: 570166060359961700, guid: f1996f8f830cb424db63fd8a1e4419e9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 570166060359961700, guid: f1996f8f830cb424db63fd8a1e4419e9, type: 3}
       propertyPath: spotCheck
       value: 
