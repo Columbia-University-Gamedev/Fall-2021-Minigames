@@ -42,7 +42,7 @@ public class CureSpirit : MonoBehaviour
     {
         if (other.CompareTag("Player") && !cured)
         {
-
+            Debug.Log("curing");
             p.stillMutated = false;
 
             if (playerRb.velocity.x >= 0f)
