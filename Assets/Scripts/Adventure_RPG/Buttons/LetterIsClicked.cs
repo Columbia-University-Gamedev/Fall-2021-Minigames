@@ -30,7 +30,7 @@ public class LetterIsClicked : MonoBehaviour
     {
         if(spotCheck.getIsPlayerOn() == 1)
         {
-            Debug.Log("YOU CLICKED THE WATER!");
+            Debug.Log("YOU CLICKED THE BUTTON!");
 
             //GOES INTO TRIGGER IN ORDER TO RUN SPECIFIC METHODS
             spotCheck.runEvent();

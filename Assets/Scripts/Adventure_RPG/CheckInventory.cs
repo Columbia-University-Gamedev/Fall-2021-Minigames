@@ -67,6 +67,7 @@ public class CheckInventory : MonoBehaviour
                 break;
 
             case 3:
+                wrong_letter();
                 break;
 
             case 4:
@@ -87,6 +88,16 @@ public class CheckInventory : MonoBehaviour
     {
         yield return StartCoroutine(ImageFade.FadeSprite(true, 1f, 1f, fire.GetComponent<SpriteRenderer>()));
         fire.SetActive(false);
+    }
+
+    private void wrong_letter()
+    {
+        StoryManager.PerformEvent(4);
+    }
+
+    private void right_letter()
+    {
+        StoryManager.PerformEvent(1);
     }
 
 
