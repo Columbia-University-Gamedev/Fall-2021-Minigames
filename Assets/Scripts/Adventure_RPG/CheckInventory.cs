@@ -16,8 +16,8 @@ public class CheckInventory : MonoBehaviour
     [SerializeField] private int eventNumber;
 
     [SerializeField] private GameObject flower;
+    [SerializeField] private Sprite wateredFlower;
     [SerializeField] private GameObject fire;
-
 
 
     // Start is called before the first frame update
@@ -59,7 +59,6 @@ public class CheckInventory : MonoBehaviour
         {
             case 1:
                 water_flower();
-                Object.Destroy(this.gameObject);
                 break;
 
             case 2:
@@ -71,6 +70,7 @@ public class CheckInventory : MonoBehaviour
                 break;
 
             case 4:
+                right_letter();
                 break;
         }
 
@@ -81,7 +81,14 @@ public class CheckInventory : MonoBehaviour
     private void water_flower()
     {
         Debug.Log("YOU HELPED THE FLOWER!");
-        StoryManager.PerformEvent(0);
+        StoryManager.PerformEvent(1);
+
+        /*
+        flower.GetComponent<SpriteRenderer>().sprite = wateredFlower;
+        */
+
+        //Object.Destroy(this.gameObject);
+
     }
 
     private IEnumerator water_fire()

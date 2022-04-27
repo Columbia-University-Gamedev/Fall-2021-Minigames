@@ -43,7 +43,10 @@ public class CureSpirit : MonoBehaviour
         if (other.CompareTag("Player") && !cured)
         {
             Debug.Log("curing");
-            p.stillMutated = false;
+            if (p != null)
+            {
+                p.stillMutated = false;
+            }
 
             if (playerRb.velocity.x >= 0f)
             {
@@ -66,10 +69,11 @@ public class CureSpirit : MonoBehaviour
         companionAnim.transform.localScale = Vector3.zero;
         cured = true;
 
-        if (ember != null && rain != null)
+        if (rain != null)
         {
-            ember.Stop();
+            rain.gameObject.SetActive(true);
             rain.Play();
+
         }
     }
 }

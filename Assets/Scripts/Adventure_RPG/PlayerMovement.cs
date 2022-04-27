@@ -58,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
         HealthUI.Instance.InitializeHP(hp);
 
         anim = GetComponent<Animator>();
+        Debug.Log(anim);
     }
 
     // Update is called once per frame
@@ -78,6 +79,9 @@ public class PlayerMovement : MonoBehaviour
         Collider2D ground = Physics2D.OverlapCircle(offset, checkRadius, _groundMask);
         
         grounded = ground != null; 
+        anim.SetBool("grounded", grounded);
+        anim.SetFloat("yVelocity", rb.velocity.y);
+        
         if (grounded)
         {
             Vector2 normal =

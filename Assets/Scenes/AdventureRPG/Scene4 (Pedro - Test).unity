@@ -2783,6 +2783,7 @@ MonoBehaviour:
   eventType: 1
   eventNumber: 3
   flower: {fileID: 0}
+  wateredFlower: {fileID: 0}
   fire: {fileID: 0}
 --- !u!61 &810837068
 BoxCollider2D:
@@ -3604,7 +3605,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    textAsset: {fileID: 0}
+    textAsset: {fileID: 4900000, guid: 806c98d45d4bd814995d1980cf2f871e, type: 3}
   - eventName: PreOption2
     trigger: {fileID: 1017107851}
     progressCharacter: 0
@@ -3613,7 +3614,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    textAsset: {fileID: 0}
+    textAsset: {fileID: 4900000, guid: 72d3a5b66d68c46b195ea2da8a3ad8c9, type: 3}
   - eventName: Option2Scene
     trigger: {fileID: 469824902}
     progressCharacter: 0
@@ -4158,7 +4159,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.32259476}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4169,7 +4170,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 18.329058, y: 8.099999}
+  m_Size: {x: 18.329058, y: 7.45481}
   m_EdgeRadius: 0
 --- !u!212 &1101140260
 SpriteRenderer:
@@ -5039,6 +5040,7 @@ MonoBehaviour:
   eventType: 2
   eventNumber: 2
   flower: {fileID: 0}
+  wateredFlower: {fileID: 0}
   fire: {fileID: 921281653}
 --- !u!61 &1310676844
 BoxCollider2D:
