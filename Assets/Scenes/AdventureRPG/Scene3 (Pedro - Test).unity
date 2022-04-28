@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1943,6 +1943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StoryManager: {fileID: 1833499815}
+  eventNumber: 2
 --- !u!1 &519029228
 GameObject:
   m_ObjectHideFlags: 0
@@ -4725,15 +4726,6 @@ MonoBehaviour:
     nextScene: 
     hasDialogue: 1
     textAsset: {fileID: 4900000, guid: 72d3a5b66d68c46b195ea2da8a3ad8c9, type: 3}
-  - eventName: GoToNextScene
-    trigger: {fileID: 968949738}
-    progressCharacter: 0
-    character: {fileID: 0}
-    prereqs: 00000000010000000200000003000000
-    sceneTransition: 1
-    nextScene: Scene4 (Pedro - Test)
-    hasDialogue: 0
-    textAsset: {fileID: 0}
   - eventName: PreWaterFlower
     trigger: {fileID: 968417794}
     progressCharacter: 0
@@ -4743,6 +4735,15 @@ MonoBehaviour:
     nextScene: 
     hasDialogue: 1
     textAsset: {fileID: 4900000, guid: 806c98d45d4bd814995d1980cf2f871e, type: 3}
+  - eventName: NextScene
+    trigger: {fileID: 968949738}
+    progressCharacter: 0
+    character: {fileID: 0}
+    prereqs: 0000000001000000020000000300000004000000
+    sceneTransition: 1
+    nextScene: 
+    hasDialogue: 0
+    textAsset: {fileID: 0}
   canvas: {fileID: 822751780}
 --- !u!4 &1833499816
 Transform:

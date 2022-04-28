@@ -81,7 +81,7 @@ public class CheckInventory : MonoBehaviour
     private void water_flower()
     {
         Debug.Log("YOU HELPED THE FLOWER!");
-        StoryManager.PerformEvent(1);
+        StoryManager.PerformEvent(eventNumber);
 
         /*
         flower.GetComponent<SpriteRenderer>().sprite = wateredFlower;
