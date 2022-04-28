@@ -62,6 +62,11 @@ public class UIFeatures : MonoBehaviour
     }
     public void OnRestart()
     {
-        SceneManager.LoadScene("Scene1");
+        SceneManager.LoadScene("StartScene");
+    }
+
+    public void OnDestroyButton(GameObject button)
+    {
+        Destroy(button);
     }
 }

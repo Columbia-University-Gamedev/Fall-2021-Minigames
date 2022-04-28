@@ -15,8 +15,8 @@ public class CheckInventory : MonoBehaviour
     //1 = Flower, 2= Fire, 3 =
     [SerializeField] private int eventNumber;
 
-    [SerializeField] private GameObject flower;
-    [SerializeField] private Sprite wateredFlower;
+    [SerializeField] private GameObject wiltedFlower;
+    [SerializeField] private GameObject wateredFlower;
     [SerializeField] private GameObject fire;
 
 
@@ -83,10 +83,9 @@ public class CheckInventory : MonoBehaviour
         Debug.Log("YOU HELPED THE FLOWER!");
         StoryManager.PerformEvent(eventNumber);
 
-        /*
-        flower.GetComponent<SpriteRenderer>().sprite = wateredFlower;
-        */
-
+        wiltedFlower.SetActive(false);
+        wateredFlower.SetActive(true);
+        
         //Object.Destroy(this.gameObject);
 
     }

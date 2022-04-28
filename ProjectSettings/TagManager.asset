@@ -13,6 +13,7 @@ TagManager:
   - Bullet
   - Ground
   - PushableObject
+  - Death
   layers:
   - Default
   - TransparentFX

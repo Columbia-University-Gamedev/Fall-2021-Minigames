@@ -11,6 +11,7 @@ public class MutatedSpiritCurable : MonoBehaviour
     [SerializeField] private float alpha;
     [SerializeField] private Vector3 animSize;
     [SerializeField] private StoryManager StoryManager;
+    [SerializeField] private int eventNumber;
     private Animator anim;
     private Task task;
 
@@ -57,7 +58,7 @@ public class MutatedSpiritCurable : MonoBehaviour
     public IEnumerator CureSequence()
     {
         Debug.Log("In Curing");
-        StoryManager.PerformEvent(2);
+        StoryManager.PerformEvent(eventNumber);
         for (float i = 0; i <= timer; i += Time.deltaTime)
         {
             companionAnim.transform.localScale = Vector3.Lerp(companionAnim.transform.localScale, animSize, Time.deltaTime);

@@ -8,6 +8,11 @@ public class FallDamage : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            if (this.gameObject.CompareTag("Death"))
+            {
+                PlayerMovement.TakeDamage();
+                PlayerMovement.TakeDamage();
+            }
             PlayerMovement.TakeDamage();
             Debug.Log("take fall damage");
         }
