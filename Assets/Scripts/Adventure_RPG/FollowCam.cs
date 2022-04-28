@@ -11,6 +11,11 @@ public class FollowCam : MonoBehaviour
     private static Vector3 offset = new Vector3(0,1,-10);
     private Transform tr;
     private Transform player_tr;
+
+    [SerializeField] private float minX;
+    [SerializeField] private float maxX;
+    [SerializeField] private float minY;
+    [SerializeField] private float maxY;
     
     // Start is called before the first frame update
     void Start()
@@ -25,9 +30,11 @@ public class FollowCam : MonoBehaviour
     {
         Vector3 curpos = tr.position;
         Vector3 ppos = player_tr.position;
-        tr.position = new Vector3(
+        Vector3 p = new Vector3(
             Mathf.Lerp(curpos.x,ppos.x + offset.x,Time.deltaTime*horizontalLerpFactor),
             Mathf.Lerp(curpos.y,ppos.y + offset.y,Time.deltaTime*verticalLerpFactor),
             curpos.z);
+        Vector3 newPos = new Vector3(Mathf.Clamp(p.x, minX, maxX), Mathf.Clamp(p.y, minY, maxY), p.z);
+        tr.position = newPos;
     }
 }
