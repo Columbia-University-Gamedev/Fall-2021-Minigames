@@ -11,6 +11,14 @@ public class UIFeatures : MonoBehaviour
 
     [SerializeField] private float pauseOpacity = .9f;
     private float timeScale = 1;
+
+    public static bool soundOn = true;
+    [SerializeField] private GameObject strikethrough;
+    
+    public void Start()
+    {
+        strikethrough.SetActive(!soundOn);
+    }
     
     public void OnStart()
     {
@@ -68,5 +76,12 @@ public class UIFeatures : MonoBehaviour
     public void OnDestroyButton(GameObject button)
     {
         Destroy(button);
+    }
+
+    public void OnToggleSound()
+    {
+        AudioListener.volume = (soundOn) ? 0f : 1f;
+        soundOn = !soundOn;
+        strikethrough.SetActive(!soundOn);
     }
 }
