@@ -166,9 +166,9 @@ MonoBehaviour:
   dialogue: {fileID: 504196103}
   dialogueBox: {fileID: 831529392}
   characterArray:
-  - characterImage: {fileID: 21300000, guid: d99c8e8676a19e340ac88dfbfbdf54ba, type: 3}
+  - characterImage: {fileID: 21300000, guid: f9378b54b5e854b9ca842c36f40f0697, type: 3}
     characterName: Rika
-  - characterImage: {fileID: 21300000, guid: 7e7fec3bff9e94384ab445cab56c175c, type: 3}
+  - characterImage: {fileID: 21300000, guid: 56836bd8042154c3cb2d4881d748db36, type: 3}
     characterName: Professor
   - characterImage: {fileID: 21300000, guid: aca676dade51c4741bed2237697f37b0, type: 3}
     characterName: Bean

@@ -2616,11 +2616,11 @@ MonoBehaviour:
   dialogue: {fileID: 1168626932}
   dialogueBox: {fileID: 1887404351}
   characterArray:
-  - characterImage: {fileID: 21300000, guid: d99c8e8676a19e340ac88dfbfbdf54ba, type: 3}
+  - characterImage: {fileID: 21300000, guid: 78419231080f94d91b57e32c176db74d, type: 3}
     characterName: Rika
   - characterImage: {fileID: 21300000, guid: 7e7fec3bff9e94384ab445cab56c175c, type: 3}
     characterName: Professor
-  - characterImage: {fileID: 21300000, guid: aca676dade51c4741bed2237697f37b0, type: 3}
+  - characterImage: {fileID: 21300000, guid: d90e0cb46a037453babde22c578ef4e8, type: 3}
     characterName: Bean
   - characterImage: {fileID: 21300000, guid: 89af4219637a3d4498f518b2315f30d1, type: 3}
     characterName: MutatedSpirit
@@ -2628,7 +2628,7 @@ MonoBehaviour:
     characterName: LetterGiver
   - characterImage: {fileID: 21300000, guid: 89af4219637a3d4498f518b2315f30d1, type: 3}
     characterName: Mushroom
-  - characterImage: {fileID: 21300000, guid: 89af4219637a3d4498f518b2315f30d1, type: 3}
+  - characterImage: {fileID: 21300000, guid: 5789f158f6d7f497aae3728c9322d44f, type: 3}
     characterName: Snail
   - characterImage: {fileID: 21300000, guid: 89af4219637a3d4498f518b2315f30d1, type: 3}
     characterName: Fireboy
@@ -2741,6 +2741,7 @@ MonoBehaviour:
   pausePanel: {fileID: 67088498}
   pauseButton: {fileID: 1098097262}
   pauseOpacity: 1
+  strikethrough: {fileID: 1954904470}
 --- !u!1 &881749559
 GameObject:
   m_ObjectHideFlags: 0
@@ -10664,6 +10665,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 822751785}
     m_Modifications:
+    - target: {fileID: 874115073, guid: f6261653c569945cc99714124fd9a2e0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 822751786}
+    - target: {fileID: 874115073, guid: f6261653c569945cc99714124fd9a2e0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnToggleSound
+      objectReference: {fileID: 0}
     - target: {fileID: 7906134803267105098, guid: f6261653c569945cc99714124fd9a2e0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -10773,6 +10782,11 @@ PrefabInstance:
 --- !u!224 &1954904469 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7906134803267105098, guid: f6261653c569945cc99714124fd9a2e0, type: 3}
+  m_PrefabInstance: {fileID: 1954904468}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1954904470 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2103066448, guid: f6261653c569945cc99714124fd9a2e0, type: 3}
   m_PrefabInstance: {fileID: 1954904468}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1957528407

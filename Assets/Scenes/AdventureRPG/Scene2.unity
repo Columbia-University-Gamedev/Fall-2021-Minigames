@@ -161,17 +161,17 @@ MonoBehaviour:
   dialogue: {fileID: 504196103}
   dialogueBox: {fileID: 831529392}
   characterArray:
-  - characterImage: {fileID: 21300000, guid: d99c8e8676a19e340ac88dfbfbdf54ba, type: 3}
+  - characterImage: {fileID: 21300000, guid: 24eb61a0388554bc784168a2b8a3287a, type: 3}
     characterName: Rika
   - characterImage: {fileID: 21300000, guid: 7e7fec3bff9e94384ab445cab56c175c, type: 3}
     characterName: Professor
-  - characterImage: {fileID: 21300000, guid: aca676dade51c4741bed2237697f37b0, type: 3}
+  - characterImage: {fileID: 21300000, guid: 103653dccb5bb462e93d0e5ce9035980, type: 3}
     characterName: Bean
-  - characterImage: {fileID: 21300000, guid: 89af4219637a3d4498f518b2315f30d1, type: 3}
+  - characterImage: {fileID: 21300000, guid: 1f2089370c5dc4d3a90c400001f1448b, type: 3}
     characterName: MutatedSpirit
-  - characterImage: {fileID: 21300000, guid: 89af4219637a3d4498f518b2315f30d1, type: 3}
+  - characterImage: {fileID: 21300000, guid: a864eea24681b4a0fb7e7992ef298fb4, type: 3}
     characterName: LetterGiver
-  - characterImage: {fileID: 21300000, guid: 89af4219637a3d4498f518b2315f30d1, type: 3}
+  - characterImage: {fileID: 21300000, guid: ba30414dc7055415a83bb2296bb76ab4, type: 3}
     characterName: Mushroom
   - characterImage: {fileID: 21300000, guid: 89af4219637a3d4498f518b2315f30d1, type: 3}
     characterName: Snail
@@ -3909,7 +3909,6 @@ GameObject:
   - component: {fileID: 1311182839}
   - component: {fileID: 1311182838}
   - component: {fileID: 1311182837}
-  - component: {fileID: 1311182841}
   - component: {fileID: 1311182842}
   m_Layer: 0
   m_Name: MutatedSpiritTrigger
@@ -4011,28 +4010,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1311182841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1311182835}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29b586063246a433fac7e46788f41ae1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  companionAnim: {fileID: 184551539}
-  timer: 2
-  alpha: 1
-  animSize: {x: 200, y: 200, z: 200}
-  playerRb: {fileID: 681840066}
-  mutatedSpirit: {fileID: 1321549815}
-  storyManager: {fileID: 0}
-  ember: {fileID: 0}
-  rain: {fileID: 0}
-  p: {fileID: 7363350888218353152}
 --- !u!95 &1311182842
 Animator:
   serializedVersion: 4
@@ -5065,7 +5042,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2662722177255571164, guid: 9f7640d6a9221a945a087dca04b16293, type: 3}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2662722177255571164, guid: 9f7640d6a9221a945a087dca04b16293, type: 3}
       propertyPath: m_RootOrder
@@ -5073,7 +5050,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2662722177255571164, guid: 9f7640d6a9221a945a087dca04b16293, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2662722177255571164, guid: 9f7640d6a9221a945a087dca04b16293, type: 3}
       propertyPath: m_AnchorMax.y
@@ -5081,7 +5058,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2662722177255571164, guid: 9f7640d6a9221a945a087dca04b16293, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2662722177255571164, guid: 9f7640d6a9221a945a087dca04b16293, type: 3}
       propertyPath: m_AnchorMin.y
@@ -5137,11 +5114,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2662722177255571164, guid: 9f7640d6a9221a945a087dca04b16293, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -40
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2662722177255571164, guid: 9f7640d6a9221a945a087dca04b16293, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -40
+      value: -31.7
       objectReference: {fileID: 0}
     - target: {fileID: 2662722177255571164, guid: 9f7640d6a9221a945a087dca04b16293, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5874,14 +5851,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 26.19, y: 22.161753}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 26.19, y: 22.161753}
   m_EdgeRadius: 0
 --- !u!212 &2038604037
 SpriteRenderer:
@@ -5923,9 +5900,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.9528302, g: 0.6395741, b: 0.22921856, a: 1}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 18702ea87b11b4c32acb7af8dcdc8492, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5943,8 +5920,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2038604033}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.18, y: -4.17, z: 0}
-  m_LocalScale: {x: 0.89780885, y: 0.48, z: 1}
+  m_LocalPosition: {x: 6.97, y: -4, z: 0}
+  m_LocalScale: {x: 0.032983884, y: 0.032983884, z: 0.032983884}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
