@@ -14,6 +14,7 @@ public class CureSpirit : MonoBehaviour
     [SerializeField] private Rigidbody2D playerRb;
     [SerializeField] private Animator mutatedSpirit;
     private bool cured;
+    [SerializeField] private StoryManager storyManager;
 
     [SerializeField] private ParticleSystem ember;
     [SerializeField] private ParticleSystem rain;
@@ -21,7 +22,6 @@ public class CureSpirit : MonoBehaviour
 
     void Start()
     {
-        cured = false;
     }
 
     // Update is called once per frame
@@ -40,7 +40,7 @@ public class CureSpirit : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !cured)
+        if (other.CompareTag("Player") && storyManager.sceneEvents[3].completed)
         {
             Debug.Log("curing");
             if (p != null)
@@ -67,7 +67,6 @@ public class CureSpirit : MonoBehaviour
         yield return StartCoroutine(ImageFade.FadeSprite(true, timer, alpha, companionAnim.GetComponent<SpriteRenderer>()));
 
         companionAnim.transform.localScale = Vector3.zero;
-        cured = true;
 
         if (rain != null)
         {

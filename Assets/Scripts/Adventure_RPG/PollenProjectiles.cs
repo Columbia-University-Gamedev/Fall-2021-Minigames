@@ -11,17 +11,7 @@ public class PollenProjectiles : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        stillMutated = true;
         ps = GetComponent<ParticleSystem>();
-    }
-
-    void Update()
-    {
-        if (!stillMutated)
-        {
-            Debug.Log("stopping");
-            ps.Stop();
-        }
     }
 
     void OnParticleTrigger()

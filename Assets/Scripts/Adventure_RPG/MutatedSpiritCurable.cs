@@ -17,6 +17,7 @@ public class MutatedSpiritCurable : MonoBehaviour
 
     [SerializeField] private ParticleSystem ember;
     [SerializeField] private ParticleSystem rain;
+    [SerializeField] private ParticleSystem pollen;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,7 @@ public class MutatedSpiritCurable : MonoBehaviour
 
         //task.completed = true;
 
+        pollen.Stop();
         //Run the 
         StartCoroutine(CureSequence());
 

@@ -198,10 +198,28 @@ MonoBehaviour:
   dialogue: {fileID: 504196103}
   dialogueBox: {fileID: 831529392}
   characterArray:
-  - characterImage: {fileID: 21300000, guid: d99c8e8676a19e340ac88dfbfbdf54ba, type: 3}
-    characterName: char0
+  - characterImage: {fileID: 21300000, guid: 5497138a932e34b50b935e351cd8cbe0, type: 3}
+    characterName: MainCharacter
+  - characterImage: {fileID: 21300000, guid: 89af4219637a3d4498f518b2315f30d1, type: 3}
+    characterName: Prof
+  - characterImage: {fileID: 21300000, guid: f091df4aa78ac4dfab7147ab4cfa965e, type: 3}
+    characterName: Bean
   - characterImage: {fileID: 21300000, guid: 89af4219637a3d4498f518b2315f30d1, type: 3}
     characterName: char1
+  - characterImage: {fileID: 21300000, guid: 89af4219637a3d4498f518b2315f30d1, type: 3}
+    characterName: char1
+  - characterImage: {fileID: 21300000, guid: 89af4219637a3d4498f518b2315f30d1, type: 3}
+    characterName: char1
+  - characterImage: {fileID: 21300000, guid: 89af4219637a3d4498f518b2315f30d1, type: 3}
+    characterName: char1
+  - characterImage: {fileID: 21300000, guid: 89af4219637a3d4498f518b2315f30d1, type: 3}
+    characterName: char1
+  - characterImage: {fileID: 21300000, guid: 89af4219637a3d4498f518b2315f30d1, type: 3}
+    characterName: char1
+  - characterImage: {fileID: 21300000, guid: 89af4219637a3d4498f518b2315f30d1, type: 3}
+    characterName: Parent
+  - characterImage: {fileID: 21300000, guid: 778ddacc9eea943abaaa7907d9131bfc, type: 3}
+    characterName: Root
 --- !u!114 &27757517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3145,8 +3163,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311182835}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.18, y: -1.35, z: 0}
-  m_LocalScale: {x: 2.4658303, y: 0.48, z: 1}
+  m_LocalPosition: {x: 23.8622, y: -1.35, z: 0}
+  m_LocalScale: {x: 3.101455, y: 0.48, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3467,23 +3485,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7716899738377666444, guid: 0c1a26fe86284419bb740c71e3320535, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.36818
+      value: 0.3486554
       objectReference: {fileID: 0}
     - target: {fileID: 7716899738377666444, guid: 0c1a26fe86284419bb740c71e3320535, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.36818
+      value: 0.3486554
       objectReference: {fileID: 0}
     - target: {fileID: 7716899738377666444, guid: 0c1a26fe86284419bb740c71e3320535, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.36818
+      value: 0.3486554
       objectReference: {fileID: 0}
     - target: {fileID: 7716899738377666444, guid: 0c1a26fe86284419bb740c71e3320535, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.61
+      value: 28.14
       objectReference: {fileID: 0}
     - target: {fileID: 7716899738377666444, guid: 0c1a26fe86284419bb740c71e3320535, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.92
+      value: 0.66
       objectReference: {fileID: 0}
     - target: {fileID: 7716899738377666444, guid: 0c1a26fe86284419bb740c71e3320535, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3779,11 +3797,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   companionAnim: {fileID: 184551539}
-  timer: 2
+  timer: 1
   alpha: 1
   animSize: {x: 200, y: 200, z: 200}
   playerRb: {fileID: 397695739}
   mutatedSpirit: {fileID: 974790920}
+  storyManager: {fileID: 741783135}
   ember: {fileID: 0}
   rain: {fileID: 782400520}
   p: {fileID: 0}
