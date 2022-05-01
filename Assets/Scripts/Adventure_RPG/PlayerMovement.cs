@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private int maxHp;
     private static int hp;
+    private static AudioSource audioSource;
 
     void Awake()
     {
@@ -58,6 +59,8 @@ public class PlayerMovement : MonoBehaviour
 
         anim = GetComponent<Animator>();
         Debug.Log(anim);
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -180,6 +183,7 @@ public class PlayerMovement : MonoBehaviour
         {
             StoryManager.currentScene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene("GameOver");
+            audioSource.Play();
         }
     }
 }

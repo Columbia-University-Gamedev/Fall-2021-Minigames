@@ -351,7 +351,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -1.559, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 120, y: -110.9}
+  m_AnchoredPosition: {x: 120, y: -120.4}
   m_SizeDelta: {x: 460.7518, y: 50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &131047171
@@ -430,7 +430,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Restart from beginning
+  m_text: 'Restart Game
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ac4204b0227c04730a1f37c499b89917, type: 2}
   m_sharedMaterial: {fileID: 8491844440610652590, guid: ac4204b0227c04730a1f37c499b89917, type: 2}
@@ -622,7 +624,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Restart from here
+  m_text: 'Restart Scene
 
 '
   m_isRightToLeft: 0

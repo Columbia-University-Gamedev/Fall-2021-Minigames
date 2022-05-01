@@ -19,6 +19,9 @@ public class CheckInventory : MonoBehaviour
     [SerializeField] private GameObject wateredFlower;
     [SerializeField] private GameObject fire;
 
+    [SerializeField] private GameObject letterButton;
+    [SerializeField] private GameObject waterButton;
+
 
     // Start is called before the first frame update
     void Start()
@@ -94,6 +97,7 @@ public class CheckInventory : MonoBehaviour
     {
         yield return StartCoroutine(ImageFade.FadeSprite(true, 1f, 1f, fire.GetComponent<SpriteRenderer>()));
         fire.SetActive(false);
+        waterButton.SetActive(false);
     }
 
     private void wrong_letter()
@@ -104,6 +108,7 @@ public class CheckInventory : MonoBehaviour
     private void right_letter()
     {
         StoryManager.PerformEvent(1);
+        letterButton.SetActive(false);
     }
 
 
