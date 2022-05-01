@@ -20,6 +20,8 @@ public class CureSpirit : MonoBehaviour
     [SerializeField] private ParticleSystem rain;
     [SerializeField] private PollenProjectiles p;
 
+    [SerializeField] private GameObject resolvedAudio;
+
     void Start()
     {
     }
@@ -72,6 +74,7 @@ public class CureSpirit : MonoBehaviour
         {
             rain.gameObject.SetActive(true);
             rain.Play();
+            resolvedAudio.SetActive(true);
 
         }
     }
