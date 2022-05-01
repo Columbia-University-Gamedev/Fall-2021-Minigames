@@ -9,7 +9,7 @@ public class HealthUI : MonoBehaviour
     public static HealthUI Instance { get { return _instance; } }
 
     public GameObject heart;
-    [SerializeField] private float dist = 20f;
+    private float dist = 40f;
 
     private List<GameObject> healthBar = new List<GameObject>();
     // Start is called before the first frame update

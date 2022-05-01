@@ -9,6 +9,7 @@ public class StoryManager : MonoBehaviour
     private static StoryManager _instance;
 
     public static StoryManager Instance { get { return _instance; } }
+    [SerializeField] public static string currentScene;
 
     public void Awake()
     {
@@ -71,6 +72,7 @@ public class StoryManager : MonoBehaviour
         se.started = true;
         if (se.sceneTransition)
         {
+            currentScene = se.nextScene;
             SceneManager.LoadScene(se.nextScene);
         }
 

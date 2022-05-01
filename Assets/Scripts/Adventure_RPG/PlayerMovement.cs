@@ -50,8 +50,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        if (hp == 0)
-            hp = maxHp;
+        hp = maxHp;
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<Collider2D>();
         canMove = true;
@@ -179,6 +178,7 @@ public class PlayerMovement : MonoBehaviour
         HealthUI.Instance.UpdateHP(hp);
         if(hp == 0)
         {
+            StoryManager.currentScene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene("GameOver");
         }
     }

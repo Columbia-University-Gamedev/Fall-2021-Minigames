@@ -17,11 +17,13 @@ public class UIFeatures : MonoBehaviour
     
     public void Start()
     {
-        strikethrough.SetActive(!soundOn);
+        if (strikethrough)
+            strikethrough.SetActive(!soundOn);
     }
     
     public void OnStart()
     {
+        StoryManager.currentScene = "Scene1";
         SceneManager.LoadScene("Scene1");
     }
 
@@ -72,6 +74,11 @@ public class UIFeatures : MonoBehaviour
     {
         SceneManager.LoadScene("StartScene");
     }
+    
+    public void OnRestartCurrentScene()
+    {
+        SceneManager.LoadScene(StoryManager.currentScene);
+    }
 
     public void OnDestroyButton(GameObject button)
     {
@@ -82,6 +89,7 @@ public class UIFeatures : MonoBehaviour
     {
         AudioListener.volume = (soundOn) ? 0f : 1f;
         soundOn = !soundOn;
-        strikethrough.SetActive(!soundOn);
+        if (strikethrough)
+            strikethrough.SetActive(!soundOn);
     }
 }
