@@ -1491,7 +1491,7 @@ MonoBehaviour:
     character: {fileID: 0}
     prereqs: 0200000003000000
     sceneTransition: 1
-    nextScene: Credits Scene
+    nextScene: Credits Scene Op 1
     hasDialogue: 0
     textAsset: {fileID: 0}
   canvas: {fileID: 27757515}

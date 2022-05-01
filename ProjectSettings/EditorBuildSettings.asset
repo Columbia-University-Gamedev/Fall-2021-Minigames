@@ -45,10 +45,10 @@ EditorBuildSettings:
     path: Assets/Scenes/AdventureRPG/GameOver.unity
     guid: 33b1572d5291448e790687ebee60aa35
   - enabled: 1
-    path: Assets/Scenes/AdventureRPG/Credits Scene.unity
+    path: Assets/Scenes/AdventureRPG/Credits Scene Op1.unity
     guid: 337307a22ddd55241b9460a2b39022cd
   - enabled: 1
-    path: Assets/Scenes/AdventureRPG/Credits Scene 1.unity
+    path: Assets/Scenes/AdventureRPG/Credits Scene Op2.unity
     guid: 89354f9acdb0cd04ca04c271fcf2d876
   - enabled: 1
     path: Assets/Scenes/AdventureRPG/Scene6.unity
