@@ -11,7 +11,9 @@ public class ECNPCBehavior : MonoBehaviour
 
     //i am aware this causes all NPCs to have the same dialogue, in a proper system they'd read dialogue from a file    
 
+    private Vector2 lastTransform;
     private GameObject dialogueContainer;
+    private Animator anim;
     private Dialogues d;
     private int curWaypoint;
     private bool isPatrolling = true;
@@ -25,6 +27,8 @@ public class ECNPCBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
+        lastTransform = new Vector2(0, 0);
         dialogueContainer = GameObject.Find("Dialogue Container");
         d = dialogueContainer.GetComponent<Dialogues>();
         //only one patrol point would cause glitches so solve that here
@@ -40,10 +44,12 @@ public class ECNPCBehavior : MonoBehaviour
 
     public void init()
     {
-        var r = new System.Random();
-        patrolPoints.Add(new Vector2(transform.position.x + r.Next(-waypointRange, waypointRange), transform.position.x + r.Next(-waypointRange, waypointRange)));
-        patrolPoints.Add(new Vector2(transform.position.x + r.Next(-waypointRange, waypointRange), transform.position.x + r.Next(-waypointRange, waypointRange)));
-        patrolPoints.Add(new Vector2(transform.position.x + r.Next(-waypointRange, waypointRange), transform.position.x + r.Next(-waypointRange, waypointRange)));
+        
+        Debug.Log("Position: " + transform.position);
+        patrolPoints.Add(new Vector2(transform.localPosition.x + UnityEngine.Random.Range(-waypointRange, waypointRange), transform.localPosition.x + UnityEngine.Random.Range(-waypointRange, waypointRange)));
+        patrolPoints.Add(new Vector2(transform.localPosition.x + UnityEngine.Random.Range(-waypointRange, waypointRange), transform.localPosition.x + UnityEngine.Random.Range(-waypointRange, waypointRange)));
+        patrolPoints.Add(new Vector2(transform.localPosition.x + UnityEngine.Random.Range(-waypointRange, waypointRange), transform.localPosition.x + UnityEngine.Random.Range(-waypointRange, waypointRange)));
+        
     }
 
     public string[] getDialogue()
@@ -89,6 +95,21 @@ public class ECNPCBehavior : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, waypoint, npcSpeed * Time.deltaTime);
             }
         }
+
+        Vector2 thisTransform = (Vector2)transform.position - lastTransform;
+        anim.SetFloat("velx", thisTransform.x);
+        anim.SetFloat("vely", thisTransform.y);
+        //Debug.Log("NPC dT: " + thisTransform);
+        if (thisTransform == Vector2.zero)
+        {
+            anim.SetBool("moving", false);
+        } else
+        {
+            anim.SetBool("moving", true);
+        }
+
+        lastTransform = transform.position;
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)

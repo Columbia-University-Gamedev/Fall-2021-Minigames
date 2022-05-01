@@ -94,7 +94,7 @@ public class CityGeneration : MonoBehaviour
         Debug.Log("Ybounds: " + yBounds);
         GameObject createdBuilding;
         RectTransform rt;
-
+        Vector3 buildingPos = new Vector3();
  
         float width=1;
         float height=1;
@@ -111,12 +111,13 @@ public class CityGeneration : MonoBehaviour
                 if(maxWidth<width){
                     maxWidth = width;
                 }
-                Instantiate(createdBuilding, new Vector3(xBounds.y + far + width, i, 0.0f), Quaternion.identity);
-                //generate a new npc
-                GameObject npcref = Instantiate(npc, new Vector3(xBounds.y + far + width, i, 0.0f), Quaternion.identity);
+                buildingPos = new Vector3(xBounds.y + far + width, i, 0.0f);
+                Instantiate(createdBuilding, buildingPos, Quaternion.identity);
+                GameObject npcref = Instantiate(npc, (Vector2)buildingPos + new Vector2(Random.Range(0, 3), Random.Range(0, 3)), Quaternion.identity);
                 npcref.GetComponent<ECNPCBehavior>().init();
             }
             xBounds.y = Mathf.CeilToInt(xBounds.y + generationRadius + maxWidth);
+
         }
         else if (dir == GenerationDirection.Left){
             for (int i=Mathf.CeilToInt(yBounds.x); i<Mathf.CeilToInt(yBounds.y); i+=Mathf.CeilToInt(generationRadius+ height)){
@@ -127,12 +128,13 @@ public class CityGeneration : MonoBehaviour
                 if(maxWidth<width){
                     maxWidth = width;
                 }
-                Instantiate(createdBuilding, new Vector3(xBounds.x - far - 1f*width, i, 0.0f), Quaternion.identity);
-                //generate a new npc
-                GameObject npcref = Instantiate(npc, new Vector3(xBounds.x - far - 1f * width, i, 0.0f), Quaternion.identity);
+                buildingPos = new Vector3(xBounds.x - far - 1f * width, i, 0.0f);
+                Instantiate(createdBuilding, buildingPos, Quaternion.identity);
+                GameObject npcref = Instantiate(npc, (Vector2)buildingPos + new Vector2(Random.Range(0, 3), Random.Range(0, 3)), Quaternion.identity);
                 npcref.GetComponent<ECNPCBehavior>().init();
             }
             xBounds.x = Mathf.FloorToInt(xBounds.x - generationRadius - maxWidth);
+
         }
         else if (dir == GenerationDirection.Up){
             for (int i=Mathf.CeilToInt(xBounds.x); i<Mathf.CeilToInt(xBounds.y); i+=Mathf.CeilToInt(generationRadius+ width)){
@@ -143,14 +145,15 @@ public class CityGeneration : MonoBehaviour
                 if(maxHeight<height){
                     maxHeight = height;
                 }
-                Instantiate(createdBuilding, new Vector3(i, yBounds.y + far + 0.5f*height, 0.0f), Quaternion.identity);
-                //generate a new npc
-                GameObject npcref = Instantiate(npc, new Vector3(i, yBounds.y + far + 0.5f * height, 0.0f), Quaternion.identity);
+                buildingPos = new Vector3(i, yBounds.y + far + 0.5f * height, 0.0f);
+                Instantiate(createdBuilding, buildingPos, Quaternion.identity);
+                GameObject npcref = Instantiate(npc, (Vector2)buildingPos + new Vector2(Random.Range(0, 3), Random.Range(0, 3)), Quaternion.identity);
                 npcref.GetComponent<ECNPCBehavior>().init();
             }
             yBounds.y = Mathf.CeilToInt(yBounds.y + generationRadius + maxHeight);
+
         }
-        else if (dir == GenerationDirection.Down){
+        else { 
              for (int i=Mathf.CeilToInt(xBounds.x); i<Mathf.CeilToInt(xBounds.y); i+=Mathf.CeilToInt(generationRadius+ width)){
                 createdBuilding = getRandomBuilding();
                 rt = createdBuilding.GetComponent<RectTransform>();
@@ -159,12 +162,13 @@ public class CityGeneration : MonoBehaviour
                 if(maxHeight<height){
                     maxHeight = height;
                 }
-                Instantiate(createdBuilding, new Vector3(i, yBounds.x- far - 0.5f*height, 0.0f), Quaternion.identity);
-                //generate a new npc
-                GameObject npcref = Instantiate(npc,  new Vector3(i, yBounds.y + far + 0.5f*height, 0.0f), Quaternion.identity);
+                buildingPos = new Vector3(i, yBounds.x - far - 0.5f * height, 0.0f);
+                Instantiate(createdBuilding, buildingPos, Quaternion.identity);
+                GameObject npcref = Instantiate(npc, (Vector2)buildingPos + new Vector2(Random.Range(0, 3), Random.Range(0, 3)), Quaternion.identity);
                 npcref.GetComponent<ECNPCBehavior>().init();
             }
             yBounds.x = Mathf.FloorToInt(yBounds.x - generationRadius - maxHeight);
+
         }
     }
 
