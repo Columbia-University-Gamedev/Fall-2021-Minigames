@@ -2122,7 +2122,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    textAsset: {fileID: 4900000, guid: 1814e7071a7789f4c96110dcec6c8e08, type: 3}
+    textAsset: {fileID: 4900000, guid: 83335c9d794e246a58725979a706dd99, type: 3}
   - eventName: GiveRootLetter
     trigger: {fileID: 0}
     progressCharacter: 0
@@ -2131,7 +2131,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    textAsset: {fileID: 4900000, guid: 806c98d45d4bd814995d1980cf2f871e, type: 3}
+    textAsset: {fileID: 4900000, guid: 423c8caf033bb405c8b5a285d87d5761, type: 3}
   - eventName: RootNonSentient
     trigger: {fileID: 934768282}
     progressCharacter: 0
@@ -2140,7 +2140,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    textAsset: {fileID: 4900000, guid: 72d3a5b66d68c46b195ea2da8a3ad8c9, type: 3}
+    textAsset: {fileID: 4900000, guid: be5a2a60f6d88466f939f0a3d9b9ae1f, type: 3}
   - eventName: CureRoot
     trigger: {fileID: 1967988874}
     progressCharacter: 0

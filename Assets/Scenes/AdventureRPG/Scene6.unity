@@ -1208,7 +1208,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    textAsset: {fileID: 4900000, guid: 72d3a5b66d68c46b195ea2da8a3ad8c9, type: 3}
+    textAsset: {fileID: 4900000, guid: 6693e226a20ea4ce5b93d66da1874059, type: 3}
   - eventName: NextSceneTrigger
     trigger: {fileID: 1115567684}
     progressCharacter: 0

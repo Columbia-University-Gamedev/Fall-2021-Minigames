@@ -1457,7 +1457,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    textAsset: {fileID: 4900000, guid: a7603de82bbcf439aaf4e41220447073, type: 3}
+    textAsset: {fileID: 4900000, guid: e95d30875db6b4fa9a0e7e92984b96ed, type: 3}
   - eventName: CureProfessor
     trigger: {fileID: 0}
     progressCharacter: 0
@@ -1475,7 +1475,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    textAsset: {fileID: 4900000, guid: 1814e7071a7789f4c96110dcec6c8e08, type: 3}
+    textAsset: {fileID: 4900000, guid: 061809498a4354ca786ed8f35d9ef8e1, type: 3}
   - eventName: Apologies
     trigger: {fileID: 1385424477}
     progressCharacter: 0
@@ -1484,7 +1484,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    textAsset: {fileID: 4900000, guid: 2999683fe4fee49b18080097f85536b0, type: 3}
+    textAsset: {fileID: 4900000, guid: 4c1b2594a09ff4620be8c2063593de95, type: 3}
   - eventName: Go To Next Scene
     trigger: {fileID: 469824902}
     progressCharacter: 0

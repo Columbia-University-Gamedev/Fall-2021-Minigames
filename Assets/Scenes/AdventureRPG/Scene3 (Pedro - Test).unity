@@ -10144,7 +10144,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    textAsset: {fileID: 4900000, guid: 1814e7071a7789f4c96110dcec6c8e08, type: 3}
+    textAsset: {fileID: 4900000, guid: bf95c4cbc25624015b8b1092582080b7, type: 3}
   - eventName: PushableObject
     trigger: {fileID: 0}
     progressCharacter: 0
@@ -10153,7 +10153,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    textAsset: {fileID: 4900000, guid: 1814e7071a7789f4c96110dcec6c8e08, type: 3}
+    textAsset: {fileID: 4900000, guid: f18936ea5db774f7bab78642894e156f, type: 3}
   - eventName: OldSpiritDialogue
     trigger: {fileID: 1130940662}
     progressCharacter: 1
@@ -10162,7 +10162,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    textAsset: {fileID: 4900000, guid: 72d3a5b66d68c46b195ea2da8a3ad8c9, type: 3}
+    textAsset: {fileID: 4900000, guid: dddf40119f5fc486eb58f6a2350efa82, type: 3}
   - eventName: PreWaterFlower
     trigger: {fileID: 968417794}
     progressCharacter: 0
@@ -10171,7 +10171,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    textAsset: {fileID: 4900000, guid: 806c98d45d4bd814995d1980cf2f871e, type: 3}
+    textAsset: {fileID: 4900000, guid: 26d962566eb92454fa37721893803da0, type: 3}
   - eventName: NextScene
     trigger: {fileID: 968949738}
     progressCharacter: 0
