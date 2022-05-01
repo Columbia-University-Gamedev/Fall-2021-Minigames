@@ -2136,7 +2136,7 @@ MonoBehaviour:
     trigger: {fileID: 934768282}
     progressCharacter: 0
     character: {fileID: 0}
-    prereqs: 01000000
+    prereqs: 0100000003000000
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
@@ -3033,7 +3033,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130940662}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.92, y: -1.35, z: 0}
+  m_LocalPosition: {x: 23.19, y: -1.35, z: 0}
   m_LocalScale: {x: 2.9387422, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3364,8 +3364,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311182835}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.8622, y: -1.35, z: 0}
-  m_LocalScale: {x: 3.101455, y: 0.48, z: 1}
+  m_LocalPosition: {x: 24.9287, y: -1.35, z: 0}
+  m_LocalScale: {x: 5.234326, y: 0.48, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3793,7 +3793,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5da9a5e6c057a43c6b5549cccaac86f8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6f4be203ca97a4f02b16d608602c8cba, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -4135,7 +4135,8 @@ MonoBehaviour:
   ember: {fileID: 0}
   rain: {fileID: 782400520}
   p: {fileID: 0}
-  resolvedAudio: {fileID: 0}
+  resolvedAudio: {fileID: 1774297816}
+  originalAudio: {fileID: 1076897220}
 --- !u!61 &1967988876
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4222,8 +4223,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1967988874}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.45, y: 0.88, z: 0}
-  m_LocalScale: {x: 0.7570099, y: 4.9249306, z: 1}
+  m_LocalPosition: {x: 25.7561, y: 0.88, z: 0}
+  m_LocalScale: {x: 1.3693051, y: 4.9249306, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
