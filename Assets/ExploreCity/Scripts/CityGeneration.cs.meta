@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7d3925c7983f9f345bdb17f86477ef54
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - player: {instanceID: 0}
+  - mainCamera: {instanceID: 0}
+  - tempBuildingPrefab: {fileID: 976943942252582654, guid: 2831230af4aea47cba1ae54b48c79c8e, type: 3}
+  - tempRoadPrefab: {fileID: 5656190323385076746, guid: 7803e386ce49b431194f455d89074fa1, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
