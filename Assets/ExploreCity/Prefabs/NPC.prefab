@@ -196,7 +196,7 @@ MonoBehaviour:
   patrolPoints: []
   npcSpeed: 2
   interactRange: 2.25
-  waypointRange: 10
+  waypointRange: 30
 --- !u!114 &5549660794034322040
 MonoBehaviour:
   m_ObjectHideFlags: 0
