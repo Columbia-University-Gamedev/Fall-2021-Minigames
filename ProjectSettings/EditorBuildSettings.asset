@@ -8,13 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ExploreCity/Scenes/Title.unity
     guid: 2861e1bb12e4ca5438592c167d4f6cea
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/jumpPlatformGen.unity
     guid: 2b4c1acb46a8f425aa4a6d5a622e2e5f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GameOver.unity
     guid: 3b1b08cba446545ad94968ba9e0f9ab8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/HomeScreen.unity
     guid: 0f5522113fc6744358e72a09e7b6b96f
   - enabled: 1
