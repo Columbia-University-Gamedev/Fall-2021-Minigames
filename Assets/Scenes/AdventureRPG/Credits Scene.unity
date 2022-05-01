@@ -284,51 +284,59 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '<font="CaviarDreams_Bold SDF"><size=18> Elaine Lee
+  m_text: '<font="CaviarDreams_Bold SDF"><size=14> Elaine Lee
 
     <font="AltonaSans-Regular
-    SDF"><size=13> Programmer, Artist, and Writer
+    SDF"><size=12> Programmer, Artist, and Writer
+
 
     <font="CaviarDreams_Bold
-    SDF"><size=18> Heesoo
+    SDF"><size=14> HeeSoo Park
 
-    <font="AltonaSans-Regular SDF"><size=13> Artist
+    <font="AltonaSans-Regular SDF"><size=12> Artist
+
 
     <font="CaviarDreams_Bold
-    SDF"><size=18> Reina Nakamura
+    SDF"><size=14> Reina Nakamura
 
-    <font="AltonaSans-Regular SDF"><size=13>
-    Writer and Musician
+    <font="AltonaSans-Regular SDF"><size=12> Writer
+    and Musician
 
-    <font="CaviarDreams_Bold SDF"><size=18> Sophia Gates
+
+    <font="CaviarDreams_Bold SDF"><size=14> Sophia Gates
 
     <font="AltonaSans-Regular
-    SDF"><size=13> Writer
+    SDF"><size=12> Writer
 
-    <font="CaviarDreams_Bold SDF"><size=18> Chirstina
+
+    <font="CaviarDreams_Bold SDF"><size=14> Chirstina
     Ou
 
-    <font="AltonaSans-Regular SDF"><size=13> Level Designer
+    <font="AltonaSans-Regular SDF"><size=12> Level Designer
+
 
     <font="CaviarDreams_Bold
-    SDF"><size=18> Pedro Perez
+    SDF"><size=14> Pedro Perez
 
-    <font="AltonaSans-Regular SDF"><size=13> Programmer
+    <font="AltonaSans-Regular SDF"><size=12> Programmer
 
-    <font="CaviarDreams_Bold
-    SDF"><size=18> David Xu
-
-    <font="AltonaSans-Regular SDF"><size=13> Programmer
 
     <font="CaviarDreams_Bold
-    SDF"><size=18> Ryan Xu
+    SDF"><size=14> David Xu
 
-    <font="AltonaSans-Regular SDF"><size=13> Programmer
+    <font="AltonaSans-Regular SDF"><size=12> Programmer
+
 
     <font="CaviarDreams_Bold
-    SDF"><size=18> Alex Rupp-Coppi
+    SDF"><size=14> Ryan Xu
 
-    <font="AltonaSans-Regular SDF"><size=13>
+    <font="AltonaSans-Regular SDF"><size=12> Programmer
+
+
+    <font="CaviarDreams_Bold
+    SDF"><size=14> Alex Rupp-Coppi
+
+    <font="AltonaSans-Regular SDF"><size=12>
     Programmer
 
 '
