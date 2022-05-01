@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3605,7 +3605,7 @@ MonoBehaviour:
     character: {fileID: 0}
     prereqs: 050000000600000004000000
     sceneTransition: 1
-    nextScene: Scene3
+    nextScene: Scene6
     hasDialogue: 0
     textAsset: {fileID: 0}
   canvas: {fileID: 1998870139}
