@@ -1457,7 +1457,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    textAsset: {fileID: 4900000, guid: a7603de82bbcf439aaf4e41220447073, type: 3}
+    textAsset: {fileID: 4900000, guid: 18754975450e94a7caf7b9eeb59bde74, type: 3}
   - eventName: Revisit Prof
     trigger: {fileID: 117186077}
     progressCharacter: 1
@@ -1466,16 +1466,16 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    textAsset: {fileID: 4900000, guid: 10ac8daf766e0485f92be4030939aa93, type: 3}
+    textAsset: {fileID: 4900000, guid: c27021e53f14c427380a0a211d42b431, type: 3}
   - eventName: RevisitProf2
     trigger: {fileID: 1385424477}
     progressCharacter: 0
     character: {fileID: 0}
     prereqs: 01000000
     sceneTransition: 0
-    nextScene: Scene2
+    nextScene: 
     hasDialogue: 1
-    textAsset: {fileID: 4900000, guid: 2999683fe4fee49b18080097f85536b0, type: 3}
+    textAsset: {fileID: 4900000, guid: cbdabe6ab80a64f429cc13d88b626323, type: 3}
   - eventName: Go To Next Scene
     trigger: {fileID: 469824902}
     progressCharacter: 0
@@ -4468,7 +4468,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2662722177255571139, guid: 9f7640d6a9221a945a087dca04b16293, type: 3}
       propertyPath: dist
-      value: 60
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2662722177255571164, guid: 9f7640d6a9221a945a087dca04b16293, type: 3}
       propertyPath: m_Pivot.x
