@@ -2996,7 +2996,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    textAsset: {fileID: 4900000, guid: 1814e7071a7789f4c96110dcec6c8e08, type: 3}
+    textAsset: {fileID: 4900000, guid: dd750f8861f58409a8802e6fe10897b4, type: 3}
   - eventName: BeanDialogue
     trigger: {fileID: 811677108}
     progressCharacter: 0
@@ -3005,7 +3005,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    textAsset: {fileID: 4900000, guid: 1814e7071a7789f4c96110dcec6c8e08, type: 3}
+    textAsset: {fileID: 4900000, guid: 84ed758b0e86d44b09a66c1397b5ba4e, type: 3}
   - eventName: Portal
     trigger: {fileID: 1133279557}
     progressCharacter: 0

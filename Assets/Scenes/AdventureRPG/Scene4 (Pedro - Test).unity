@@ -3526,7 +3526,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    textAsset: {fileID: 4900000, guid: 146a4cdd890724bd094cef59f8205368, type: 3}
+    textAsset: {fileID: 4900000, guid: ef24b20c33a134f399b663a3cf305e96, type: 3}
   - eventName: PutOutFire
     trigger: {fileID: 1310676842}
     progressCharacter: 0
@@ -3544,7 +3544,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: Scene2
     hasDialogue: 1
-    textAsset: {fileID: 4900000, guid: 0964134a4fb3743d788304d7aae0e79f, type: 3}
+    textAsset: {fileID: 4900000, guid: dbba063e9c2204708a757df8487b1544, type: 3}
   - eventName: PreAliveTreeDialogue
     trigger: {fileID: 2129813899}
     progressCharacter: 0
@@ -3553,7 +3553,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: Scene2
     hasDialogue: 1
-    textAsset: {fileID: 4900000, guid: 22336d812e8f94a5090f848626a47997, type: 3}
+    textAsset: {fileID: 4900000, guid: 598eba64d71a84a5fbfa69638049b451, type: 3}
   - eventName: HandLetter
     trigger: {fileID: 0}
     progressCharacter: 0
@@ -3562,7 +3562,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    textAsset: {fileID: 4900000, guid: aa72f306ef54a49f994f427f6e88a0be, type: 3}
+    textAsset: {fileID: 4900000, guid: 942de0674209e4a7b813d27d4df2d334, type: 3}
   - eventName: FindParent
     trigger: {fileID: 746791168}
     progressCharacter: 0
@@ -3571,7 +3571,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    textAsset: {fileID: 4900000, guid: 8bc91c52558f74121961cf8210c96498, type: 3}
+    textAsset: {fileID: 4900000, guid: 0493c71dd00b04a9197bc14ca2060acb, type: 3}
   - eventName: PreOption1
     trigger: {fileID: 180086685}
     progressCharacter: 0
@@ -3580,7 +3580,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    textAsset: {fileID: 4900000, guid: 806c98d45d4bd814995d1980cf2f871e, type: 3}
+    textAsset: {fileID: 4900000, guid: 38293866ca6a542d1955f5260a0246ea, type: 3}
   - eventName: PreOption2
     trigger: {fileID: 1017107851}
     progressCharacter: 0
@@ -3589,7 +3589,7 @@ MonoBehaviour:
     sceneTransition: 0
     nextScene: 
     hasDialogue: 1
-    textAsset: {fileID: 4900000, guid: 72d3a5b66d68c46b195ea2da8a3ad8c9, type: 3}
+    textAsset: {fileID: 4900000, guid: a66c9fc2e8ca54652833d6df940ce1b3, type: 3}
   - eventName: Option2Scene
     trigger: {fileID: 469824902}
     progressCharacter: 0
