@@ -7,7 +7,7 @@ using UnityEngine;
 public class ECNPCBehavior : MonoBehaviour
 {
     //if not empty the NPC will patrol while not in range
-    public Transform[] patrolPoints = { };
+    public List<Vector2> patrolPoints = new List<Vector2>();
 
     //i am aware this causes all NPCs to have the same dialogue, in a proper system they'd read dialogue from a file    
 
@@ -17,7 +17,9 @@ public class ECNPCBehavior : MonoBehaviour
     private bool isPatrolling = true;
     public float npcSpeed;
     public float interactRange;
-    
+
+    public int waypointRange = 5;
+
     private CircleCollider2D cd;
 
     // Start is called before the first frame update
@@ -26,13 +28,22 @@ public class ECNPCBehavior : MonoBehaviour
         dialogueContainer = GameObject.Find("Dialogue Container");
         d = dialogueContainer.GetComponent<Dialogues>();
         //only one patrol point would cause glitches so solve that here
-        if (patrolPoints.Length == 0 || patrolPoints.Length == 1)
+        if (patrolPoints.Count == 0 || patrolPoints.Count == 1)
         {
             //don't patrol if no waypoints supplied
             isPatrolling = false;
         }
         cd = GetComponent<CircleCollider2D>();
         cd.radius = interactRange / 10;
+
+    }
+
+    public void init()
+    {
+        var r = new System.Random();
+        patrolPoints.Add(new Vector2(transform.position.x + r.Next(-waypointRange, waypointRange), transform.position.x + r.Next(-waypointRange, waypointRange)));
+        patrolPoints.Add(new Vector2(transform.position.x + r.Next(-waypointRange, waypointRange), transform.position.x + r.Next(-waypointRange, waypointRange)));
+        patrolPoints.Add(new Vector2(transform.position.x + r.Next(-waypointRange, waypointRange), transform.position.x + r.Next(-waypointRange, waypointRange)));
     }
 
     public string[] getDialogue()
@@ -46,16 +57,19 @@ public class ECNPCBehavior : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         //when the object is selected in the unity editor show its patrol points with lines between each
-        if (patrolPoints.Length != 0)
+        if (patrolPoints.Count != 0)
         {
             Gizmos.color = Color.blue;
-            for (int i = 0; i < patrolPoints.Length - 1; i++)
+            for (int i = 0; i < patrolPoints.Count - 1; i++)
             {
-                Gizmos.DrawLine(patrolPoints[i].position, patrolPoints[i + 1].position);
+                Gizmos.DrawLine(patrolPoints[i], patrolPoints[i + 1]);
             }
-            Gizmos.DrawLine(patrolPoints[0].position, patrolPoints[patrolPoints.Length - 1].position);
+            Gizmos.DrawLine(patrolPoints[0], patrolPoints[patrolPoints.Count - 1]);
         }
         Gizmos.DrawWireSphere(transform.position, interactRange);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, waypointRange);
     }
 
     // Update is called once per frame
@@ -64,15 +78,15 @@ public class ECNPCBehavior : MonoBehaviour
         if (isPatrolling)
         {
             //set the current destination
-            Transform waypoint = patrolPoints[curWaypoint];
-            if (Vector2.Distance(transform.position, waypoint.position) < .01f)
+            Vector2 waypoint = patrolPoints[curWaypoint];
+            if (Vector2.Distance(transform.position, waypoint) < .01f)
             {
                 //after arriving update to the next waypoint with wraparound
-                curWaypoint = (curWaypoint + 1) % patrolPoints.Length;
+                curWaypoint = (curWaypoint + 1) % patrolPoints.Count;
             }
             else
             {
-                transform.position = Vector2.MoveTowards(transform.position, waypoint.position, npcSpeed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, waypoint, npcSpeed * Time.deltaTime);
             }
         }
     }
@@ -88,7 +102,7 @@ public class ECNPCBehavior : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player" && patrolPoints.Length > 1)
+        if (other.gameObject.tag == "Player" && patrolPoints.Count > 1)
         {
             isPatrolling = true;
         }
