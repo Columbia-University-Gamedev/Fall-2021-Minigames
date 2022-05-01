@@ -20,6 +20,6 @@ public class ToHome : MonoBehaviour
 
     public void onClick()
     {
-        SceneManager.LoadScene("Assets / Scenes / AdventureRPG / StartScene.unity");
+        SceneManager.LoadScene("StartScene");
     }
 }
