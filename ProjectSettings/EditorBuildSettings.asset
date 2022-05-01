@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/ExploreCity/Scenes/Title.unity
+    guid: 2861e1bb12e4ca5438592c167d4f6cea
+  - enabled: 1
     path: Assets/Scenes/jumpPlatformGen.unity
     guid: 2b4c1acb46a8f425aa4a6d5a622e2e5f
   - enabled: 1
@@ -14,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HomeScreen.unity
     guid: 0f5522113fc6744358e72a09e7b6b96f
+  - enabled: 1
+    path: Assets/ExploreCity/Scenes/City.unity
+    guid: 473689161d0f8684f881ebcccca35679
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: ab441e66b41b1744c8e0dc4cc44102f1, type: 2}

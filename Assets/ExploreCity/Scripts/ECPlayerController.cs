@@ -3,12 +3,16 @@ using UnityEngine.InputSystem;
 
 public class ECPlayerController : MonoBehaviour
 {
-    public float moveSpeed;
 
+    public DialogueController dialogueController;
+    public float moveSpeed;
     private Vector2 move;
-    [SerializeField] 
+    [SerializeField]
     private Rigidbody2D rb2d;
     private Canvas canvas;
+    private bool isNpcInRange = false;
+    private GameObject inRangeNpc;
+
     [SerializeField]
     private Animator animator;
     private void Awake()
@@ -26,6 +30,27 @@ public class ECPlayerController : MonoBehaviour
         Move();
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("NPC"))
+        {
+            isNpcInRange = true;
+            inRangeNpc = other.gameObject;
+            Debug.Log("Target Locked");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("NPC"))
+        {
+            isNpcInRange = false;
+            inRangeNpc = null;
+            dialogueController.StopDialogue();
+            Debug.Log("Lock Lost");
+        }
+    }
+
     public void OnMovement(InputValue res)
     {
         move = res.Get<Vector2>();
@@ -39,8 +64,11 @@ public class ECPlayerController : MonoBehaviour
     {
         if (value.isPressed)
         {
-            //check if any NPC is in range, if so get their dialogue and 
             Debug.Log("INPUT: Interact pressed");
+            if (isNpcInRange)
+            {
+                    dialogueController.TriggerDialogue(inRangeNpc.GetComponent<ECNPCBehavior>().getDialogue());
+            }
         }
     }
     private void Move()

@@ -112,6 +112,7 @@ public class CityGeneration : MonoBehaviour
                     maxWidth = width;
                 }
                 Instantiate(createdBuilding, new Vector3(xBounds.y + far + width, i, 0.0f), Quaternion.identity);
+                //generate a new npc
             }
             xBounds.y = Mathf.CeilToInt(xBounds.y + generationRadius + maxWidth);
         }
@@ -125,6 +126,7 @@ public class CityGeneration : MonoBehaviour
                     maxWidth = width;
                 }
                 Instantiate(createdBuilding, new Vector3(xBounds.x - far - 1f*width, i, 0.0f), Quaternion.identity);
+                //generate a new npc
             }
             xBounds.x = Mathf.FloorToInt(xBounds.x - generationRadius - maxWidth);
         }
@@ -138,6 +140,7 @@ public class CityGeneration : MonoBehaviour
                     maxHeight = height;
                 }
                 Instantiate(createdBuilding, new Vector3(i, yBounds.y + far + 0.5f*height, 0.0f), Quaternion.identity);
+                //generate a new npc
             }
             yBounds.y = Mathf.CeilToInt(yBounds.y + generationRadius + maxHeight);
         }
@@ -151,6 +154,7 @@ public class CityGeneration : MonoBehaviour
                     maxHeight = height;
                 }
                 Instantiate(createdBuilding, new Vector3(i, yBounds.x- far - 0.5f*height, 0.0f), Quaternion.identity);
+                //generate a new npc
             }
             yBounds.x = Mathf.FloorToInt(yBounds.x - generationRadius - maxHeight);
         }
