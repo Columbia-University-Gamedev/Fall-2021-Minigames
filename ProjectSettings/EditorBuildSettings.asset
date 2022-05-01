@@ -33,6 +33,15 @@ EditorBuildSettings:
     path: Assets/Scenes/AdventureRPG/Scene5.unity
     guid: 01a71f520acde4de0a01d4468795aba6
   - enabled: 1
+    path: Assets/Scenes/AdventureRPG/Scene6.unity
+    guid: e5d8bd62cfc6844569184ce40928b8b2
+  - enabled: 1
+    path: Assets/Scenes/AdventureRPG/Scene7.unity
+    guid: ade0944bcc6c94dc4aeae65dc83abab5
+  - enabled: 1
+    path: Assets/Scenes/AdventureRPG/Scene8.unity
+    guid: b94af898c628842d08230eaa8060fc94
+  - enabled: 1
     path: Assets/Scenes/AdventureRPG/GameOver.unity
     guid: 33b1572d5291448e790687ebee60aa35
   - enabled: 1

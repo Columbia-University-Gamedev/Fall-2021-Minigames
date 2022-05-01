@@ -21,6 +21,7 @@ public class CureSpirit : MonoBehaviour
     [SerializeField] private PollenProjectiles p;
 
     [SerializeField] private GameObject resolvedAudio;
+    [SerializeField] private GameObject originalAudio;
 
     void Start()
     {
@@ -75,7 +76,7 @@ public class CureSpirit : MonoBehaviour
             rain.gameObject.SetActive(true);
             rain.Play();
             resolvedAudio.SetActive(true);
-
+            originalAudio.SetActive(false);
         }
     }
 }
