@@ -36,7 +36,10 @@ public class MutatedSpiritCurable : MonoBehaviour
 
         //task.completed = true;
 
-        pollen.Stop();
+        if (pollen != null)
+        {
+            pollen.Stop();
+        }
         //Run the 
         StartCoroutine(CureSequence());
 
