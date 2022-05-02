@@ -136,4 +136,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   spotCheck: {fileID: 0}
-  EventType: 0
+  EventType: 1
