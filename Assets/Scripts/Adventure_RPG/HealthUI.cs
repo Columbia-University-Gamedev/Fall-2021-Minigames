@@ -9,7 +9,7 @@ public class HealthUI : MonoBehaviour
     public static HealthUI Instance { get { return _instance; } }
 
     public GameObject heart;
-    private float dist = 20f;
+    private float dist = 25f;
 
     private List<GameObject> healthBar = new List<GameObject>();
     // Start is called before the first frame update
@@ -23,8 +23,9 @@ public class HealthUI : MonoBehaviour
         for(int i = 0; i < amount; i++)
         {
             healthBar.Add(Instantiate(heart,
-                transform.position - (dist * i * Vector3.right), Quaternion.identity,
+                Vector3.zero, Quaternion.identity,
                 this.transform));
+            healthBar[i].transform.localPosition = dist * (1 - i) * Vector3.right;
         }
     }
 
