@@ -485,6 +485,7 @@ GameObject:
   - component: {fileID: 80459706}
   - component: {fileID: 80459705}
   - component: {fileID: 80459704}
+  - component: {fileID: 80459707}
   m_Layer: 0
   m_Name: PreMutatedSpiritTrigger
   m_TagString: Untagged
@@ -578,13 +579,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 80459701}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.9329, y: 2, z: 0}
+  m_LocalPosition: {x: 8.69, y: 0.69, z: 0}
   m_LocalScale: {x: 1.4400449, y: 2.70345, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &80459707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80459701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c13e7b0b9eefb40f9bdedf81034527ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p: {fileID: 7363350888218353151}
 --- !u!1 &105026278
 GameObject:
   m_ObjectHideFlags: 0
@@ -3799,6 +3813,7 @@ GameObject:
   - component: {fileID: 1311182838}
   - component: {fileID: 1311182837}
   - component: {fileID: 1311182842}
+  - component: {fileID: 1311182843}
   m_Layer: 0
   m_Name: MutatedSpiritTrigger
   m_TagString: Untagged
@@ -3919,6 +3934,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1311182843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311182835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c13e7b0b9eefb40f9bdedf81034527ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p: {fileID: 7363350888218353151}
 --- !u!1 &1321549812
 GameObject:
   m_ObjectHideFlags: 0
@@ -5676,8 +5704,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2021825288}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 54.42, y: 2.69, z: 0}
-  m_LocalScale: {x: 1.3497354, y: 1.040539, z: 1.231407}
+  m_LocalPosition: {x: 55.219, y: 2.69, z: 0}
+  m_LocalScale: {x: 1.1648216, y: 1.040539, z: 1.231407}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1571453010}
@@ -5787,8 +5815,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032350084}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 38.6, y: -5.5, z: 0}
-  m_LocalScale: {x: 1.3203442, y: 1.040539, z: 1.231407}
+  m_LocalPosition: {x: 38.355, y: -5.5, z: 0}
+  m_LocalScale: {x: 1.2635695, y: 1.040539, z: 1.231407}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1571453010}
@@ -6394,7 +6422,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5125498604796187752}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 0.05
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
