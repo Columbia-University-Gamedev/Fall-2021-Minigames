@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StoryManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class StoryManager : MonoBehaviour
 
     public static StoryManager Instance { get { return _instance; } }
     [SerializeField] public static string currentScene;
+    [SerializeField] private CanvasGroup sceneTransition;
 
     public void Awake()
     {
