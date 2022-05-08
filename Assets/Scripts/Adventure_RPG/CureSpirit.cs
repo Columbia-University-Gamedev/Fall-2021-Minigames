@@ -51,8 +51,9 @@ public class CureSpirit : MonoBehaviour
                 p.stillMutated = false;
             }
 
-            if (playerRb.velocity.x >= 0f)
+            if (!cured)
             {
+                cured = true;
                 StartCoroutine(CureSequence());
             }
         }
