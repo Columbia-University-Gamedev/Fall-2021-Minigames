@@ -1,7 +1,7 @@
 characterName,dialogue
 10,HALT!
 10,"Who dare trespass upon my forest? Strangers, identify yourself!"
-0,Uh... My name is Lex.
+0,Err... My name is Lex.
 2,Hi! I'm Bean!
 10,"Ah, young ones. And you, Curer... I see you're back too."
 10,"Trying to convince me to off myself again, huh?"
@@ -12,7 +12,7 @@ characterName,dialogue
 0,What do you mean you can't?
 2,Tell us! Let us help!
 10,You think I like feeling like this?
-10,"I guard the sacred life force of this world, and it kills me––"
+10,"I guard the sacred life force of this world, and it kills me..."
 10,"It kills me knowing that my misery, my own roots, are sapping this realm of its beauty..."
 10,But I can not move on.
 0,Why not? You're clearly miserable.
@@ -23,7 +23,8 @@ characterName,dialogue
 10,"Because, who is going to look after her when I'm gone...?"
 10,You don't understand what it's like to live as if your heart...
 10,...as if...
-9,As if it's beating outside of your body?
+9,...As if it's beating outside of your body?
+9,...
 9,"Believe me, I understand."
 9,When I lost Bean... it felt... a part of me was gone.
 2,Oh mom... I'm here now!
