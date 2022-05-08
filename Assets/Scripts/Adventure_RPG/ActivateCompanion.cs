@@ -10,7 +10,7 @@ public class ActivateCompanion : MonoBehaviour
     [SerializeField] private int index;
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && storyManager.sceneEvents[index].completed)
         {
             companionFollow.enabled = true;
         }
