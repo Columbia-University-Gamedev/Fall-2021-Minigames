@@ -179,11 +179,11 @@ public class PlayerMovement : MonoBehaviour
     {
         hp--;
         HealthUI.Instance.UpdateHP(hp);
+        audioSource.Play();
         if(hp == 0)
         {
             StoryManager.currentScene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene("GameOver");
-            audioSource.Play();
         }
     }
 }

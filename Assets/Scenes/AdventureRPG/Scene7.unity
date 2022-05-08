@@ -179,7 +179,7 @@ MonoBehaviour:
   characterArray:
   - characterImage: {fileID: 21300000, guid: 24eb61a0388554bc784168a2b8a3287a, type: 3}
     characterName: char0
-  - characterImage: {fileID: 21300000, guid: 56836bd8042154c3cb2d4881d748db36, type: 3}
+  - characterImage: {fileID: 21300000, guid: 64e9b631795924a5fbeeaf74c3f3cefe, type: 3}
     characterName: char1
   - characterImage: {fileID: 21300000, guid: 103653dccb5bb462e93d0e5ce9035980, type: 3}
     characterName: char1
@@ -195,7 +195,7 @@ MonoBehaviour:
     characterName: char1
   - characterImage: {fileID: 21300000, guid: 89af4219637a3d4498f518b2315f30d1, type: 3}
     characterName: char1
-  - characterImage: {fileID: 21300000, guid: 9a272750d79ea485db176c378dee597b, type: 3}
+  - characterImage: {fileID: 21300000, guid: 8c09b851b5bd04f5aadad11b5b9210c9, type: 3}
     characterName: char1
   - characterImage: {fileID: 21300000, guid: 89af4219637a3d4498f518b2315f30d1, type: 3}
     characterName: char1
@@ -2475,7 +2475,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 994800527
   m_SortingLayer: -1
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1545d7f4ad39e474bae2885ddfc6392f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
