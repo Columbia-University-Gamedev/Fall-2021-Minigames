@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -149,8 +149,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 339496}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 46.3103, y: 3.6183, z: 0}
-  m_LocalScale: {x: 0.9321635, y: 0.7968058, z: 0.2688043}
+  m_LocalPosition: {x: 46.3103, y: 3.6647, z: 0}
+  m_LocalScale: {x: 0.9321635, y: 0.860869, z: 0.2688043}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1044887048}
@@ -2991,8 +2991,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 846018034}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 40.8021, y: 5.9993, z: 0}
-  m_LocalScale: {x: 0.7874904, y: 0.53202724, z: 0.2688043}
+  m_LocalPosition: {x: 40.7742, y: 5.9993, z: 0}
+  m_LocalScale: {x: 0.77698547, y: 0.53202724, z: 0.2688043}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1044887048}
@@ -11063,6 +11063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bede6002f2baf414e8e4493d6785546c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneTransition: {fileID: 0}
   sceneEvents:
   - eventName: CureEnemy
     trigger: {fileID: 0}

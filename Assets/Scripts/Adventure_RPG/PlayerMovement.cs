@@ -90,9 +90,11 @@ public class PlayerMovement : MonoBehaviour
                 (rb.worldCenterOfMass - ground.ClosestPoint(rb.worldCenterOfMass))
                 .normalized;
             
-            Vector2 tangent = Quaternion.FromToRotation(Vector3.up, Vector3.right) * normal; 
+            Vector2 tangent = Quaternion.FromToRotation(Vector3.up, Vector3.right) * normal;
+            float zAngle = Vector2.Angle(normal, Vector2.up);
             
             // orientation 
+            if (Mathf.Abs(zAngle) < 15f)
             transform.up = Vector3.Lerp(transform.up, normal, Time.fixedDeltaTime * 5f);
             
             
