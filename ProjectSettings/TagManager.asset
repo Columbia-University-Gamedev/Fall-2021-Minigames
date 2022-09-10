@@ -11,6 +11,9 @@ TagManager:
   - OutOfBounds
   - Enemy
   - Bullet
+  - Ground
+  - PushableObject
+  - Death
   layers:
   - Default
   - TransparentFX
@@ -21,12 +24,10 @@ TagManager:
   - Player
   - Background
   - Bullets
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - ExclusiveGround1
+  - ExclusiveGround2
+  - Player1
+  - Player2
   - 
   - 
   - 

@@ -5,14 +5,53 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/jumpPlatformGen.unity
     guid: 2b4c1acb46a8f425aa4a6d5a622e2e5f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GameOver.unity
     guid: 3b1b08cba446545ad94968ba9e0f9ab8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/HomeScreen.unity
     guid: 0f5522113fc6744358e72a09e7b6b96f
+  - enabled: 1
+    path: Assets/Scenes/AdventureRPG/StartScene.unity
+    guid: 5ae9b5905a7fb4a6aa4627dc0c9a1dcb
+  - enabled: 1
+    path: Assets/Scenes/AdventureRPG/Scene1.unity
+    guid: 70e78255a8b7245429dc9afcdee09241
+  - enabled: 1
+    path: Assets/Scenes/AdventureRPG/Scene2.unity
+    guid: fad740548b1c14cc895060ca1b7a759d
+  - enabled: 1
+    path: Assets/Scenes/AdventureRPG/Scene3 (Pedro - Test).unity
+    guid: 0136e12d997c65342bf4dc0a3eb4a0f9
+  - enabled: 1
+    path: Assets/Scenes/AdventureRPG/Scene4 (Pedro - Test).unity
+    guid: dbee7873a685a944d8d9479ffc9c1dd5
+  - enabled: 1
+    path: Assets/Scenes/AdventureRPG/Scene5.unity
+    guid: 01a71f520acde4de0a01d4468795aba6
+  - enabled: 1
+    path: Assets/Scenes/AdventureRPG/Scene6.unity
+    guid: e5d8bd62cfc6844569184ce40928b8b2
+  - enabled: 1
+    path: Assets/Scenes/AdventureRPG/Scene7.unity
+    guid: ade0944bcc6c94dc4aeae65dc83abab5
+  - enabled: 1
+    path: Assets/Scenes/AdventureRPG/Scene8.unity
+    guid: b94af898c628842d08230eaa8060fc94
+  - enabled: 1
+    path: Assets/Scenes/AdventureRPG/GameOver.unity
+    guid: 33b1572d5291448e790687ebee60aa35
+  - enabled: 1
+    path: Assets/Scenes/AdventureRPG/Credits Scene Op1.unity
+    guid: 337307a22ddd55241b9460a2b39022cd
+  - enabled: 1
+    path: Assets/Scenes/AdventureRPG/Credits Scene Op2.unity
+    guid: 89354f9acdb0cd04ca04c271fcf2d876
+  - enabled: 0
+    path: Assets/Scenes/AdventureRPG/Scene8.unity
+    guid: b94af898c628842d08230eaa8060fc94
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: ab441e66b41b1744c8e0dc4cc44102f1, type: 2}
